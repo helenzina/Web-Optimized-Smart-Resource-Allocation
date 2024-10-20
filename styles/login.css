@@ -53,6 +53,8 @@ main {
                 -1rem -1rem 1.5rem lightgrey;
     transition: all 0.5s ease;
     background-color: white; 
+    margin: auto;
+    max-width: 40rem;
 }
 
 main:hover {
@@ -74,7 +76,7 @@ main:hover {
 }
 
 .logo {
-    max-width: 80%;
+    max-width: calc(0.65 * (15rem + 25vw));
     height: auto;
     display: flex;
     justify-content: center;
@@ -83,7 +85,7 @@ main:hover {
 
 .summary {
     display: flex;
-    font-size: 1.2rem;
+    font-size: calc(0.65 * (1.2rem + 0.6vw));
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     justify-content: center;
@@ -92,6 +94,22 @@ main:hover {
     padding: 0.5rem;
     border-radius: 1rem;
     transition: all 0.5s ease;
+}
+
+.info{
+    display: flex;
+    font-size: calc(0.65 * (1rem + 0.5vw));
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background-color: lightgrey;
+    margin: 0.5rem;
+}
+
+.info .bi {
+    display: contents;
 }
 
 form {
@@ -125,9 +143,18 @@ form {
 }
 
 .inputs {
-    display: flex;
+    display: flex;    
     margin: 0.5rem;
     position: relative;
+}
+
+.invalid {
+    border-color: red;
+}
+
+.invalid-feedback {
+    display: inline-flex;
+    font-size: calc(0.8*(0.9rem + 0.2vw))
 }
 
 #new {
@@ -150,6 +177,30 @@ form {
     justify-content: center;
     width: 100%;
 }
+
+span .login_text{
+    transition: all 0.2s;
+}
+
+.login_loading::after{
+    content: "";
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.2rem solid transparent;
+    border-top-color: white;
+    border-radius: 50%;
+    animation: loading 1s ease infinite;
+}
+
+@keyframes loading {
+    from {
+      transform: rotate(0turn);
+    }
+  
+    to {
+      transform: rotate(1turn);
+    }
+  }
 
 footer {
     display: flex;

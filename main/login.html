@@ -1,55 +1,100 @@
+<!--
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $mysqli = require __DIR__ . "/conn.php";
+
+
+
+}
+
+?>
+-->
+
 <!DOCTYPE html>
 <html lang="el">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-labs | ΔΙ.ΠΑ.Ε. Σέρρες</title>
+    <title>Σύνδεση στο Σύστημα | e-Labs - Διεθνές Πανεπιστήμιο της Ελλάδος</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="icon" type="image" href="../images/dipae.png">
-    <link rel="stylesheet" type="text/css" href="../style/login.css">
+    <link rel="stylesheet" type="text/css" href="../styles/login.css">
 </head>
 
 <body>
     <main>
-        <form method="post">
+        <form method="post" id="loginForm">
             <div class="mb-3 centered">
                 <img class="logo" src="../images/dipae.png" alt="dipae.png" title="dipae logo">
             </div>
             <div class="summary">
                 <p>Πλατφόρμα Δήλωσης Εργαστηριακών Μαθημάτων Σερρών</p>
             </div>
+            <div class="info">
+                <p>Η είσοδος στην εφαρμογή πραγματοποιείται με χρήση των στοιχείων του ενοποιημένου ιδρυματικού
+                    λογαριασμού για τις ηλεκτρονικές υπηρεσίες</p>
+                <i class="bi bi-info-circle-fill"></i>
+            </div>
             <div class="inputs">
                 <label for="username" class="form-label"></label>
                 <i class="bi bi-person-fill"></i>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Όνομα φοιτητή"
-                    required>
+                    title="Το όνομα φοιτητή πρέπει να περιέχει γράμματα και αριθμούς." required>
             </div>
             <div class="inputs">
                 <label for="password" class="form-label"></label>
                 <i class="bi bi-lock-fill"></i>
                 <input type="password" class="form-control" id="password" name="password"
                     placeholder="Κωδικός πρόσβασης" required>
-                <i class="bi-eye-slash toggle"></i>
+                <i class="bi-eye toggle"></i>
             </div>
+            <!--
             <div class="inputs">
                 <span id="new">Νέος φοιτητής;</span>
                 <a href="signup.html" id="signup">Εγγραφή</a>
             </div>
+            -->
             <div class="inputs mt-3">
-                <button type="submit" id="login" name="login" class="btn btn-primary">Eίσοδος</button>
+                <button type="button" id="login" name="login" class="btn btn-primary">
+                    <span class="login_text">
+                        Eίσοδος
+                    </span>
+                </button>
             </div>
         </form>
+
+        <!-- Modal -->
+        <!-- 
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginModalLabel">Προσοχή</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Παρακαλώ πληκτρολογήστε το όνομα φοιτητή και τον κωδικό πρόσβασής σας, πριν υποβάλετε τα
+                        στοιχεία σας.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
     </main>
     <footer>
         &copy; 2025 Helen Zina All Rights Reserved
     </footer>
 </body>
 
-<script type="text/javascript" src="../script/script.js"></script>
+<script type="text/javascript" src="../scripts/login.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
