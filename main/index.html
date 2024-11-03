@@ -14,14 +14,68 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-md navbar-dark">
     <a class="navbar-brand" href="index.html#home">
-      <img class="logo" src="../images/dipae.png" alt="logo ΔΙΠΑΕ" title="logo ΔΙΠΑΕ">
+      <img class="logo" src="../images/gear.png" alt="logo" title="logo">
+      <div class="title">
+        E-Labs
+        <div class="subtitle">Δήλωση Εργαστηριακών Τμημάτων</div>
+      </div>
     </a>
-    <button class="bi-layout-sidebar-reverse navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+      aria-controls="offcanvas" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
+
+    <div class="offcanvas offcanvas-lg offcanvas-end text-bg-dark" tabindex="-1" id="offcanvas"
+      aria-labelledby="offcanvasLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLabel">
+          <span class="fs-4">Sidebar</span>
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#offcanvas"
+          aria-label="Close"></button>
+      </div>
+      <hr class="centered">
+      <div class="offcanvas-body">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-links active" href="index.html#home">Αρχική</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-links" href="labs.html">Δηλώσεις</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-links" target="_blank" href="../documents/labs-signup-instructions.pdf">Οδηγίες δηλώσεων</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-links" href="contact.html">Επικοινωνία</a>
+          </li>
+        </ul>
+      </div>
+      <hr class="centered">
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <!--<img src="" alt="" width="32" height="32" class="rounded-circle me-2">-->
+          <i class="bi bi-person-circle profile me-2"></i>
+          <strong>First Last</strong>
+        </a>
+        <div class="aem">(AM: ict<span id="aemNo">12345</span>)</div>
+        <hr class="centered">
+        <div class="department">
+          Τμήμα Μηχανικών Πληροφορικής, Υπολογιστών και Τηλεπικοινωνιών
+        </div>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" data-bs-popper="">
+          <li><a class="dropdown-item" href="#">Προφίλ</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">Αποσύνδεση</a></li>
+        </ul>
+      </div>
+    </div>
+
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -40,144 +94,207 @@
     </div>
   </nav>
 
+  <aside>
+    <div class="sidebar-title">
+
+    </div>
+    <div class="sidebar-content">
+
+    </div>
+  </aside>
+
   <main>
     <div class="welcome">
-      <h2>Καλώς ήρθες, <span id="username">username</span>!</h2>
+      <h2>Καλώς ήρθες, <span id="firstName">firstName</span>!</h2>
       <p>Παρακαλώ, διαβάστε <a class="here" href="../documents/labs-signup-instructions.pdf">εδώ</a> τις οδηγίες
         δηλώσεων
         εργαστηριακών μαθημάτων
         του τμήματος και δηλώστε τα τμήματα που επιθυμείτε με σειρά προτίμησης.</p>
     </div>
 
-    <div class="semesters">
-      <h4>Εξάμηνα</h4>
-      <div class="list-group">
-        <label for="semester">Επιλέξτε εξάμηνο:</label>
-        <a href="#" class="semester-item list-group-item list-group-item-action" aria-current="true">
-          1ο Εξάμηνο
-        </a>
-        <a href="#" class="semester-item list-group-item list-group-item-action">2ο Εξάμηνο</a>
-        <a href="#" class="semester-item list-group-item list-group-item-action">3ο Εξάμηνο</a>
-        <a href="#" class="semester-item list-group-item list-group-item-action">4ο Εξάμηνο</a>
+    <form method="post">
+      <div class="semesters">
+        <h4>Εξάμηνα</h4>
+        <div class="list-group">
+          <label for="semester">Επιλέξτε εξάμηνο:</label>
+          <a href="#" class="semester-item list-group-item list-group-item-action" aria-current="true">
+            1ο Εξάμηνο
+          </a>
+          <a href="#" class="semester-item list-group-item list-group-item-action">2ο Εξάμηνο</a>
+          <a href="#" class="semester-item list-group-item list-group-item-action">3ο Εξάμηνο</a>
+          <a href="#" class="semester-item list-group-item list-group-item-action">4ο Εξάμηνο</a>
+        </div>
       </div>
-    </div>
 
-    <div class="courses hidden">
-      <h4>Μαθήματα</h4>
-      <div class="list-group">
-        <label for="course">Επιλέξτε μάθημα:</label>
-        <a href="#" class="course-item list-group-item list-group-item-action" aria-current="true">
-          Μάθημα 1
-        </a>
-        <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 2</a>
-        <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 3</a>
-        <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 4</a>
-        <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 5</a>
-        <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 6</a>
-        <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 7</a>
+      <!--for 8th and 9th semester-->
+      <!--
+      <div class="elective hidden">
+        <h4>Μαθήματα Επιλογής</h4>
+        <label for="elective_course">Επιλέξτε μαθήματα:</label>
+        <table id="electiveTable" class="table">
+          <thead>
+            <tr>
+              <th scope="col">A/A</th>
+              <th scope="col">Μάθημα</th>
+              <th scope="col">Σειρά Προτίμησης</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Μάθημα 1</td>
+              <td>
+                <select class="form-select" aria-label="select preference">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>                                    
+                  <option value="9">9</option>
+                  <option value="10">10</option>                                    
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Μάθημα 2</td>
+              <td>
+                <select class="form-select" aria-label="select preference">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>                                    
+                  <option value="9">9</option>
+                  <option value="10">10</option>                                    
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 
+      -->
+
+      <div class="courses hidden">
+        <h4>Μαθήματα</h4>
+        <div class="list-group">
+          <label for="course">Επιλέξτε μάθημα:</label>
+          <a href="#" class="course-item list-group-item list-group-item-action" aria-current="true">
+            Μάθημα 1
+          </a>
+          <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 2</a>
+          <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 3</a>
+          <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 4</a>
+          <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 5</a>
+          <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 6</a>
+          <a href="#" class="course-item list-group-item list-group-item-action">Μάθημα 7</a>
+        </div>
       </div>
-    </div>
 
-    <div class="labs hidden">
-      <h4>Τμήματα</h4>
-      <label for="lab">Επιλέξτε τμήματα:</label>
-      <table id="labsTable" class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Ημέρα</th>
-            <th scope="col">Ώρες</th>
-            <th scope="col">Σειρά Προτίμησης</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Δευτέρα</td>
-            <td>10:00-12:00</td>
-            <td>
-              <select class="form-select" aria-label="select preference">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Τρίτη</td>
-            <td>10:00-12:00</td>
-            <td>
-              <select class="form-select" aria-label="select preference">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Τρίτη</td>
-            <td>12:00-14:00</td>
-            <td>
-              <select class="form-select" aria-label="select preference">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="labs hidden">
+        <h4>Τμήματα</h4>
+        <label for="lab">Επιλέξτε τμήματα:</label>
+        <table id="labsTable" class="table">
+          <thead>
+            <tr>
+              <th scope="col">A/A</th>
+              <th scope="col">Ημέρα</th>
+              <th scope="col">Ώρες</th>
+              <th scope="col">Σειρά Προτίμησης</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Δευτέρα</td>
+              <td>10:00-12:00</td>
+              <td>
+                <select class="form-select" aria-label="select preference">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Τρίτη</td>
+              <td>10:00-12:00</td>
+              <td>
+                <select class="form-select" aria-label="select preference">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Τρίτη</td>
+              <td>12:00-14:00</td>
+              <td>
+                <select class="form-select" aria-label="select preference">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <div class="preview hidden">
-      <h4>Προεπισκόπηση</h4>
-      <table id="previewTable" class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Ημέρα</th>
-            <th scope="col">Ώρες</th>
-            <th scope="col">Σειρά Προτίμησης</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Δευτέρα</td>
-            <td>10:00-12:00</td>
-            <td>3</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Τρίτη</td>
-            <td>10:00-12:00</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Τρίτη</td>
-            <td>12:00-14:00</td>
-            <td>2</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="preview hidden">
+        <h4>Προεπισκόπηση</h4>
+        <label for="preview">Ελέγξτε τις προτιμήσεις σας:</label>
+        <table id="previewTable" class="table">
+          <thead>
+            <tr>
+              <th scope="col">Ημέρα</th>
+              <th scope="col">Ώρες</th>
+              <th scope="col">Σειρά Προτίμησης</th>
+            </tr>
+          </thead>
+          <tbody> <!--asc sorted-->
+            <tr>
+              <td>Τρίτη</td>
+              <td>10:00-12:00</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Τρίτη</td>
+              <td>12:00-14:00</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Δευτέρα</td>
+              <td>10:00-12:00</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <div class="buttons hidden">
-      <button class="btn btn-success">Αποθήκευση Προτιμήσεων</button>
-      <button class="btn btn-danger">Διαγραφή Όλων</button>
-    </div>
+      <div class="buttons hidden">
+        <button class="btn btn-success" type="submit">Αποθήκευση Προτιμήσεων</button>
+        <button class="btn btn-danger" type="reset">Επαναφορά Όλων</button>
+      </div>
+    </form>
 
   </main>
 

@@ -10,6 +10,7 @@
     --main: #002855;
     --secondary: #f2f2f2;
     --underline: #f0a500;
+    --dropdown-border: #343a40;
 }
 
 body {
@@ -18,7 +19,8 @@ body {
     flex-direction: column;
     justify-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, var(--secondary), var(--main));
+    /*background: radial-gradient(circle at top, var(--secondary) 20%, var(--main) 100%);*/
+    background: var(--secondary);
     margin: 0;
     min-height: 100vh;
     min-width: 100vw;
@@ -26,13 +28,35 @@ body {
     position: relative;
 }
 
+.navbar-brand{
+    margin-left: 1rem;
+}
+
 .logo {
-    max-width: calc(0.5 * (15rem + 25vw));
+    width: 3.5rem;
+    float: inline-start;
     height: auto;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
-    background-color: white;
+    align-items: flex-start; 
+}
+
+.title {
+    display: inline-flex;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    margin-left: 0.5rem;
+    flex-direction: column;
+
+    .subtitle{
+        display: flex;
+        font-size: 0.7rem;
+        font-weight: normal;
+        letter-spacing: 0rem;
+        align-items: flex-end;
+        margin: 0;
+    }
 }
 
 nav {
@@ -90,14 +114,101 @@ nav {
     margin: 0;
 }
 
+.navbar-toggler {
+    border: var(--main);
+}
+
+hr {
+    width: 80%;
+    margin: auto;
+}
+
+.offcanvas {
+    display: none;
+    background-color: var(--main) !important; 
+}
+
+.offcanvas-backdrop.show {
+    opacity: 0;
+}
+
+.dropdown {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    margin: 1rem auto;
+    position: relative;
+    flex-direction: column;
+}
+
+.aem {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem;
+}
+
+.dropdown-menu{
+    flex-direction: column;
+    background-color: #212529;
+    border-color: var(--dropdown-border);
+
+    li {
+        margin: 0;
+    }
+}
+
+.dropdown-menu[data-bs-popper] {
+    margin: auto;
+    top: auto;
+    transform: translate(85%, -105%);
+}
+
+.dropdown-divider {
+    margin: 0;
+    border-color: var(--dropdown-border);
+    width: auto;
+}
+
+.profile {
+    font-size: 2rem;
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--dropdown-border);
+    border-radius: 50%;
+}
+
+.dropdown-toggle {
+    display: inline-flex;
+}
+
+.department {
+    display: flex;
+    align-items: center;
+    margin: 1rem auto;
+    background-color: #003c81;
+    max-width: max-content;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    text-align: center;
+    border-radius: 0.5rem;
+}
+
+aside {
+    height: 100%;
+    width: 15rem;
+    background-color: #111;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    z-index: 1000;
+}
+
 main {
     display: flow;
-    flex-direction: row;
-    flex-wrap: wrap;
     width: fit-content;
-    justify-content: center;
-    align-items: center;
     margin: auto;
+    flex-grow: 1;
 }
 
 .welcome {
@@ -135,9 +246,16 @@ main {
     display: none;
 }
 
+.content {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .semesters {
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     margin: 1rem;
     align-items: center;
@@ -169,7 +287,8 @@ main {
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 0.5rem;
-    margin-top: 2rem;
+    margin: 2rem;
+    width: fit-content;
 }
 
 .list-group-item.active,
@@ -191,20 +310,42 @@ footer {
     background-color: rgba(0, 0, 0, 0.1);
     width: 100%;
     color: var(--secondary);
+    background-color: var(--main);
+    font-size: 0.9rem;
 }
 
-@media screen and (max-width: 711px) {
+
+@media screen and (max-width: 1064px) {
     .buttons {
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
         width: max-content;
     }
+
+    body {
+        min-height: 120vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .offcanvas {
+        display: flex;
+    }
+    .offcanvas-backdrop.show {
+        opacity: .5;
+    }
+}
+
+@media screen and (max-width: 702px) {
+    body {
+        min-height: 150vh;
+    }
 }
 
 @media screen and (max-width: 529px) {
     body {
-        min-height: 170vh;
+        min-height: 180vh;
     }
 
     main {
@@ -216,5 +357,11 @@ footer {
         align-items: center;
         align-content: center;
         margin: auto;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    nav {
+        width: max-content;
     }
 }
