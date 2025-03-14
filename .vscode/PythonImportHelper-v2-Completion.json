@@ -58,6 +58,15 @@
         "documentation": {}
     },
     {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
         "label": "cp_model",
         "importPath": "ortools.sat.python",
         "description": "ortools.sat.python",
@@ -95,7 +104,7 @@
         "kind": 6,
         "importPath": "allocation.course",
         "description": "allocation.course",
-        "peekOfCode": "class Course:\n    def __init__(self, course_id, course_name, min_students, max_students):\n        self.course_id = course_id\n        self.course_name = course_name\n        self.min_students = min_students\n        self.max_students = min_students\n    def set_max_students(self, max_students):\n        self.max_students = max_students",
+        "peekOfCode": "class Course:\n    def __init__(self, course_id, course_name, min_students, max_students):\n        self.course_id = course_id\n        self.course_name = course_name\n        self.min_students = min_students\n        self.max_students = max_students",
         "detail": "allocation.course",
         "documentation": {}
     },
@@ -131,7 +140,7 @@
         "kind": 6,
         "importPath": "allocation.solver",
         "description": "allocation.solver",
-        "peekOfCode": "class Solver:\n    def __init__(self, model_obj):\n        self.model_obj = model_obj\n    def solve_model(self):\n        # maximize student allocation based on their gpa\n        self.model_obj.model.maximize(\n            sum(self.model_obj.students[s].scaled_gpa * self.model_obj.allocation[s][c]\n                for s in self.model_obj.all_students\n                for c in self.model_obj.all_courses)\n        )",
+        "peekOfCode": "class Solver:\n    def __init__(self, model_obj):\n        self.model_obj = model_obj\n        self.solver = cp_model.CpSolver()\n        self.status = None\n    def solve_model(self):\n        # maximize student allocation based on their gpa and\n        # minimize student allocation based on their preferences\n        self.model_obj.model.maximize(\n            sum(",
         "detail": "allocation.solver",
         "documentation": {}
     },
@@ -140,7 +149,7 @@
         "kind": 6,
         "importPath": "allocation.model",
         "description": "allocation.model",
-        "peekOfCode": "class Model:\n    def __init__(self, students, courses):\n        self.model = cp_model.CpModel()\n        self.students = students\n        self.all_students = range(len(students))\n        self.courses = courses\n        self.all_courses = range(len(courses))\n        self.allocation = []\n    def set_allocation(self, allocation):\n        self.allocation = allocation",
+        "peekOfCode": "class Model:\n    def __init__(self, students, courses):\n        self.model = cp_model.CpModel()\n        self.students = students\n        self.all_students = range(len(students))\n        self.courses = courses\n        self.all_courses = range(len(courses))\n        self.allocation = []\n    def build_model(self):\n        # sorting students based on their gpa in descending order",
         "detail": "allocation.model",
         "documentation": {}
     }

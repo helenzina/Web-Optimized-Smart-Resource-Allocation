@@ -15,17 +15,17 @@ class ExcelWriter:
             for s in self.model_obj.all_students:
                 if self.solver.value(self.model_obj.allocation[s][c]):
                     data.append([
-                        self.model_obj.courses[c].name,
-                        self.model_obj.courses[c].id,
+                        self.model_obj.courses[c].course_name,
+                        self.model_obj.courses[c].course_id,
                         self.model_obj.students[s].fullname,
-                        self.model_obj.students[s].id,
+                        self.model_obj.students[s].student_id,
                         self.model_obj.students[s].semester,
                         self.model_obj.students[s].gpa,
-                        self.model_obj.students[s].preferences[self.model_obj.courses[c].id],
+                        self.model_obj.students[s].preferences[self.model_obj.courses[c].course_id],
                         self.model_obj.students[s].is_obligated
                     ])
 
-        df = pd.DataFrame(data, columns=[
+        df = pd.DataFrame(data, columns = [
             "Course Name", "Course ID", "Fullname", "AEM", "Semester", "GPA", "Preference", "Obligated"
         ])
 

@@ -9,8 +9,6 @@ class Model:
         self.all_courses = range(len(courses))
         self.allocation = []
 
-    def set_allocation(self, allocation):
-        self.allocation = allocation
 
     def build_model(self):
         # sorting students based on their gpa in descending order
@@ -21,8 +19,6 @@ class Model:
         # each student s must attend exactly xs courses
         for s in self.all_students:
             self.model.add(sum(allocation[s][c] for c in self.all_courses) == self.students[s].required_courses)
-            # each student s can submit xs courses in total
-            self.model.add(sum(allocation[s][c] for c in self.all_courses) <= self.students[s].required_courses + self.students[s].extra_courses)
 
         # m <= course_capacity <= M
         for c in self.all_courses:
@@ -33,12 +29,7 @@ class Model:
         # in case of infeasibility, we could create a list of integer variables representing each course's domain values
         # so that we could make the script change them in an "automatic" way until the solution is optimal or at least feasible
 
-        self.set_allocation(allocation)
-
-        self.check_if_solution(self.model)
+        self.allocation = allocation
 
         return self
 
-    def check_if_solution(self, model):
-        """Building model until the value of max students of each course results in a feasible solution"""
-        pass

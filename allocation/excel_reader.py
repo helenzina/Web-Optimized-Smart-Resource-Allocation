@@ -10,12 +10,9 @@ class ExcelReader:
 
     def read_students(self):
         try:
-            df = pd.read_excel(self.file_name, self.sheet_name)
+            df_sheets = pd.read_excel(self.file_name, self.sheet_name)
 
-            data_sheets = []
-            for sheet in df.keys():
-                data_sheets.append(pd.read_excel(self.file_name, sheet))
-
+            data_sheets = list(df_sheets.values())
             all_data_sheets = range(len(data_sheets))
 
             # getting all the students data from every sheet in students excel and removing nan & duplicate values
@@ -81,7 +78,7 @@ class ExcelReader:
             courses = []
             for index, name in enumerate(courses_names):
                 courses.append(
-                    Course(course_id = index + 1, course_name = name, min_students = 7, max_students = 7)
+                    Course(course_id = index + 1, course_name = name, min_students = 7, max_students = 35)
                 )
             return courses
 
