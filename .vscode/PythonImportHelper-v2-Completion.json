@@ -1,29 +1,5 @@
 [
     {
-        "label": "cp_model",
-        "importPath": "ortools.sat.python",
-        "description": "ortools.sat.python",
-        "isExtraImport": true,
-        "detail": "ortools.sat.python",
-        "documentation": {}
-    },
-    {
-        "label": "cp_model",
-        "importPath": "ortools.sat.python",
-        "description": "ortools.sat.python",
-        "isExtraImport": true,
-        "detail": "ortools.sat.python",
-        "documentation": {}
-    },
-    {
-        "label": "cp_model",
-        "importPath": "ortools.sat.python",
-        "description": "ortools.sat.python",
-        "isExtraImport": true,
-        "detail": "ortools.sat.python",
-        "documentation": {}
-    },
-    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -82,174 +58,27 @@
         "documentation": {}
     },
     {
-        "label": "SCALING_FACTOR",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "SCALING_FACTOR = 100\nstudents = [\"20046\", \"21110\", \"20000\"]\nstudents_gpa = [8.83, 6, 7.5]\nstudents_gpa_scaled = [x * SCALING_FACTOR for x in students_gpa]\nall_students = range(len(students))\nrequired_courses_per_student = [3, 1, 0] \nextra_courses_per_student = [3, 2, 0] \ncourses = [\"Compilers\", \"Knowledge Mining\", \"Introduction to Robotics\"]\nall_courses = range(len(courses))\ncourses_min_students = [1, 1, 1] # min students for each course (int)",
-        "detail": "allocation.allocation",
+        "label": "cp_model",
+        "importPath": "ortools.sat.python",
+        "description": "ortools.sat.python",
+        "isExtraImport": true,
+        "detail": "ortools.sat.python",
         "documentation": {}
     },
     {
-        "label": "students",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "students = [\"20046\", \"21110\", \"20000\"]\nstudents_gpa = [8.83, 6, 7.5]\nstudents_gpa_scaled = [x * SCALING_FACTOR for x in students_gpa]\nall_students = range(len(students))\nrequired_courses_per_student = [3, 1, 0] \nextra_courses_per_student = [3, 2, 0] \ncourses = [\"Compilers\", \"Knowledge Mining\", \"Introduction to Robotics\"]\nall_courses = range(len(courses))\ncourses_min_students = [1, 1, 1] # min students for each course (int)\ncourses_max_students = [3, 3, 3] # max students for each course (int)",
-        "detail": "allocation.allocation",
+        "label": "cp_model",
+        "importPath": "ortools.sat.python",
+        "description": "ortools.sat.python",
+        "isExtraImport": true,
+        "detail": "ortools.sat.python",
         "documentation": {}
     },
     {
-        "label": "students_gpa",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "students_gpa = [8.83, 6, 7.5]\nstudents_gpa_scaled = [x * SCALING_FACTOR for x in students_gpa]\nall_students = range(len(students))\nrequired_courses_per_student = [3, 1, 0] \nextra_courses_per_student = [3, 2, 0] \ncourses = [\"Compilers\", \"Knowledge Mining\", \"Introduction to Robotics\"]\nall_courses = range(len(courses))\ncourses_min_students = [1, 1, 1] # min students for each course (int)\ncourses_max_students = [3, 3, 3] # max students for each course (int)\nmodel = cp_model.CpModel()",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "students_gpa_scaled",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "students_gpa_scaled = [x * SCALING_FACTOR for x in students_gpa]\nall_students = range(len(students))\nrequired_courses_per_student = [3, 1, 0] \nextra_courses_per_student = [3, 2, 0] \ncourses = [\"Compilers\", \"Knowledge Mining\", \"Introduction to Robotics\"]\nall_courses = range(len(courses))\ncourses_min_students = [1, 1, 1] # min students for each course (int)\ncourses_max_students = [3, 3, 3] # max students for each course (int)\nmodel = cp_model.CpModel()\nallocation = [[model.new_bool_var(f\"allocation_{s}_{c}\") for c in all_courses] for s in all_students]",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "all_students",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "all_students = range(len(students))\nrequired_courses_per_student = [3, 1, 0] \nextra_courses_per_student = [3, 2, 0] \ncourses = [\"Compilers\", \"Knowledge Mining\", \"Introduction to Robotics\"]\nall_courses = range(len(courses))\ncourses_min_students = [1, 1, 1] # min students for each course (int)\ncourses_max_students = [3, 3, 3] # max students for each course (int)\nmodel = cp_model.CpModel()\nallocation = [[model.new_bool_var(f\"allocation_{s}_{c}\") for c in all_courses] for s in all_students]\npreferences_rank = [",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "required_courses_per_student",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "required_courses_per_student = [3, 1, 0] \nextra_courses_per_student = [3, 2, 0] \ncourses = [\"Compilers\", \"Knowledge Mining\", \"Introduction to Robotics\"]\nall_courses = range(len(courses))\ncourses_min_students = [1, 1, 1] # min students for each course (int)\ncourses_max_students = [3, 3, 3] # max students for each course (int)\nmodel = cp_model.CpModel()\nallocation = [[model.new_bool_var(f\"allocation_{s}_{c}\") for c in all_courses] for s in all_students]\npreferences_rank = [\n\t[1, 2, 3],",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "extra_courses_per_student",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "extra_courses_per_student = [3, 2, 0] \ncourses = [\"Compilers\", \"Knowledge Mining\", \"Introduction to Robotics\"]\nall_courses = range(len(courses))\ncourses_min_students = [1, 1, 1] # min students for each course (int)\ncourses_max_students = [3, 3, 3] # max students for each course (int)\nmodel = cp_model.CpModel()\nallocation = [[model.new_bool_var(f\"allocation_{s}_{c}\") for c in all_courses] for s in all_students]\npreferences_rank = [\n\t[1, 2, 3],\n\t[3, 2, 1],",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "courses",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "courses = [\"Compilers\", \"Knowledge Mining\", \"Introduction to Robotics\"]\nall_courses = range(len(courses))\ncourses_min_students = [1, 1, 1] # min students for each course (int)\ncourses_max_students = [3, 3, 3] # max students for each course (int)\nmodel = cp_model.CpModel()\nallocation = [[model.new_bool_var(f\"allocation_{s}_{c}\") for c in all_courses] for s in all_students]\npreferences_rank = [\n\t[1, 2, 3],\n\t[3, 2, 1],\n\t[1, 3, 2],",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "all_courses",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "all_courses = range(len(courses))\ncourses_min_students = [1, 1, 1] # min students for each course (int)\ncourses_max_students = [3, 3, 3] # max students for each course (int)\nmodel = cp_model.CpModel()\nallocation = [[model.new_bool_var(f\"allocation_{s}_{c}\") for c in all_courses] for s in all_students]\npreferences_rank = [\n\t[1, 2, 3],\n\t[3, 2, 1],\n\t[1, 3, 2],\n]",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "courses_min_students",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "courses_min_students = [1, 1, 1] # min students for each course (int)\ncourses_max_students = [3, 3, 3] # max students for each course (int)\nmodel = cp_model.CpModel()\nallocation = [[model.new_bool_var(f\"allocation_{s}_{c}\") for c in all_courses] for s in all_students]\npreferences_rank = [\n\t[1, 2, 3],\n\t[3, 2, 1],\n\t[1, 3, 2],\n]\nall_preferences = range(len(preferences_rank[0]))",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "courses_max_students",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "courses_max_students = [3, 3, 3] # max students for each course (int)\nmodel = cp_model.CpModel()\nallocation = [[model.new_bool_var(f\"allocation_{s}_{c}\") for c in all_courses] for s in all_students]\npreferences_rank = [\n\t[1, 2, 3],\n\t[3, 2, 1],\n\t[1, 3, 2],\n]\nall_preferences = range(len(preferences_rank[0]))\n# constraints",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "model",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "model = cp_model.CpModel()\nallocation = [[model.new_bool_var(f\"allocation_{s}_{c}\") for c in all_courses] for s in all_students]\npreferences_rank = [\n\t[1, 2, 3],\n\t[3, 2, 1],\n\t[1, 3, 2],\n]\nall_preferences = range(len(preferences_rank[0]))\n# constraints\n# each student i must attend exactly xi courses",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "allocation",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "allocation = [[model.new_bool_var(f\"allocation_{s}_{c}\") for c in all_courses] for s in all_students]\npreferences_rank = [\n\t[1, 2, 3],\n\t[3, 2, 1],\n\t[1, 3, 2],\n]\nall_preferences = range(len(preferences_rank[0]))\n# constraints\n# each student i must attend exactly xi courses\n# for s in all_students:",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "preferences_rank",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "preferences_rank = [\n\t[1, 2, 3],\n\t[3, 2, 1],\n\t[1, 3, 2],\n]\nall_preferences = range(len(preferences_rank[0]))\n# constraints\n# each student i must attend exactly xi courses\n# for s in all_students:\n#     model.add(sum(allocation[s][c] for c in all_courses) == required_courses_per_student[s])",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "all_preferences",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "all_preferences = range(len(preferences_rank[0]))\n# constraints\n# each student i must attend exactly xi courses\n# for s in all_students:\n#     model.add(sum(allocation[s][c] for c in all_courses) == required_courses_per_student[s])\n# m<=course_capacity<=M\n# for c in all_courses:\n#     # each course has min students m (courses_min_students[c])\n#     model.add(sum(allocation[s][c] for s in all_students) >= courses_min_students[c])\n#     # each course has max students M (courses_max_students[c])",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "solver",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "solver = cp_model.CpSolver()\nstatus = solver.solve(model)\nif status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:\n    maximized_gpa_allocation = [[solver.value(allocation[s][c]) for c in all_courses] for s in all_students]\n    for s in all_students:\n        for c in all_courses:\n            model.add_hint(allocation[s][c], maximized_gpa_allocation[s][c])\n    # minimize student allocation based on their preferences\n    model.minimize(\n        sum(preferences_rank[s][c] * allocation[s][c]",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "status",
-        "kind": 5,
-        "importPath": "allocation.allocation",
-        "description": "allocation.allocation",
-        "peekOfCode": "status = solver.solve(model)\nif status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:\n    maximized_gpa_allocation = [[solver.value(allocation[s][c]) for c in all_courses] for s in all_students]\n    for s in all_students:\n        for c in all_courses:\n            model.add_hint(allocation[s][c], maximized_gpa_allocation[s][c])\n    # minimize student allocation based on their preferences\n    model.minimize(\n        sum(preferences_rank[s][c] * allocation[s][c]\n            for s in all_students",
-        "detail": "allocation.allocation",
-        "documentation": {}
-    },
-    {
-        "label": "Model",
-        "kind": 6,
-        "importPath": "allocation.model",
-        "description": "allocation.model",
-        "peekOfCode": "class Model:\n    def __init__(self, students, courses, preferences):\n        self.model = cp_model.CpModel()\n        self.students = students\n        self.all_students = range(len(students))\n        self.courses = courses\n        self.all_courses = range(len(courses))\n        self.preferences = preferences\n        self.all_preferences = range(len(preferences[0]))\n        self.allocation = []",
-        "detail": "allocation.model",
-        "documentation": {}
-    },
-    {
-        "label": "Solver",
-        "kind": 6,
-        "importPath": "allocation.solver",
-        "description": "allocation.solver",
-        "peekOfCode": "class Solver:\n    def __init__(self, model_obj):\n        self.model_obj = model_obj\n    def solve_model(self):\n        # maximize student allocation based on their gpa\n        self.model_obj.model.maximize(\n            sum(self.model_obj.students[s].scaled_gpa * self.model_obj.allocation[s][c]\n                for s in self.model_obj.all_students\n                for c in self.model_obj.all_courses)\n        )",
-        "detail": "allocation.solver",
+        "label": "ExcelWriter",
+        "importPath": "excel_writer",
+        "description": "excel_writer",
+        "isExtraImport": true,
+        "detail": "excel_writer",
         "documentation": {}
     },
     {
@@ -266,7 +95,7 @@
         "kind": 6,
         "importPath": "allocation.course",
         "description": "allocation.course",
-        "peekOfCode": "class Course:\n    def __init__(self, id, name, min_students, max_students):\n        self.id = id\n        self.name = name\n        self.min_students = min_students\n        self.max_students = max_students",
+        "peekOfCode": "class Course:\n    def __init__(self, course_id, course_name, min_students, max_students):\n        self.course_id = course_id\n        self.course_name = course_name\n        self.min_students = min_students\n        self.max_students = min_students\n    def set_max_students(self, max_students):\n        self.max_students = max_students",
         "detail": "allocation.course",
         "documentation": {}
     },
@@ -275,7 +104,7 @@
         "kind": 6,
         "importPath": "allocation.student",
         "description": "allocation.student",
-        "peekOfCode": "class Student:\n    def __init__(self, id, fullname, semester, required_courses, extra_courses):\n        self.id = id\n        self.fullname = fullname\n        self.gpa = None\n        self.SCALING_FACTOR = 100\n        self.scaled_gpa = None\n        self.semester = semester\n        self.preferences = {}\n        self.required_courses = required_courses",
+        "peekOfCode": "class Student:\n    def __init__(self, student_id, fullname, semester, required_courses, extra_courses):\n        self.student_id = student_id\n        self.fullname = fullname\n        self.gpa = None\n        self.SCALING_FACTOR = 100\n        self.scaled_gpa = None\n        self.semester = semester\n        self.preferences = {}\n        self.required_courses = required_courses",
         "detail": "allocation.student",
         "documentation": {}
     },
@@ -284,7 +113,7 @@
         "kind": 6,
         "importPath": "allocation.excel_writer",
         "description": "allocation.excel_writer",
-        "peekOfCode": "class ExcelWriter:\n    def __init__(self, file_name):\n        self.file_name = file_name\n    def write_data(self):\n        # e.g. data.to_excel(self.file_name)\n        pass",
+        "peekOfCode": "class ExcelWriter:\n    def __init__(self, model_obj, solver):\n        self.file_path = os.getcwd() + \"\\\\data_excels\\\\\" + \"output.xlsx\"\n        self.model_obj = model_obj\n        self.solver = solver\n    def write_results(self):\n        data = []\n        for c in self.model_obj.all_courses:\n            for s in self.model_obj.all_students:\n                if self.solver.value(self.model_obj.allocation[s][c]):",
         "detail": "allocation.excel_writer",
         "documentation": {}
     },
@@ -295,6 +124,24 @@
         "description": "allocation.excel_reader",
         "peekOfCode": "class ExcelReader:\n    def __init__(self, file_name, sheet_name):\n        self.file_name = file_name\n        self.sheet_name = sheet_name\n    def read_students(self):\n        try:\n            df = pd.read_excel(self.file_name, self.sheet_name)\n            data_sheets = []\n            for sheet in df.keys():\n                data_sheets.append(pd.read_excel(self.file_name, sheet))",
         "detail": "allocation.excel_reader",
+        "documentation": {}
+    },
+    {
+        "label": "Solver",
+        "kind": 6,
+        "importPath": "allocation.solver",
+        "description": "allocation.solver",
+        "peekOfCode": "class Solver:\n    def __init__(self, model_obj):\n        self.model_obj = model_obj\n    def solve_model(self):\n        # maximize student allocation based on their gpa\n        self.model_obj.model.maximize(\n            sum(self.model_obj.students[s].scaled_gpa * self.model_obj.allocation[s][c]\n                for s in self.model_obj.all_students\n                for c in self.model_obj.all_courses)\n        )",
+        "detail": "allocation.solver",
+        "documentation": {}
+    },
+    {
+        "label": "Model",
+        "kind": 6,
+        "importPath": "allocation.model",
+        "description": "allocation.model",
+        "peekOfCode": "class Model:\n    def __init__(self, students, courses):\n        self.model = cp_model.CpModel()\n        self.students = students\n        self.all_students = range(len(students))\n        self.courses = courses\n        self.all_courses = range(len(courses))\n        self.allocation = []\n    def set_allocation(self, allocation):\n        self.allocation = allocation",
+        "detail": "allocation.model",
         "documentation": {}
     }
 ]

@@ -15,23 +15,33 @@ class ExcelReader:
             data_sheets = []
             for sheet in df.keys():
                 data_sheets.append(pd.read_excel(self.file_name, sheet))
-            
+
             all_data_sheets = range(len(data_sheets))
 
             # getting all the students data from every sheet in students excel and removing nan & duplicate values
-            students_ids = self.multiple_sheets_data_reader(data_sheets, all_data_sheets, "ID", int)
-            students_names = self.multiple_sheets_data_reader(data_sheets, all_data_sheets, ["Name", "Surname"], str)
-            students_semesters = self.multiple_sheets_data_reader(data_sheets, all_data_sheets, "Sem", int)
-            # how many obliged courses are remaining to select
-            extra_courses_per_student = self.multiple_sheets_data_reader(data_sheets, all_data_sheets, "ObligRemain", int)
-            # how many obliged courses they can select
-            required_courses_per_student = self.multiple_sheets_data_reader(data_sheets, all_data_sheets, "ChoiceRemain", int)
+            students_ids = self.multiple_sheets_data_reader(
+                data_sheets, all_data_sheets, "ID", int
+            )
+            students_names = self.multiple_sheets_data_reader(
+                data_sheets, all_data_sheets, ["Name", "Surname"], str
+            )
+            students_semesters = self.multiple_sheets_data_reader(
+                data_sheets, all_data_sheets, "Sem", int
+            )
+            # how many obligatory courses the student must take
+            required_courses_per_student = self.multiple_sheets_data_reader(
+                data_sheets, all_data_sheets, "ObligRemain", int
+            )
+            # how many obligatory courses the student can take
+            extra_courses_per_student = self.multiple_sheets_data_reader(
+                data_sheets, all_data_sheets, "ChoiceRemain", int
+            )
 
             students = []
             for index, name in enumerate(students_names):
                 students.append(
                     Student(
-                        id = students_ids[index], 
+                        student_id = students_ids[index],
                         fullname = students_names[index],
                         semester = students_semesters[index],
                         required_courses = required_courses_per_student[index],
@@ -43,30 +53,40 @@ class ExcelReader:
         except Exception as e:
             print("An error occurred with the students excel file. \n", e)
 
-    def multiple_sheets_data_reader(self, data_sheets, all_data_sheets, sheet_names, type):
+    def multiple_sheets_data_reader(
+        self, data_sheets, all_data_sheets, sheet_names, data_type
+    ):
         if isinstance(sheet_names, list):
-            students_data = [list(data_sheets[s][sheet_names[0]].dropna().astype(type) + " " + data_sheets[s][sheet_names[1]].dropna().astype(type)) for s in all_data_sheets]
+            students_data = [
+                list(
+                    data_sheets[s][sheet_names[0]].dropna().astype(data_type)
+                    + " "
+                    + data_sheets[s][sheet_names[1]].dropna().astype(data_type)
+                )
+                for s in all_data_sheets
+            ]
         else:
-            students_data = [list(data_sheets[s][sheet_names].dropna().astype(type)) for s in all_data_sheets]
+            students_data = [
+                list(data_sheets[s][sheet_names].dropna().astype(data_type))
+                for s in all_data_sheets
+            ]
         flattened_students_data = sum(students_data, [])
         return flattened_students_data
-
 
     def read_courses(self):
         try:
             df = pd.read_excel(self.file_name, self.sheet_name)
             courses_names = list(df.course_name)
-            
+
             courses = []
             for index, name in enumerate(courses_names):
                 courses.append(
-                    Course(id = index + 1, name = name, min_students = 7, max_students = 35)
+                    Course(course_id = index + 1, course_name = name, min_students = 7, max_students = 7)
                 )
             return courses
 
         except Exception as e:
             print("An error occurred with the courses excel file. \n", e)
-
 
     def read_preferences(self):
         try:
@@ -77,7 +97,6 @@ class ExcelReader:
             students_choices = df.filter(like="choice").values.tolist()
 
             return [students_ids, students_is_obligated, students_gpa, students_choices]
-            
+
         except Exception as e:
             print("An error occurred with the preferences excel file. \n", e)
-

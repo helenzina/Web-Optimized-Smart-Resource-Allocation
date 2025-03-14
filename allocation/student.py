@@ -1,6 +1,6 @@
 class Student:
-    def __init__(self, id, fullname, semester, required_courses, extra_courses):
-        self.id = id
+    def __init__(self, student_id, fullname, semester, required_courses, extra_courses):
+        self.student_id = student_id
         self.fullname = fullname
         self.gpa = None
         self.SCALING_FACTOR = 100
