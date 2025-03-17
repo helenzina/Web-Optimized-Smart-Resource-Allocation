@@ -53,10 +53,10 @@ class App:
                 idx = students_ids_with_preferences.index(student.student_id)
 
                 # creating a dictionary for each student's preferences sorted by the courses
-                # (key: value == course: preference_of_student)
+                # (key: value == course_id: preference_of_student)
                 chosen_student_preferences = {
-                    course: preference_of_student
-                    for preference_of_student, course in enumerate(
+                    course_id: preference_of_student
+                    for preference_of_student, course_id in enumerate(
                         students_preferences[idx], start = 1
                     )
                 }

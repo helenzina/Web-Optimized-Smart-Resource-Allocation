@@ -12,39 +12,49 @@ class ExcelReader:
         try:
             df_sheets = pd.read_excel(self.file_name, self.sheet_name)
 
+            # reformatting the dictionary of the students excel to drop rows where id is nan for each sheet
+            df_sheets = {sheet: df.dropna(subset=["ID"]) for sheet, df in df_sheets.items()}
+
             data_sheets = list(df_sheets.values())
             all_data_sheets = range(len(data_sheets))
 
-            # getting all the students data from every sheet in students excel and removing nan & duplicate values
+            # getting all the students data from every sheet in students excel and removing nan values
             students_ids = self.multiple_sheets_data_reader(
                 data_sheets, all_data_sheets, "ID", int
             )
+            all_students_ids = range(len(students_ids))
+
             students_names = self.multiple_sheets_data_reader(
                 data_sheets, all_data_sheets, ["Name", "Surname"], str
             )
             students_semesters = self.multiple_sheets_data_reader(
                 data_sheets, all_data_sheets, "Sem", int
             )
-            # how many obligatory courses the student must take
-            required_courses_per_student = self.multiple_sheets_data_reader(
-                data_sheets, all_data_sheets, "ObligRemain", int
-            )
+
+            # how many obligatory courses the student already passed on semester 8 (or not)
+            passed_courses_on_sem8 = [
+                list(data_sheets[s]["Choices8"].fillna(0).astype(int))
+                for s in all_data_sheets
+            ]
+            passed_courses_on_sem8 = sum(passed_courses_on_sem8, [])
+
             # how many obligatory courses the student can take
-            extra_courses_per_student = self.multiple_sheets_data_reader(
+            choices_remaining = self.multiple_sheets_data_reader(
                 data_sheets, all_data_sheets, "ChoiceRemain", int
             )
+            choices_remaining = [max(0, t) for t in choices_remaining]
 
-            students = []
-            for index, name in enumerate(students_names):
-                students.append(
-                    Student(
-                        student_id = students_ids[index],
-                        fullname = students_names[index],
-                        semester = students_semesters[index],
-                        required_courses = required_courses_per_student[index],
-                        extra_courses = extra_courses_per_student[index]
+            students = [
+                Student(
+                        student_id = students_ids[i],
+                        fullname = students_names[i],
+                        semester = students_semesters[i],
+                        courses_needed = 6,
+                        passed_courses_on_sem8 = passed_courses_on_sem8[i],
+                        choices_remaining = choices_remaining[i]
                     )
-                )
+                for i in all_students_ids
+            ]
             return students
 
         except Exception as e:
@@ -73,13 +83,19 @@ class ExcelReader:
     def read_courses(self):
         try:
             df = pd.read_excel(self.file_name, self.sheet_name)
+            courses_ids = list(df.courseID)
             courses_names = list(df.course_name)
+            all_courses_ids = range(len(courses_ids))
 
-            courses = []
-            for index, name in enumerate(courses_names):
-                courses.append(
-                    Course(course_id = index + 1, course_name = name, min_students = 7, max_students = 35)
-                )
+            courses = [
+                Course(
+                    course_id = courses_ids[i],
+                    course_name = courses_names[i],
+                    min_students = 7,
+                    max_students = 35)
+                for i in all_courses_ids
+            ]
+
             return courses
 
         except Exception as e:

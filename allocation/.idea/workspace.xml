@@ -5,33 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3691b007-7155-4299-b258-eb36d5ab3a12" name="Changes" comment="adding a method for optimizing the max students per course for a feasible solution">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vscode/PythonImportHelper-v2-Completion.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/course.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/excel_reader.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/excel_writer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/solver.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/student.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tempCodeRunnerFile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../documents/labs-signup-instructions.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../images/dipae.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../images/gear.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../images/lab.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../main/.vscode/PythonImportHelper-v2-Completion.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../main/conn.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../main/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../main/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../scripts/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../scripts/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../styles/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../styles/login.css" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/excel_writer_charts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vscode/PythonImportHelper-v2-Completion.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/PythonImportHelper-v2-Completion.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excel_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/excel_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excel_writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/excel_writer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student.py" beforeDir="false" afterPath="$PROJECT_DIR$/student.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +39,9 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2uG4GZqdOLrXmoPmEDiKHp9GSG3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />

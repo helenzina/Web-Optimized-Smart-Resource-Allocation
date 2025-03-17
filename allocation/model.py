@@ -18,7 +18,15 @@ class Model:
 
         # each student s must attend exactly xs courses
         for s in self.all_students:
-            self.model.add(sum(allocation[s][c] for c in self.all_courses) == self.students[s].required_courses)
+            # assigning xs courses on student while xs is an eligible number of courses the student can be assigned on
+            if self.students[s].courses_needed_remaining <= self.students[s].choices_remaining:
+                self.model.add(
+                    sum(allocation[s][c] for c in self.all_courses) == self.students[s].courses_needed_remaining
+                )
+            else:
+                self.model.add(
+                    sum(allocation[s][c] for c in self.all_courses) == self.students[s].choices_remaining
+                )
 
         # m <= course_capacity <= M
         for c in self.all_courses:
@@ -26,8 +34,7 @@ class Model:
             self.model.add(sum(allocation[s][c] for s in self.all_students) >= self.courses[c].min_students)
             # each course has max students M
             self.model.add(sum(allocation[s][c] for s in self.all_students) <= self.courses[c].max_students)
-        # in case of infeasibility, we could create a list of integer variables representing each course's domain values
-        # so that we could make the script change them in an "automatic" way until the solution is optimal or at least feasible
+
 
         self.allocation = allocation
 

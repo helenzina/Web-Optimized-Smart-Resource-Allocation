@@ -30,6 +30,7 @@ class Solver:
         if self.status in [cp_model.OPTIMAL, cp_model.FEASIBLE]:
             to_excel = ExcelWriter(self.model_obj, self.solver)
             to_excel.write_results()
+            to_excel.write_sat_preferences()
             return
 
         print("Infeasible solution.")
@@ -65,6 +66,7 @@ class Solver:
             print("Found feasible solution after reducing max students.")
             to_excel = ExcelWriter(self.model_obj, self.solver)
             to_excel.write_results()
+            to_excel.write_sat_preferences()
             sys.exit(0)
 
 

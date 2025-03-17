@@ -42,6 +42,54 @@
         "documentation": {}
     },
     {
+        "label": "PieChart",
+        "importPath": "openpyxl.chart",
+        "description": "openpyxl.chart",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart",
+        "documentation": {}
+    },
+    {
+        "label": "Reference",
+        "importPath": "openpyxl.chart",
+        "description": "openpyxl.chart",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart",
+        "documentation": {}
+    },
+    {
+        "label": "DataLabelList",
+        "importPath": "openpyxl.chart.label",
+        "description": "openpyxl.chart.label",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart.label",
+        "documentation": {}
+    },
+    {
+        "label": "Legend",
+        "importPath": "openpyxl.chart.legend",
+        "description": "openpyxl.chart.legend",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart.legend",
+        "documentation": {}
+    },
+    {
+        "label": "DataPoint",
+        "importPath": "openpyxl.chart.marker",
+        "description": "openpyxl.chart.marker",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart.marker",
+        "documentation": {}
+    },
+    {
+        "label": "load_workbook",
+        "importPath": "openpyxl.reader.excel",
+        "description": "openpyxl.reader.excel",
+        "isExtraImport": true,
+        "detail": "openpyxl.reader.excel",
+        "documentation": {}
+    },
+    {
         "label": "Course",
         "importPath": "course",
         "description": "course",
@@ -113,7 +161,7 @@
         "kind": 6,
         "importPath": "allocation.student",
         "description": "allocation.student",
-        "peekOfCode": "class Student:\n    def __init__(self, student_id, fullname, semester, required_courses, extra_courses):\n        self.student_id = student_id\n        self.fullname = fullname\n        self.gpa = None\n        self.SCALING_FACTOR = 100\n        self.scaled_gpa = None\n        self.semester = semester\n        self.preferences = {}\n        self.required_courses = required_courses",
+        "peekOfCode": "class Student:\n    def __init__(self, student_id, fullname, semester, courses_needed, passed_courses_on_sem8, choices_remaining):\n        self.student_id = student_id\n        self.fullname = fullname\n        self.gpa = None\n        self.SCALING_FACTOR = 100\n        self.scaled_gpa = None\n        self.semester = semester\n        self.preferences = {}\n        self.courses_needed = courses_needed",
         "detail": "allocation.student",
         "documentation": {}
     },
@@ -122,7 +170,7 @@
         "kind": 6,
         "importPath": "allocation.excel_writer",
         "description": "allocation.excel_writer",
-        "peekOfCode": "class ExcelWriter:\n    def __init__(self, model_obj, solver):\n        self.file_path = os.getcwd() + \"\\\\data_excels\\\\\" + \"output.xlsx\"\n        self.model_obj = model_obj\n        self.solver = solver\n    def write_results(self):\n        data = []\n        for c in self.model_obj.all_courses:\n            for s in self.model_obj.all_students:\n                if self.solver.value(self.model_obj.allocation[s][c]):",
+        "peekOfCode": "class ExcelWriter:\n    def __init__(self, model_obj, solver):\n        self.data_path = os.getcwd() + \"\\\\data_excels\\\\\"\n        self.results_file_path = self.data_path + \"output.xlsx\"\n        self.preferences_met_file_path = self.data_path + \"preferences_met.xlsx\"\n        self.model_obj = model_obj\n        self.solver = solver\n    def write_results(self):\n        results_data = []\n        for c in self.model_obj.all_courses:",
         "detail": "allocation.excel_writer",
         "documentation": {}
     },
@@ -131,7 +179,7 @@
         "kind": 6,
         "importPath": "allocation.excel_reader",
         "description": "allocation.excel_reader",
-        "peekOfCode": "class ExcelReader:\n    def __init__(self, file_name, sheet_name):\n        self.file_name = file_name\n        self.sheet_name = sheet_name\n    def read_students(self):\n        try:\n            df = pd.read_excel(self.file_name, self.sheet_name)\n            data_sheets = []\n            for sheet in df.keys():\n                data_sheets.append(pd.read_excel(self.file_name, sheet))",
+        "peekOfCode": "class ExcelReader:\n    def __init__(self, file_name, sheet_name):\n        self.file_name = file_name\n        self.sheet_name = sheet_name\n    def read_students(self):\n        try:\n            df_sheets = pd.read_excel(self.file_name, self.sheet_name)\n            # reformatting the dictionary of the students excel to drop rows where id is nan for each sheet\n            df_sheets = {sheet: df.dropna(subset=[\"ID\"]) for sheet, df in df_sheets.items()}\n            data_sheets = list(df_sheets.values())",
         "detail": "allocation.excel_reader",
         "documentation": {}
     },

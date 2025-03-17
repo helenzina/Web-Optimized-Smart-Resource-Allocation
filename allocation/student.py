@@ -1,5 +1,5 @@
 class Student:
-    def __init__(self, student_id, fullname, semester, required_courses, extra_courses):
+    def __init__(self, student_id, fullname, semester, courses_needed, passed_courses_on_sem8, choices_remaining):
         self.student_id = student_id
         self.fullname = fullname
         self.gpa = None
@@ -7,8 +7,10 @@ class Student:
         self.scaled_gpa = None
         self.semester = semester
         self.preferences = {}
-        self.required_courses = required_courses
-        self.extra_courses = extra_courses
+        self.courses_needed = courses_needed
+        self.passed_courses_on_sem8 = passed_courses_on_sem8
+        self.choices_remaining = choices_remaining
+        self.courses_needed_remaining = self.courses_needed - self.passed_courses_on_sem8
         self.is_obligated = None
 
     def set_gpa(self, gpa):
