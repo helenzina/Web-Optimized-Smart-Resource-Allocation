@@ -6,9 +6,71 @@ from openpyxl.reader.excel import load_workbook
 
 
 class ExcelWriterCharts:
-    def __init__(self, results_file_path, preferences_met_file_path):
+    def __init__(self, results_file_path):
         self.results_file_path = results_file_path
-        self.preferences_met_file_path = preferences_met_file_path
+
+
+    def add_top_6_preferences_sat_pie_chart(self, top_6_preferences_satisfaction_ratios):
+        try:
+            wb = load_workbook(self.results_file_path)
+            ws = wb["Preferences Satisfaction"]
+
+            if top_6_preferences_satisfaction_ratios:
+                avg_preferences_met = round(
+                    sum(top_6_preferences_satisfaction_ratios) / len(top_6_preferences_satisfaction_ratios), 2
+                )
+            else:
+                avg_preferences_met = 0
+
+            avg_preferences_not_met = round(100 - avg_preferences_met, 2)
+
+            ws.cell(row=2, column=11).value = "Met"
+            ws.cell(row=2, column=10).value = avg_preferences_met
+            ws.cell(row=3, column=11).value = "Not Met"
+            ws.cell(row=3, column=10).value = avg_preferences_not_met
+
+            pie = PieChart()
+
+            data = Reference(ws, min_col=10, min_row=2, max_row=3)
+            labels = Reference(ws, min_col=11, min_row=2, max_row=3)
+
+            pie.add_data(data, titles_from_data = False)
+            pie.set_categories(labels)
+            pie.title = "Average Student Top 6 Preferences (%)"
+            pie.height = 10
+            pie.width = 10
+
+            pie.legend = Legend()
+            pie.legend.position = "b"
+
+            series = pie.series[0]
+
+            series.dLbls = DataLabelList()
+            series.dLbls.showVal = True
+            series.dLbls.numFmt = "0.00"
+            series.dLbls.showCatName = False
+            series.dLbls.showLegendKey = False
+            series.dLbls.showSerName = False
+            series.dLbls.showPercent = False
+
+            # green for preferences met
+            met_slice = DataPoint(idx=0)
+            met_slice.graphicalProperties.solidFill = "00B050"
+
+            # red for preferences not met
+            not_met_slice = DataPoint(idx=1)
+            not_met_slice.graphicalProperties.solidFill = "FF0000"
+
+            series.dPt = [met_slice, not_met_slice]
+
+            ws.add_chart(pie, "L10")
+
+            wb.save(self.results_file_path)
+
+            print(f"Average student top 6 preferences pie chart added to {self.results_file_path}")
+
+        except Exception as e:
+            print("An error occurred while adding the pie chart. \n", e)
 
 
     def add_courses_sat_bar_chart(self):
@@ -16,8 +78,8 @@ class ExcelWriterCharts:
             wb = load_workbook(self.results_file_path)
             ws = wb.active
 
-            wb.create_sheet("Course Sat Bar Chart")
-            bar_ws = wb["Course Sat Bar Chart"]
+            wb.create_sheet("Course 1st Sat")
+            bar_ws = wb["Course 1st Sat"]
 
             course_satisfaction = {}
 
@@ -72,67 +134,6 @@ class ExcelWriterCharts:
 
         except Exception as e:
             print("An error occurred while adding the bar chart. \n", e)
-
-
-    def add_preferences_met_pie_chart(self, preferences_met_ratios):
-        try:
-            wb = load_workbook(self.preferences_met_file_path)
-            ws = wb.active
-
-            if preferences_met_ratios:
-                avg_preferences_met = round(sum(preferences_met_ratios) / len(preferences_met_ratios), 2)
-            else:
-                avg_preferences_met = 0
-
-            avg_preferences_not_met = round(100 - avg_preferences_met, 2)
-
-            ws.cell(row=2, column=11).value = "Met"
-            ws.cell(row=2, column=10).value = avg_preferences_met
-            ws.cell(row=3, column=11).value = "Not Met"
-            ws.cell(row=3, column=10).value = avg_preferences_not_met
-
-            pie = PieChart()
-
-            data = Reference(ws, min_col=10, min_row=2, max_row=3)
-            labels = Reference(ws, min_col=11, min_row=2, max_row=3)
-
-            pie.add_data(data, titles_from_data = False)
-            pie.set_categories(labels)
-            pie.title = "Average Student Preferences (%)"
-            pie.height = 10
-            pie.width = 10
-
-            pie.legend = Legend()
-            pie.legend.position = "b"
-
-            series = pie.series[0]
-
-            series.dLbls = DataLabelList()
-            series.dLbls.showVal = True
-            series.dLbls.numFmt = "0.00"
-            series.dLbls.showCatName = False
-            series.dLbls.showLegendKey = False
-            series.dLbls.showSerName = False
-            series.dLbls.showPercent = False
-
-            # green for preferences met
-            met_slice = DataPoint(idx=0)
-            met_slice.graphicalProperties.solidFill = "00B050"
-
-            # red for preferences not met
-            not_met_slice = DataPoint(idx=1)
-            not_met_slice.graphicalProperties.solidFill = "FF0000"
-
-            series.dPt = [met_slice, not_met_slice]
-
-            ws.add_chart(pie, "J10")
-
-            wb.save(self.preferences_met_file_path)
-
-            print(f"Average student preferences pie chart added to {self.preferences_met_file_path}")
-
-        except Exception as e:
-            print("An error occurred while adding the pie chart. \n", e)
 
 
 

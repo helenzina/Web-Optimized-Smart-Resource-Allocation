@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3691b007-7155-4299-b258-eb36d5ab3a12" name="Changes" comment="adding a method for optimizing the max students per course for a feasible solution">
-      <change afterPath="$PROJECT_DIR$/excel_writer_charts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vscode/PythonImportHelper-v2-Completion.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/PythonImportHelper-v2-Completion.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/excel_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/excel_reader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/excel_writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/excel_writer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student.py" beforeDir="false" afterPath="$PROJECT_DIR$/student.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excel_writer_charts.py" beforeDir="false" afterPath="$PROJECT_DIR$/excel_writer_charts.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

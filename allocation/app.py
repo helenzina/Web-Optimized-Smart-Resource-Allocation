@@ -3,7 +3,6 @@ from excel_reader import ExcelReader
 from model import Model
 from solver import Solver
 
-
 class App:
     def __init__(
         self,
