@@ -59,6 +59,9 @@ class ExcelWriter:
 
 
     def write_sat_preferences(self):
+        """This method collects data for each student to compare the satisfaction of their top 6 preferences
+        with the courses they were assigned."""
+
         preferences_met_data = []
         top_6_preferences_satisfaction_ratios = []
         top_preferences = 6
@@ -79,6 +82,7 @@ class ExcelWriter:
 
             all_assigned_preferences = len(assigned_preferences)
 
+            # calculating how many of the courses that the student is assigned, they are in their top 6
             top_6_preferences_assigned = 0
 
             if all_assigned_courses > 0:
@@ -131,10 +135,14 @@ class ExcelWriter:
             wb.save(self.results_file_path)
             self.add_charts.add_top_6_preferences_sat_pie_chart(top_6_preferences_satisfaction_ratios)
             print(
-                f"Top 6 preferences satisfaction results are saved to {self.results_file_path} in sheet: Preferences Satisfaction.")
+                f"Top 6 preferences satisfaction results are saved to {self.results_file_path} "
+                f"in sheet: Preferences Satisfaction.")
         except Exception as e:
             print("An error occurred while writing to the top 6 preferences satisfaction results excel file. \n", e)
+
+
     def write_results_per_course(self):
+        """This method creates a new sheet in the excel file and lists the students full names assigned to each course."""
         courses_data = {self.model_obj.courses[c].course_name: [] for c in self.model_obj.all_courses}
 
         for c in self.model_obj.all_courses:

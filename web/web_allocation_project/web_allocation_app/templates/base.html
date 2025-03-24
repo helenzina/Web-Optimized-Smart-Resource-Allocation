@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Κατανομή Φοιτητών ΤΜΠΥΤ ΔΙΠΑΕ{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="icon" type="image" href="../static/images/dipae.png">
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img class="logo" src="../static/images/gear.png" alt="logo" title="logo">
+            <div class="title">
+                Κατανομή Φοιτητών
+                <div class="subtitle">Σε μαθήματα επιλογής 8ου και 9ου εξαμήνου</div>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+            aria-controls="offcanvas" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="offcanvas offcanvas-lg offcanvas-end text-bg-dark" tabindex="-1" id="offcanvas"
+            aria-labelledby="offcanvasLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasLabel">
+                    <span class="fs-4">Μενού</span>
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                    data-bs-target="#offcanvas" aria-label="Close"></button>
+            </div>
+            <hr class="centered">
+            <div class="offcanvas-body">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-links active" href="{% url 'home' %}">Αρχική</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-links" target="_blank"
+                            href="../static/documents/labs-signup-instructions.pdf">Οδηγίες δηλώσεων</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="centered">
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <!--<img src="" alt="" width="32" height="32" class="rounded-circle me-2">-->
+                    <i class="bi bi-person-circle profile me-2"></i>
+                    <strong>First Last</strong>
+                </a>
+                <div class="aem"></div>
+                <hr class="centered">
+                <div class="department">
+                    Τμήμα Μηχανικών Πληροφορικής, Υπολογιστών και Τηλεπικοινωνιών
+                </div>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" data-bs-popper="">
+                    <li>
+                        <a class="dropdown-item" href="#">Αποσύνδεση</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-links active" href="{% url 'home' %}">Αρχική</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-links" target="_blank" href="../static/documents/labs-signup-instructions.pdf">Οδηγίες
+                        δηλώσεων</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        {% block main %} {% endblock %}
+    </main>
+
+    <footer>
+        &copy; 2025 Ελένη Ζήνα All Rights Reserved
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+</body>
+
+</html>

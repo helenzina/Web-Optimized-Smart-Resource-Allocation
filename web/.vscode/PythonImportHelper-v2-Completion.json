@@ -1,0 +1,576 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "allocation",
+        "description": "allocation",
+        "isExtraImport": true,
+        "detail": "allocation",
+        "documentation": {}
+    },
+    {
+        "label": "Student",
+        "importPath": "allocation",
+        "description": "allocation",
+        "isExtraImport": true,
+        "detail": "allocation",
+        "documentation": {}
+    },
+    {
+        "label": "Course",
+        "importPath": "allocation",
+        "description": "allocation",
+        "isExtraImport": true,
+        "detail": "allocation",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "load_workbook",
+        "importPath": "openpyxl.reader.excel",
+        "description": "openpyxl.reader.excel",
+        "isExtraImport": true,
+        "detail": "openpyxl.reader.excel",
+        "documentation": {}
+    },
+    {
+        "label": "load_workbook",
+        "importPath": "openpyxl.reader.excel",
+        "description": "openpyxl.reader.excel",
+        "isExtraImport": true,
+        "detail": "openpyxl.reader.excel",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "cp_model",
+        "importPath": "ortools.sat.python",
+        "description": "ortools.sat.python",
+        "isExtraImport": true,
+        "detail": "ortools.sat.python",
+        "documentation": {}
+    },
+    {
+        "label": "cp_model",
+        "importPath": "ortools.sat.python",
+        "description": "ortools.sat.python",
+        "isExtraImport": true,
+        "detail": "ortools.sat.python",
+        "documentation": {}
+    },
+    {
+        "label": "PieChart",
+        "importPath": "openpyxl.chart",
+        "description": "openpyxl.chart",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart",
+        "documentation": {}
+    },
+    {
+        "label": "Reference",
+        "importPath": "openpyxl.chart",
+        "description": "openpyxl.chart",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart",
+        "documentation": {}
+    },
+    {
+        "label": "BarChart",
+        "importPath": "openpyxl.chart",
+        "description": "openpyxl.chart",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart",
+        "documentation": {}
+    },
+    {
+        "label": "DataLabelList",
+        "importPath": "openpyxl.chart.label",
+        "description": "openpyxl.chart.label",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart.label",
+        "documentation": {}
+    },
+    {
+        "label": "Legend",
+        "importPath": "openpyxl.chart.legend",
+        "description": "openpyxl.chart.legend",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart.legend",
+        "documentation": {}
+    },
+    {
+        "label": "DataPoint",
+        "importPath": "openpyxl.chart.marker",
+        "description": "openpyxl.chart.marker",
+        "isExtraImport": true,
+        "detail": "openpyxl.chart.marker",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.asgi",
+        "description": "web_allocation_project.web_allocation_project.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "web_allocation_project.web_allocation_project.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-99=ox=(s32$in+$87i$c(^m-+c_9-@2-zcvv7#s6k1k=%*m&7j'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-99=ox=(s32$in+$87i$c(^m-+c_9-@2-zcvv7#s6k1k=%*m&7j'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'web_allocation_app'",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'web_allocation_app'\n]\nMIDDLEWARE = [",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]\nROOT_URLCONF = 'web_allocation_project.urls'",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "ROOT_URLCONF = 'web_allocation_project.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "WSGI_APPLICATION = 'web_allocation_project.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.1/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n# Password validation",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n# Password validation\n# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = '/static/'\nMEDIA_ROOT = os.path.join(BASE_DIR, \"uploads\")\nMEDIA_URL = \"/uploads/\"\n# Default primary key field type",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = '/static/'\nMEDIA_ROOT = os.path.join(BASE_DIR, \"uploads\")\nMEDIA_URL = \"/uploads/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = '/static/'\nMEDIA_ROOT = os.path.join(BASE_DIR, \"uploads\")\nMEDIA_URL = \"/uploads/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = '/static/'\nMEDIA_ROOT = os.path.join(BASE_DIR, \"uploads\")\nMEDIA_URL = \"/uploads/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "STATIC_URL = '/static/'\nMEDIA_ROOT = os.path.join(BASE_DIR, \"uploads\")\nMEDIA_URL = \"/uploads/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_ROOT",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "MEDIA_ROOT = os.path.join(BASE_DIR, \"uploads\")\nMEDIA_URL = \"/uploads/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "MEDIA_URL = \"/uploads/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AUTO_FIELD",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.settings",
+        "description": "web_allocation_project.web_allocation_project.settings",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "web_allocation_project.web_allocation_project.settings",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.urls",
+        "description": "web_allocation_project.web_allocation_project.urls",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", include(\"web_allocation_app.urls\"))\n]",
+        "detail": "web_allocation_project.web_allocation_project.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_project.wsgi",
+        "description": "web_allocation_project.web_allocation_project.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "web_allocation_project.web_allocation_project.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "WebAllocationAppConfig",
+        "kind": 6,
+        "importPath": "web_allocation_project.web_allocation_app.apps",
+        "description": "web_allocation_project.web_allocation_app.apps",
+        "peekOfCode": "class WebAllocationAppConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'web_allocation_app'",
+        "detail": "web_allocation_project.web_allocation_app.apps",
+        "documentation": {}
+    },
+    {
+        "label": "home",
+        "kind": 2,
+        "importPath": "web_allocation_project.web_allocation_app.views",
+        "description": "web_allocation_project.web_allocation_app.views",
+        "peekOfCode": "def home(request):\n    if request.method == \"POST\":\n        if \"files-submit\" in request.POST:\n            students_data = request.FILES.get(\"students\")\n            courses_data = request.FILES.get(\"courses\")\n            students_selections_data = request.FILES.get(\"students_selections\")\n            sem = request.POST.get(\"sem\")\n            try:\n                students_sheet_names = pd.ExcelFile(students_data).sheet_names\n                courses_sheet_name = pd.ExcelFile(courses_data).sheet_names[0]",
+        "detail": "web_allocation_project.web_allocation_app.views",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "web_allocation_project.web_allocation_app.urls",
+        "description": "web_allocation_project.web_allocation_app.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.home, name=\"home\"),\n]\nif settings.DEBUG:\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
+        "detail": "web_allocation_project.web_allocation_app.urls",
+        "documentation": {}
+    },
+    {
+        "label": "App",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.app",
+        "description": "web_allocation_project.allocation.app",
+        "peekOfCode": "class App:\n    # def __init__(\n    #     self,\n    #     students_file_name,\n    #     students_sheet_name,\n    #     courses_file_name,\n    #     courses_sheet_name,\n    #     preferences_file_name,\n    #     preferences_sheet_name,\n    #     sem,",
+        "detail": "web_allocation_project.allocation.app",
+        "documentation": {}
+    },
+    {
+        "label": "Course",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.course",
+        "description": "web_allocation_project.allocation.course",
+        "peekOfCode": "class Course:\n    def __init__(self, course_id, course_name, min_students, max_students):\n        self.course_id = course_id\n        self.course_name = course_name\n        self.min_students = min_students\n        self.max_students = max_students\n    def to_dict(self):\n        return {\n            \"course_id\": self.course_id,\n            \"course_name\": self.course_name,",
+        "detail": "web_allocation_project.allocation.course",
+        "documentation": {}
+    },
+    {
+        "label": "Student",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.student",
+        "description": "web_allocation_project.allocation.student",
+        "peekOfCode": "class Student:\n    def __init__(self, student_id, fullname, semester, courses_needed, passed_courses_on_sem8, choices_remaining):\n        self.student_id = student_id\n        self.fullname = fullname\n        self.gpa = None\n        self.SCALING_FACTOR = 100\n        self.scaled_gpa = None\n        self.semester = semester\n        self.preferences = {}\n        self.courses_needed = courses_needed",
+        "detail": "web_allocation_project.allocation.student",
+        "documentation": {}
+    },
+    {
+        "label": "ExcelWriter",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.excel_writer",
+        "description": "web_allocation_project.allocation.excel_writer",
+        "peekOfCode": "class ExcelWriter:\n    def __init__(self, model_obj, solver):\n        self.data_path = os.getcwd()\n        self.results_file_path = self.data_path + \"\\output.xlsx\"\n        self.model_obj = model_obj\n        self.solver = solver\n        self.add_charts = ExcelWriterCharts(self.results_file_path)\n    def save_results(self):\n        results_data = []\n        for c in self.model_obj.all_courses:",
+        "detail": "web_allocation_project.allocation.excel_writer",
+        "documentation": {}
+    },
+    {
+        "label": "ExcelReader",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.excel_reader",
+        "description": "web_allocation_project.allocation.excel_reader",
+        "peekOfCode": "class ExcelReader:\n    def __init__(self, file_name, sheet_name, sem, min_stud, max_stud):\n        self.file_name = file_name\n        self.sheet_name = sheet_name\n        self.sem = sem\n        self.min_stud = min_stud\n        self.max_stud = max_stud\n    def read_students(self):\n        try:\n            df_sheets = pd.read_excel(self.file_name, self.sheet_name)",
+        "detail": "web_allocation_project.allocation.excel_reader",
+        "documentation": {}
+    },
+    {
+        "label": "Solver",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.solver",
+        "description": "web_allocation_project.allocation.solver",
+        "peekOfCode": "class Solver:\n    def __init__(self, model_obj):\n        self.model_obj = model_obj\n        self.solver = cp_model.CpSolver()\n        self.status = None\n    def solve_model(self):\n        # maximize student allocation based on their gpa and\n        # minimize student allocation based on their preferences\n        self.model_obj.model.maximize(\n            sum(",
+        "detail": "web_allocation_project.allocation.solver",
+        "documentation": {}
+    },
+    {
+        "label": "Model",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.model",
+        "description": "web_allocation_project.allocation.model",
+        "peekOfCode": "class Model:\n    def __init__(self, students, courses):\n        self.model = cp_model.CpModel()\n        self.students = students\n        self.all_students = range(len(students))\n        self.courses = courses\n        self.all_courses = range(len(courses))\n        self.allocation = []\n    def build_model(self):\n        # sorting students based on their gpa in descending order",
+        "detail": "web_allocation_project.allocation.model",
+        "documentation": {}
+    },
+    {
+        "label": "ExcelWriterCharts",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.excel_writer_charts",
+        "description": "web_allocation_project.allocation.excel_writer_charts",
+        "peekOfCode": "class ExcelWriterCharts:\n    def __init__(self, results_file_path):\n        self.results_file_path = results_file_path\n    def add_top_6_preferences_sat_pie_chart(self, top_6_preferences_satisfaction_ratios):\n        try:\n            wb = load_workbook(self.results_file_path)\n            ws = wb[\"Preferences Satisfaction\"]\n            if top_6_preferences_satisfaction_ratios:\n                avg_preferences_met = round(\n                    sum(top_6_preferences_satisfaction_ratios) / len(top_6_preferences_satisfaction_ratios), 2",
+        "detail": "web_allocation_project.allocation.excel_writer_charts",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "web_allocation_project.manage",
+        "description": "web_allocation_project.manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'web_allocation_project.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
+        "detail": "web_allocation_project.manage",
+        "documentation": {}
+    }
+]

@@ -24,7 +24,7 @@ class Solver:
             )
         )
 
-        # self.solver.parameters.log_search_progress = True
+        # self.solver.parameters.log_search_progress = True # for solver statistics
         self.status = self.solver.solve(self.model_obj.model)
 
         if self.status in [cp_model.OPTIMAL, cp_model.FEASIBLE]:
@@ -36,6 +36,9 @@ class Solver:
         print("Infeasible solution.")
         self.fix_max_students_in_course()
 
+    # based on requirements of the document to fix infeasibility
+    # it would have more sense if the min was decreasing until 0 and the max was increasing until a limit e.g. 40
+    # to find a feasible solution if not optimal
 
     def fix_max_students_in_course(self, course_idx = None):
         if course_idx is not None:
@@ -69,6 +72,7 @@ class Solver:
             to_excel.write_sat_preferences()
             sys.exit(0)
 
+    # alternative method for the objective functions
 
     # def solve_model(self):
     #     # maximize student allocation based on their gpa
@@ -104,43 +108,9 @@ class Solver:
     #         if self.status in [cp_model.OPTIMAL, cp_model.FEASIBLE]:
     #             to_excel = ExcelWriter(self.model_obj, self.solver)
     #             to_excel.write_results()
+    #             to_excel.write_sat_preferences()
     #             return
     #
     #     print("Infeasible solution.")
     #     self.fix_max_students_in_course()
-
-
-    #
-    # def check_solution_infeasibility(self):
-    #     print("Reason of infeasibility:")
-    #
-    #     if self.model_obj.allocation is None:
-    #         print("The allocation is empty.")
-    #         return
-    #
-    #     # check if each course has at least m students
-    #     for c in self.model_obj.all_courses:
-    #         num_students_in_course = sum(
-    #             self.solver.value(self.model_obj.allocation[s][c])
-    #             for s in self.model_obj.all_students
-    #         )
-    #         if num_students_in_course < self.model_obj.courses[c].min_students:
-    #             print(f"Course {self.model_obj.courses[c].course_name}"
-    #                   f"has {num_students_in_course}"
-    #                   f"instead of {self.model_obj.courses[c].min_students}.")
-    #             self.fix_max_students_in_course(c)
-    #             return
-    #
-    #     # check if each student has exactly xs courses
-    #     for s in self.model_obj.all_students:
-    #         num_courses_for_student = sum(
-    #             self.solver.value(self.model_obj.allocation[s][c])
-    #             for c in self.model_obj.all_courses
-    #         )
-    #         if num_courses_for_student != self.model_obj.students[s].required_courses:
-    #             print(f"Student {self.model_obj.students[s].fullname} {self.model_obj.students[s].student_id}"
-    #                   f"has {num_courses_for_student}"
-    #                   f"instead of {self.model_obj.students[s].required_courses}.")
-    #             self.fix_max_students_in_course()
-    #             return
 

@@ -1,0 +1,21 @@
+django-admin startproject <project name>
+cd <project name>
+python manage.py startapp <app name>
+python manage.py runserver
+
+# for db 
+python manage.py makemigrations # automatic db update
+python manage.py migrate # automatic db update
+python manage.py createsuperuser
+
+# installing python project as package into django project
+pip install -e allocation
+
+# setup.py for installing python project as package into django project
+from setuptools import setup, find_packages
+
+setup(
+    name="allocation",
+    version="0.1",
+    packages=find_packages(),
+)

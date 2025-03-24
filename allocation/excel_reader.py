@@ -92,7 +92,8 @@ class ExcelReader:
                     course_id = courses_ids[i],
                     course_name = courses_names[i],
                     min_students = 7,
-                    max_students = 35)
+                    max_students = 35
+                )
                 for i in all_courses_ids
             ]
 
