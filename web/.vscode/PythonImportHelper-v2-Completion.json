@@ -97,6 +97,23 @@
         "documentation": {}
     },
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -122,36 +139,43 @@
         "documentation": {}
     },
     {
-        "label": "app",
-        "importPath": "allocation",
-        "description": "allocation",
+        "label": "App",
+        "importPath": "allocation.app.app",
+        "description": "allocation.app.app",
         "isExtraImport": true,
-        "detail": "allocation",
-        "documentation": {}
-    },
-    {
-        "label": "Student",
-        "importPath": "allocation",
-        "description": "allocation",
-        "isExtraImport": true,
-        "detail": "allocation",
+        "detail": "allocation.app.app",
         "documentation": {}
     },
     {
         "label": "Course",
-        "importPath": "allocation",
-        "description": "allocation",
+        "importPath": "allocation.student_course.course",
+        "description": "allocation.student_course.course",
         "isExtraImport": true,
-        "detail": "allocation",
+        "detail": "allocation.student_course.course",
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
+        "label": "Course",
+        "importPath": "allocation.student_course.course",
+        "description": "allocation.student_course.course",
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "detail": "allocation.student_course.course",
+        "documentation": {}
+    },
+    {
+        "label": "Student",
+        "importPath": "allocation.student_course.student",
+        "description": "allocation.student_course.student",
+        "isExtraImport": true,
+        "detail": "allocation.student_course.student",
+        "documentation": {}
+    },
+    {
+        "label": "Student",
+        "importPath": "allocation.student_course.student",
+        "description": "allocation.student_course.student",
+        "isExtraImport": true,
+        "detail": "allocation.student_course.student",
         "documentation": {}
     },
     {
@@ -168,22 +192,6 @@
         "description": "django.conf.urls.static",
         "isExtraImport": true,
         "detail": "django.conf.urls.static",
-        "documentation": {}
-    },
-    {
-        "label": "load_workbook",
-        "importPath": "openpyxl.reader.excel",
-        "description": "openpyxl.reader.excel",
-        "isExtraImport": true,
-        "detail": "openpyxl.reader.excel",
-        "documentation": {}
-    },
-    {
-        "label": "load_workbook",
-        "importPath": "openpyxl.reader.excel",
-        "description": "openpyxl.reader.excel",
-        "isExtraImport": true,
-        "detail": "openpyxl.reader.excel",
         "documentation": {}
     },
     {
@@ -209,6 +217,46 @@
         "description": "ortools.sat.python",
         "isExtraImport": true,
         "detail": "ortools.sat.python",
+        "documentation": {}
+    },
+    {
+        "label": "ExcelWriter",
+        "importPath": "allocation.excel_writer.excel_writer",
+        "description": "allocation.excel_writer.excel_writer",
+        "isExtraImport": true,
+        "detail": "allocation.excel_writer.excel_writer",
+        "documentation": {}
+    },
+    {
+        "label": "Model",
+        "importPath": "allocation.ortools_sat.model",
+        "description": "allocation.ortools_sat.model",
+        "isExtraImport": true,
+        "detail": "allocation.ortools_sat.model",
+        "documentation": {}
+    },
+    {
+        "label": "Solver",
+        "importPath": "allocation.ortools_sat.solver",
+        "description": "allocation.ortools_sat.solver",
+        "isExtraImport": true,
+        "detail": "allocation.ortools_sat.solver",
+        "documentation": {}
+    },
+    {
+        "label": "load_workbook",
+        "importPath": "openpyxl.reader.excel",
+        "description": "openpyxl.reader.excel",
+        "isExtraImport": true,
+        "detail": "openpyxl.reader.excel",
+        "documentation": {}
+    },
+    {
+        "label": "load_workbook",
+        "importPath": "openpyxl.reader.excel",
+        "description": "openpyxl.reader.excel",
+        "isExtraImport": true,
+        "detail": "openpyxl.reader.excel",
         "documentation": {}
     },
     {
@@ -265,6 +313,31 @@
         "description": "setuptools",
         "isExtraImport": true,
         "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "importPath": "distutils.core",
+        "description": "distutils.core",
+        "isExtraImport": true,
+        "detail": "distutils.core",
         "documentation": {}
     },
     {
@@ -475,11 +548,29 @@
         "documentation": {}
     },
     {
+        "label": "get_context_from_session",
+        "kind": 2,
+        "importPath": "web_allocation_project.web_allocation_app.views",
+        "description": "web_allocation_project.web_allocation_app.views",
+        "peekOfCode": "def get_context_from_session(request):\n    selected_students = json.loads(request.session.get(\"selected_students\", \"[]\"))\n    allocated_students = json.loads(request.session.get(\"allocated_students\", \"[]\"))\n    return {\n        \"selected_students\": selected_students,\n        \"has_students\": request.session.get(\"has_students\", False),\n        \"allocated_students\": allocated_students,\n        \"has_allocated_students\": bool(allocated_students),\n    }\n# Create your views here.",
+        "detail": "web_allocation_project.web_allocation_app.views",
+        "documentation": {}
+    },
+    {
         "label": "home",
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def home(request):\n    if request.method == \"POST\":\n        if \"files-submit\" in request.POST:\n            students_data = request.FILES.get(\"students\")\n            courses_data = request.FILES.get(\"courses\")\n            students_selections_data = request.FILES.get(\"students_selections\")\n            sem = request.POST.get(\"sem\")\n            try:\n                students_sheet_names = pd.ExcelFile(students_data).sheet_names\n                courses_sheet_name = pd.ExcelFile(courses_data).sheet_names[0]",
+        "peekOfCode": "def home(request):\n    if request.method == \"POST\" and \"files-submit\" in request.POST:\n        students_data = request.FILES.get(\"students\")\n        courses_data = request.FILES.get(\"courses\")\n        students_selections_data = request.FILES.get(\"students_selections\")\n        sem = request.POST.get(\"sem\")\n        students_ext = os.path.splitext(students_data.name)[-1].lower()\n        courses_ext = os.path.splitext(courses_data.name)[-1].lower()\n        students_selections_ext = os.path.splitext(students_selections_data.name)[\n            -1",
+        "detail": "web_allocation_project.web_allocation_app.views",
+        "documentation": {}
+    },
+    {
+        "label": "allocation",
+        "kind": 2,
+        "importPath": "web_allocation_project.web_allocation_app.views",
+        "description": "web_allocation_project.web_allocation_app.views",
+        "peekOfCode": "def allocation(request):\n    context = get_context_from_session(request)\n    context.update({\n        \"selected_students\" : pd.DataFrame(context[\"selected_students\"]),\n        \"allocated_students\": pd.DataFrame(context[\"allocated_students\"]),\n    })\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))\n        max_stud = int(request.POST.get(\"max_stud\", 0))\n        students_json = request.session.get(\"students\")",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },
@@ -488,80 +579,80 @@
         "kind": 5,
         "importPath": "web_allocation_project.web_allocation_app.urls",
         "description": "web_allocation_project.web_allocation_app.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.home, name=\"home\"),\n]\nif settings.DEBUG:\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.home, name=\"home\"),\n    path(\"allocation/\", views.allocation, name=\"allocation\"),\n]\nif settings.DEBUG:\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
         "detail": "web_allocation_project.web_allocation_app.urls",
-        "documentation": {}
-    },
-    {
-        "label": "App",
-        "kind": 6,
-        "importPath": "web_allocation_project.allocation.app",
-        "description": "web_allocation_project.allocation.app",
-        "peekOfCode": "class App:\n    # def __init__(\n    #     self,\n    #     students_file_name,\n    #     students_sheet_name,\n    #     courses_file_name,\n    #     courses_sheet_name,\n    #     preferences_file_name,\n    #     preferences_sheet_name,\n    #     sem,",
-        "detail": "web_allocation_project.allocation.app",
-        "documentation": {}
-    },
-    {
-        "label": "Course",
-        "kind": 6,
-        "importPath": "web_allocation_project.allocation.course",
-        "description": "web_allocation_project.allocation.course",
-        "peekOfCode": "class Course:\n    def __init__(self, course_id, course_name, min_students, max_students):\n        self.course_id = course_id\n        self.course_name = course_name\n        self.min_students = min_students\n        self.max_students = max_students\n    def to_dict(self):\n        return {\n            \"course_id\": self.course_id,\n            \"course_name\": self.course_name,",
-        "detail": "web_allocation_project.allocation.course",
-        "documentation": {}
-    },
-    {
-        "label": "Student",
-        "kind": 6,
-        "importPath": "web_allocation_project.allocation.student",
-        "description": "web_allocation_project.allocation.student",
-        "peekOfCode": "class Student:\n    def __init__(self, student_id, fullname, semester, courses_needed, passed_courses_on_sem8, choices_remaining):\n        self.student_id = student_id\n        self.fullname = fullname\n        self.gpa = None\n        self.SCALING_FACTOR = 100\n        self.scaled_gpa = None\n        self.semester = semester\n        self.preferences = {}\n        self.courses_needed = courses_needed",
-        "detail": "web_allocation_project.allocation.student",
-        "documentation": {}
-    },
-    {
-        "label": "ExcelWriter",
-        "kind": 6,
-        "importPath": "web_allocation_project.allocation.excel_writer",
-        "description": "web_allocation_project.allocation.excel_writer",
-        "peekOfCode": "class ExcelWriter:\n    def __init__(self, model_obj, solver):\n        self.data_path = os.getcwd()\n        self.results_file_path = self.data_path + \"\\output.xlsx\"\n        self.model_obj = model_obj\n        self.solver = solver\n        self.add_charts = ExcelWriterCharts(self.results_file_path)\n    def save_results(self):\n        results_data = []\n        for c in self.model_obj.all_courses:",
-        "detail": "web_allocation_project.allocation.excel_writer",
-        "documentation": {}
-    },
-    {
-        "label": "ExcelReader",
-        "kind": 6,
-        "importPath": "web_allocation_project.allocation.excel_reader",
-        "description": "web_allocation_project.allocation.excel_reader",
-        "peekOfCode": "class ExcelReader:\n    def __init__(self, file_name, sheet_name, sem, min_stud, max_stud):\n        self.file_name = file_name\n        self.sheet_name = sheet_name\n        self.sem = sem\n        self.min_stud = min_stud\n        self.max_stud = max_stud\n    def read_students(self):\n        try:\n            df_sheets = pd.read_excel(self.file_name, self.sheet_name)",
-        "detail": "web_allocation_project.allocation.excel_reader",
         "documentation": {}
     },
     {
         "label": "Solver",
         "kind": 6,
-        "importPath": "web_allocation_project.allocation.solver",
-        "description": "web_allocation_project.allocation.solver",
+        "importPath": "web_allocation_project.allocation.ortools_sat.solver",
+        "description": "web_allocation_project.allocation.ortools_sat.solver",
         "peekOfCode": "class Solver:\n    def __init__(self, model_obj):\n        self.model_obj = model_obj\n        self.solver = cp_model.CpSolver()\n        self.status = None\n    def solve_model(self):\n        # maximize student allocation based on their gpa and\n        # minimize student allocation based on their preferences\n        self.model_obj.model.maximize(\n            sum(",
-        "detail": "web_allocation_project.allocation.solver",
+        "detail": "web_allocation_project.allocation.ortools_sat.solver",
         "documentation": {}
     },
     {
         "label": "Model",
         "kind": 6,
-        "importPath": "web_allocation_project.allocation.model",
-        "description": "web_allocation_project.allocation.model",
+        "importPath": "web_allocation_project.allocation.ortools_sat.model",
+        "description": "web_allocation_project.allocation.ortools_sat.model",
         "peekOfCode": "class Model:\n    def __init__(self, students, courses):\n        self.model = cp_model.CpModel()\n        self.students = students\n        self.all_students = range(len(students))\n        self.courses = courses\n        self.all_courses = range(len(courses))\n        self.allocation = []\n    def build_model(self):\n        # sorting students based on their gpa in descending order",
-        "detail": "web_allocation_project.allocation.model",
+        "detail": "web_allocation_project.allocation.ortools_sat.model",
+        "documentation": {}
+    },
+    {
+        "label": "App",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.app.app",
+        "description": "web_allocation_project.allocation.app.app",
+        "peekOfCode": "class App:\n    def __init__(self, *args):\n        if len(args) == 0:\n            pass\n        else:\n            self.sem = args[6]\n            self.min_stud = args[7]\n            self.max_stud = args[8]\n            self.students = self.load_data(args[0], args[1], \"students\")\n            self.courses = self.load_data(args[2], args[3], \"courses\")",
+        "detail": "web_allocation_project.allocation.app.app",
+        "documentation": {}
+    },
+    {
+        "label": "ExcelReader",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.app.excel_reader",
+        "description": "web_allocation_project.allocation.app.excel_reader",
+        "peekOfCode": "class ExcelReader:\n    def __init__(self, file_name, sheet_name, sem, min_stud, max_stud):\n        self.file_name = file_name\n        self.sheet_name = sheet_name\n        self.sem = sem\n        self.min_stud = min_stud\n        self.max_stud = max_stud\n    def read_students(self):\n        try:\n            df_sheets = pd.read_excel(self.file_name, self.sheet_name)",
+        "detail": "web_allocation_project.allocation.app.excel_reader",
+        "documentation": {}
+    },
+    {
+        "label": "ExcelWriter",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.excel_writer.excel_writer",
+        "description": "web_allocation_project.allocation.excel_writer.excel_writer",
+        "peekOfCode": "class ExcelWriter:\n    def __init__(self, model_obj, solver):\n        self.data_path = os.getcwd()\n        self.results_file_path = self.data_path + \"\\output.xlsx\"\n        self.model_obj = model_obj\n        self.solver = solver\n        self.add_charts = ExcelWriterCharts(self.results_file_path)\n    def save_results(self):\n        results_data = []\n        for c in self.model_obj.all_courses:",
+        "detail": "web_allocation_project.allocation.excel_writer.excel_writer",
         "documentation": {}
     },
     {
         "label": "ExcelWriterCharts",
         "kind": 6,
-        "importPath": "web_allocation_project.allocation.excel_writer_charts",
-        "description": "web_allocation_project.allocation.excel_writer_charts",
+        "importPath": "web_allocation_project.allocation.excel_writer.excel_writer_charts",
+        "description": "web_allocation_project.allocation.excel_writer.excel_writer_charts",
         "peekOfCode": "class ExcelWriterCharts:\n    def __init__(self, results_file_path):\n        self.results_file_path = results_file_path\n    def add_top_6_preferences_sat_pie_chart(self, top_6_preferences_satisfaction_ratios):\n        try:\n            wb = load_workbook(self.results_file_path)\n            ws = wb[\"Preferences Satisfaction\"]\n            if top_6_preferences_satisfaction_ratios:\n                avg_preferences_met = round(\n                    sum(top_6_preferences_satisfaction_ratios) / len(top_6_preferences_satisfaction_ratios), 2",
-        "detail": "web_allocation_project.allocation.excel_writer_charts",
+        "detail": "web_allocation_project.allocation.excel_writer.excel_writer_charts",
+        "documentation": {}
+    },
+    {
+        "label": "Course",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.student_course.course",
+        "description": "web_allocation_project.allocation.student_course.course",
+        "peekOfCode": "class Course:\n    def __init__(self, *args):\n        if len(args) == 0:\n            pass\n        else:\n            self.course_id = args[0]\n            self.course_name = args[1]\n            self.min_students = args[2]\n            self.max_students = args[3]\n    # def __init__(self, course_id, course_name, min_students, max_students):",
+        "detail": "web_allocation_project.allocation.student_course.course",
+        "documentation": {}
+    },
+    {
+        "label": "Student",
+        "kind": 6,
+        "importPath": "web_allocation_project.allocation.student_course.student",
+        "description": "web_allocation_project.allocation.student_course.student",
+        "peekOfCode": "class Student:\n    def __init__(self, *args):\n        if len(args) == 0:\n            pass\n        else:\n            self.student_id = args[0]\n            self.fullname = args[1]\n            self.gpa = None\n            self.SCALING_FACTOR = 100\n            self.scaled_gpa = None",
+        "detail": "web_allocation_project.allocation.student_course.student",
         "documentation": {}
     },
     {
@@ -571,6 +662,87 @@
         "description": "web_allocation_project.manage",
         "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'web_allocation_project.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
         "detail": "web_allocation_project.manage",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"Scripts\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "base = bin_dir[: -len(\"Scripts\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV_PROMPT\"]",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV_PROMPT\"] = \"\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
         "documentation": {}
     }
 ]

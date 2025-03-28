@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.home, name="home"),
+    path("allocation/", views.allocation, name="allocation"),
 ]
 
 if settings.DEBUG:

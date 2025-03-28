@@ -22,7 +22,7 @@ body {
     /*background: radial-gradient(circle at top, var(--secondary) 20%, var(--main) 100%);*/
     background: var(--secondary);
     margin: 0;
-    min-height: 100vh;
+    min-height: 100vh; 
     min-width: 100vw;
     overflow-x: hidden;
     position: relative;
@@ -212,6 +212,8 @@ main {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;
+    height: auto;
+    min-height: 100%;
 }
 
 .welcome {
@@ -312,6 +314,13 @@ main {
     margin: 1rem auto;
 }
 
+.error {
+    font-weight: bold;
+    color: red;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
 .buttons {
     display: flex;
     flex-direction: row;
@@ -321,6 +330,12 @@ main {
     width: fit-content;
     right: 0;
     position: absolute;
+}
+
+#allocation-download {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 .list-group-item.active,
@@ -344,6 +359,7 @@ footer {
     color: var(--secondary);
     background-color: var(--main);
     font-size: 0.9rem;
+    z-index: 1000;
 }
 
 

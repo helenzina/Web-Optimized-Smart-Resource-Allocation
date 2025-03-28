@@ -1,11 +1,10 @@
-{% extends "base.html" %} {% block title %}Αρχική - Κατανομή Φοιτητών ΤΜΠΥΤ ΔΙΠΑΕ {% endblock %}
+{% extends "base.html" %} {% block title %}Αρχική - Κατανομή Φοιτητών ΤΜΠΥΤ ΔΙΠΑΕ{% endblock %}
 
 {% block main %}
 
 <span id="files-success"></span>
-<span id="allocation-success"></span>
 
-<div id="files-form-container" {% if has_students %}style="display: none;" {% endif %}>
+<div id="files-form-container">
     <form id="files-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -22,7 +21,7 @@
                 <div class="container mb-3">
                     <div class="input-label">
                         <input class="form-control text-center bg-light" type="text" placeholder="Φοιτητές" readonly>
-                        <button type="button" class="btn bi bi-info-circle-fill" data-bs-toggle="popover"
+                        <button type="button" id="students_info" name="students_info" class="btn bi bi-info-circle-fill" data-bs-toggle="popover"
                             data-bs-content="Αρχείο .xlsx ή .xls">
                         </button>
                     </div>
@@ -33,7 +32,7 @@
                 <div class="container mb-3">
                     <div class="input-label">
                         <input class="form-control text-center bg-light" type="text" placeholder="Μαθήματα" readonly>
-                        <button type="button" class="btn bi bi-info-circle-fill" data-bs-toggle="popover"
+                        <button type="button" id="courses_info" name="courses_info" class="btn bi bi-info-circle-fill" data-bs-toggle="popover"
                             data-bs-content="Αρχείο .xlsx ή .xls">
                         </button>
                     </div>
@@ -45,13 +44,16 @@
                     <div class="input-label">
                         <input class="form-control text-center bg-light" type="text" placeholder="Επιλογές φοιτητών"
                             readonly>
-                        <button type="button" class="btn bi bi-info-circle-fill" data-bs-toggle="popover"
+                        <button type="button" id="students_selections_info" name="students_selections_info" class="btn bi bi-info-circle-fill" data-bs-toggle="popover"
                             data-bs-content="Αρχείο .xlsx ή .xls">
                         </button>
                     </div>
                     <input class="form-control mb-3" type="file" id="students_selections" accept=".xlsx,.xls"
                         name="students_selections" required>
                 </div>
+            </div>
+            <div class="container error">
+                <p>{{ error_message }}</p>
             </div>
         </div>
 
@@ -62,59 +64,8 @@
     </form>
 </div>
 
-{% if has_students %}
-
-<div style="margin: 1rem 0;">
-    <table id="myTable" class="table table-striped table-bordered">
-        <p class="fw-bold">Φοιτητές για Κατανομή</p>
-        <thead>
-            <tr>
-                {% for col in selected_students.columns %}
-                <th>{{col}}</th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for index, row in selected_students.iterrows %}
-            <tr>
-                {% for cell in row %}
-                <td>{{cell}}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <div id="allocation-form-container" class="container m-0 p-0">
-        <form id="allocation-form" method="post">
-            {% csrf_token %}
-            <div class="container min-max">
-                <div class="col">
-                    <input type="number" class="form-control" id="min_stud" name="min_stud" value="{{ min_stud }}"
-                        placeholder="Min" aria-label="min_students" min="0" required>
-                </div>
-                <div class="col">
-                    <input type="number" class="form-control" id="max_stud" name="max_stud" value="{{ max_stud }}"
-                        placeholder="Max" aria-label="max_students" min="0" required>
-                </div>
-            </div>
-
-            <div class="container buttons mb-3">
-                <button class="btn btn-success" type="submit" id="allocation-submit" name="allocation-submit">Έναρξη
-                    Κατανομής</button>
-                <button class="btn btn-danger" type="reset" id="allocation-reset" name="allocation-reset">Επαναφορά
-                    Όλων</button>
-            </div>
-        </form>
-    </div>
-
-</div>
-
-<span id="allocation-success"></span>
-
-{% endif %}
-
 {% endblock %}
+
 
 <script>
     const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
@@ -138,29 +89,7 @@
             }
         })
     })
-    $(document).on("submit", "#allocation-form", function(e) {
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "{% url 'home' %}",
-            data: {
-                min_stud: $("#min_stud").val(),
-                max_stud: $("#max_stud").val(),
-                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
-            },
-            success: function(data) {
-                $("#allocation-success").html(data)
-            }
-        })
-    })
     document.getElementById("files-reset").addEventListener("click", function() {
         document.getElementById("files-form").reset();
-    });
-    document.getElementById("allocation-reset").addEventListener("click", function() {
-        document.getElementById("allocation-form").reset();
-    });
-    $(document).ready(function() {
-        console.log($.fn.dataTable);
-        $('#myTable').DataTable();
     });
 </script>

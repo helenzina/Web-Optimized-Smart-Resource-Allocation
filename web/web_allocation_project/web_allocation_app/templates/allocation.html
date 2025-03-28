@@ -1,0 +1,131 @@
+{% extends "base.html" %} {% block title %}Κατανομή Φοιτητών ΤΜΠΥΤ ΔΙΠΑΕ{% endblock %}
+
+{% block main %}
+
+<span id="allocation-success"></span>
+<span id="download-success"></span>
+
+
+{% if has_students %}
+
+<div style="margin: 1rem 0 10rem 0;">
+    <table id="myTable" class="table table-striped table-bordered">
+        <p class="fw-bold">Φοιτητές για Κατανομή</p>
+        <thead>
+        <tr>
+            {% for col in selected_students.columns %}
+            <th>{{col}}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for index, row in selected_students.iterrows %}
+        <tr>
+            {% for cell in row %}
+            <td>{{cell}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div id="allocation-form-container" class="container m-0 p-0">
+        <form id="allocation-form" method="post">
+            {% csrf_token %}
+            <div class="container min-max">
+                <div class="col d-flex" style="gap: 0.5rem">
+                    <input type="number" class="form-control" id="min_stud" name="min_stud" value="{{ min_stud }}"
+                           placeholder="Min" aria-label="min_students" min="0" required>
+                    <input type="number" class="form-control" id="max_stud" name="max_stud" value="{{ max_stud }}"
+                           placeholder="Max" aria-label="max_students" min="0" required>
+                </div>
+            </div>
+
+            {% if has_allocated_students %}
+            <table id="allocationTable" class="table table-striped table-bordered" {% if not has_allocated_students %}
+                   style="display: none;" {% endif %}>
+                <p class="fw-bold">Κατανεμημένοι Φοιτητές</p>
+                <thead>
+                <tr>
+                    {% for col in allocated_students.columns %}
+                    <th>{{col}}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for index, row in allocated_students.iterrows %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{cell}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {% endif %}
+
+            <div class="container error" {% if has_allocated_students %}
+                 style="display: none;" {% endif %}>
+                <p>{{ error_message }}</p>
+            </div>
+
+            <div class="container buttons mb-3">
+                <button class="btn btn-success" type="submit" id="allocation-submit" name="allocation-submit">Έναρξη
+                    Κατανομής
+                </button>
+                <button class="btn btn-danger" type="reset" id="allocation-reset" name="allocation-reset">Επαναφορά
+                    Όλων
+                </button>
+                {% if has_allocated_students %}
+                <form id="download-form" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-primary bi-download" type="submit" id="allocation-download"
+                            name="allocation-download" value="download_excel"> Λήψη Αποτελεσμάτων σε Excel
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+<script>
+    $(document).on("submit", "#allocation-form", function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "{% url 'allocation' %}",
+            data: {
+                min_stud: $("#min_stud").val(),
+                max_stud: $("#max_stud").val(),
+                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+            },
+            success: function(data) {
+                $("#allocation-success").html(data)
+            }
+        })
+    })
+    $(document).on("submit", "#download-form", function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "{% url 'allocation' %}",
+            data: {
+                allocation-download: $("#allocation-download").val(),
+                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+            },
+            success: function(data) {
+                $("#download-success").html(data)
+            }
+        })
+    })
+    document.getElementById("allocation-reset").addEventListener("click", function() {
+        document.getElementById("allocation-form").reset();
+    });
+</script>
