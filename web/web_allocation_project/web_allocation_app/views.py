@@ -1,5 +1,7 @@
 import json
 import os
+import pickle
+
 from django.shortcuts import redirect, render, HttpResponse
 import pandas as pd
 from allocation.app.app import App
@@ -8,58 +10,14 @@ from allocation.student_course.student import Student
 
 
 # Create your views here.
-
-def json_serialization(request, app_obj):
-    """This method converts class objects to json files and
-    returns the selected students."""
-
-    # for selected students table display
-    columns = ["Fullname", "AEM", "GPA", "Selections"]
-    data = {c: [] for c in columns}
-
-    for student in app_obj.students:
-        data["Fullname"].append(student.fullname)
-        data["AEM"].append(student.student_id)
-        data["GPA"].append(student.gpa)
-
-        temp = {p: c for c, p in student.preferences.items()}
-        temp = dict(sorted(temp.items()))
-
-        course_choices = [c for p, c in temp.items()]
-
-        data["Selections"].append(", ".join(map(str, course_choices)))
-
-    selected_students = pd.DataFrame(data)
-
-    # converting class objects to json in session
-    # to use in the allocation view (serialization)
-    try:
-        students_json = json.dumps(
-            app_obj.students, default=lambda x: x.__dict__, indent=4
-        )
-        courses_json = json.dumps(
-            app_obj.courses, default=lambda x: x.__dict__, indent=4
-        )
-        selected_students_json = selected_students.to_json(orient='records')
-    except Exception as e:
-        return HttpResponse(
-            f"Error while serializing the json files: {str(e)}", status=404
-        )
-
-    request.session["students"] = students_json
-    request.session["courses"] = courses_json
-    request.session["selected_students"] = selected_students_json
-    request.session["has_students"] = not selected_students.empty
-
-    return selected_students
-
-
 def home(request):
     if request.method == "POST" and "files-submit" in request.POST:
-        students_data = request.FILES.get("students")
-        courses_data = request.FILES.get("courses")
-        students_selections_data = request.FILES.get("students_selections")
-        sem = request.POST.get("sem")
+        request.session.flush()
+
+        students_data = request.FILES.get("students", None)
+        courses_data = request.FILES.get("courses", None)
+        students_selections_data = request.FILES.get("students_selections", None)
+        sem = request.POST.get("sem", None)
 
         students_ext = os.path.splitext(students_data.name)[-1].lower()
         courses_ext = os.path.splitext(courses_data.name)[-1].lower()
@@ -110,10 +68,55 @@ def home(request):
 
         return render(request, "allocation.html", context)
 
-    if request.method == "POST" and "allocation-submit" in request.POST:
-        return redirect("allocation")
+    if request.method == "POST" and ("allocation-submit" in request.POST or "allocation-download" in request.POST):
+        return allocation(request)
     else:
         return render(request, "home.html")
+
+
+def json_serialization(request, app_obj):
+    """This method converts class objects to json files and
+    returns the selected students."""
+
+    # for selected students table display
+    columns = ["Ονοματεπώνυμο", "AEM", "ΜΟ", "Επιλογές"]
+    data = {c: [] for c in columns}
+
+    for student in app_obj.students:
+        data["Ονοματεπώνυμο"].append(student.fullname)
+        data["AEM"].append(student.student_id)
+        data["ΜΟ"].append(student.gpa)
+
+        temp = {p: c for c, p in student.preferences.items()}
+        temp = dict(sorted(temp.items()))
+
+        course_choices = [c for p, c in temp.items()]
+
+        data["Επιλογές"].append(", ".join(map(str, course_choices)))
+
+    selected_students = pd.DataFrame(data)
+
+    # converting class objects to json in session
+    # to use in the allocation view (serialization)
+    try:
+        students_json = json.dumps(
+            app_obj.students, default=lambda x: x.__dict__, indent=4
+        )
+        courses_json = json.dumps(
+            app_obj.courses, default=lambda x: x.__dict__, indent=4
+        )
+        selected_students_json = selected_students.to_json(orient='records')
+    except Exception as e:
+        return HttpResponse(
+            f"Error while serializing the json files: {str(e)}", status=404
+        )
+
+    request.session["students"] = students_json
+    request.session["courses"] = courses_json
+    request.session["selected_students"] = selected_students_json
+    request.session["has_students"] = not selected_students.empty
+
+    return selected_students
 
 
 def get_context_from_session(request):
@@ -137,8 +140,8 @@ def json_deserialization(request):
         "allocated_students": pd.DataFrame(context["allocated_students"]),
     })
 
-    students_json = request.session.get("students")
-    courses_json = request.session.get("courses")
+    students_json = request.session.get("students", None)
+    courses_json = request.session.get("courses", None)
 
     if not students_json or not courses_json:
         return HttpResponse("Something went wrong with the json files.", status=404)
@@ -180,39 +183,52 @@ def allocation(request):
         min_stud = int(request.POST.get("min_stud", 0))
         max_stud = int(request.POST.get("max_stud", 0))
 
-        if min_stud < max_stud and max_stud != 0:
+        request.session.pop("allocated_students", None)
+        request.session.pop("has_allocated_students", None)
+
+        if min_stud >= max_stud:
+            pass
+        else:
             for course in new_app.courses:
                 course.min_students = min_stud
                 course.max_students = max_stud
 
             allocated_students = new_app.run()
-            if allocated_students is not None:
-                has_allocated_students = not allocated_students.empty
-                request.session["allocated_students"] = allocated_students.to_json(orient='records')
-                request.session["has_allocated_students"] = has_allocated_students
 
-                context.update({
+            if allocated_students is not None and not allocated_students.empty:
+                request.session["allocated_students"] = allocated_students.to_json(orient='records')
+                request.session["has_allocated_students"] = True
+                request.session["min_stud"] = min_stud
+                request.session["max_stud"] = max_stud
+
+                context.update(
+                    {
                     "allocated_students": allocated_students,
-                    "has_allocated_students": has_allocated_students,
+                    "has_allocated_students": True,
                     "min_stud": min_stud,
                     "max_stud": max_stud,
-                })
+                    }
+                )
+                return render(request, "allocation.html", context)
 
-        if min_stud >= max_stud or max_stud == 0 or "has_allocated_students" not in request.session:
-            error_message = "Infeasible solution. Please provide different min and max values."
-            request.session["error_message"] = error_message
-
+        request.session["error_message"] = "Infeasible solution. Please provide different min and max values."
         context.update(
             {
+                "allocated_students": None,
+                "has_allocated_students": False,
                 "min_stud": min_stud,
                 "max_stud": max_stud,
-                "error_message": request.session.get("error_message") if "error_message" in request.session else None,
+                "error_message": request.session.get("error_message"),
             },
         )
 
     if request.method == "POST" and "allocation-download" in request.POST:
         allocation_download = request.POST.get("allocation-download")
+        min_stud = request.session.get("min_stud", 0)
+        max_stud = request.session.get("max_stud", 0)
+        print(min_stud, max_stud)
         if allocation_download == "download_excel":
+            print(new_app.results)
             new_app.write()
 
 

@@ -7,7 +7,6 @@ from allocation.excel_writer.excel_writer import ExcelWriter
 
 class App:
     def __init__(self, *args):
-
         if len(args) == 0:
             pass
         else:

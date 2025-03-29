@@ -106,6 +106,15 @@
         "documentation": {}
     },
     {
+        "label": "pickle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
+        "documentation": {}
+    },
+    {
         "label": "redirect",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -217,6 +226,14 @@
         "description": "ortools.sat.python",
         "isExtraImport": true,
         "detail": "ortools.sat.python",
+        "documentation": {}
+    },
+    {
+        "label": "ExcelWriter",
+        "importPath": "allocation.excel_writer.excel_writer",
+        "description": "allocation.excel_writer.excel_writer",
+        "isExtraImport": true,
+        "detail": "allocation.excel_writer.excel_writer",
         "documentation": {}
     },
     {
@@ -548,20 +565,38 @@
         "documentation": {}
     },
     {
-        "label": "get_context_from_session",
-        "kind": 2,
-        "importPath": "web_allocation_project.web_allocation_app.views",
-        "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def get_context_from_session(request):\n    selected_students = json.loads(request.session.get(\"selected_students\", \"[]\"))\n    allocated_students = json.loads(request.session.get(\"allocated_students\", \"[]\"))\n    return {\n        \"selected_students\": selected_students,\n        \"has_students\": request.session.get(\"has_students\", False),\n        \"allocated_students\": allocated_students,\n        \"has_allocated_students\": bool(allocated_students),\n    }\n# Create your views here.",
-        "detail": "web_allocation_project.web_allocation_app.views",
-        "documentation": {}
-    },
-    {
         "label": "home",
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def home(request):\n    if request.method == \"POST\" and \"files-submit\" in request.POST:\n        students_data = request.FILES.get(\"students\")\n        courses_data = request.FILES.get(\"courses\")\n        students_selections_data = request.FILES.get(\"students_selections\")\n        sem = request.POST.get(\"sem\")\n        students_ext = os.path.splitext(students_data.name)[-1].lower()\n        courses_ext = os.path.splitext(courses_data.name)[-1].lower()\n        students_selections_ext = os.path.splitext(students_selections_data.name)[\n            -1",
+        "peekOfCode": "def home(request):\n    if request.method == \"POST\" and \"files-submit\" in request.POST:\n        request.session.flush()\n        students_data = request.FILES.get(\"students\", None)\n        courses_data = request.FILES.get(\"courses\", None)\n        students_selections_data = request.FILES.get(\"students_selections\", None)\n        sem = request.POST.get(\"sem\", None)\n        students_ext = os.path.splitext(students_data.name)[-1].lower()\n        courses_ext = os.path.splitext(courses_data.name)[-1].lower()\n        students_selections_ext = os.path.splitext(students_selections_data.name)[",
+        "detail": "web_allocation_project.web_allocation_app.views",
+        "documentation": {}
+    },
+    {
+        "label": "json_serialization",
+        "kind": 2,
+        "importPath": "web_allocation_project.web_allocation_app.views",
+        "description": "web_allocation_project.web_allocation_app.views",
+        "peekOfCode": "def json_serialization(request, app_obj):\n    \"\"\"This method converts class objects to json files and\n    returns the selected students.\"\"\"\n    # for selected students table display\n    columns = [\"Ονοματεπώνυμο\", \"AEM\", \"ΜΟ\", \"Επιλογές\"]\n    data = {c: [] for c in columns}\n    for student in app_obj.students:\n        data[\"Ονοματεπώνυμο\"].append(student.fullname)\n        data[\"AEM\"].append(student.student_id)\n        data[\"ΜΟ\"].append(student.gpa)",
+        "detail": "web_allocation_project.web_allocation_app.views",
+        "documentation": {}
+    },
+    {
+        "label": "get_context_from_session",
+        "kind": 2,
+        "importPath": "web_allocation_project.web_allocation_app.views",
+        "description": "web_allocation_project.web_allocation_app.views",
+        "peekOfCode": "def get_context_from_session(request):\n    selected_students = json.loads(request.session.get(\"selected_students\", \"[]\"))\n    allocated_students = json.loads(request.session.get(\"allocated_students\", \"[]\"))\n    return {\n        \"selected_students\": selected_students,\n        \"has_students\": request.session.get(\"has_students\", False),\n        \"allocated_students\": allocated_students,\n        \"has_allocated_students\": True if allocated_students else False,\n    }\ndef json_deserialization(request):",
+        "detail": "web_allocation_project.web_allocation_app.views",
+        "documentation": {}
+    },
+    {
+        "label": "json_deserialization",
+        "kind": 2,
+        "importPath": "web_allocation_project.web_allocation_app.views",
+        "description": "web_allocation_project.web_allocation_app.views",
+        "peekOfCode": "def json_deserialization(request):\n    \"\"\"This method converts json files to class objects and\n    returns the App object and the context.\"\"\"\n    context = get_context_from_session(request)\n    context.update({\n        \"selected_students\": pd.DataFrame(context[\"selected_students\"]),\n        \"allocated_students\": pd.DataFrame(context[\"allocated_students\"]),\n    })\n    students_json = request.session.get(\"students\", None)\n    courses_json = request.session.get(\"courses\", None)",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },
@@ -570,7 +605,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def allocation(request):\n    context = get_context_from_session(request)\n    context.update({\n        \"selected_students\" : pd.DataFrame(context[\"selected_students\"]),\n        \"allocated_students\": pd.DataFrame(context[\"allocated_students\"]),\n    })\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))\n        max_stud = int(request.POST.get(\"max_stud\", 0))\n        students_json = request.session.get(\"students\")",
+        "peekOfCode": "def allocation(request):\n    new_app, context = json_deserialization(request)\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))\n        max_stud = int(request.POST.get(\"max_stud\", 0))\n        request.session.pop(\"allocated_students\", None)\n        request.session.pop(\"has_allocated_students\", None)\n        if min_stud >= max_stud:\n            pass\n        else:",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },

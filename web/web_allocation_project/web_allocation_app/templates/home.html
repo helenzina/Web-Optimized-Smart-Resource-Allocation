@@ -76,11 +76,11 @@
             type: "POST",
             url: "{% url 'home' %}",
             data: {
-                sem: $("#sem").val(),
-                students: $("#students").val(),
-                courses: $("#courses").val(),
-                students_selections: $("#students_selections").val(),
-                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+                "sem": $("#sem").val(),
+                "students": $("#students").val(),
+                "courses": $("#courses").val(),
+                "students_selections": $("#students_selections").val(),
+                "csrfmiddlewaretoken": $("input[name=csrfmiddlewaretoken]").val()
             },
             success: function(data) {
                 $("#files-success").html(data)

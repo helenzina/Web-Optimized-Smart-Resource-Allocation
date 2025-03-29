@@ -102,9 +102,10 @@
             type: "POST",
             url: "{% url 'allocation' %}",
             data: {
-                min_stud: $("#min_stud").val(),
-                max_stud: $("#max_stud").val(),
-                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+                "allocation-submit": true,
+                "min_stud": $("#min_stud").val(),
+                "max_stud": $("#max_stud").val(),
+                "csrfmiddlewaretoken": $("input[name=csrfmiddlewaretoken]").val()
             },
             success: function(data) {
                 $("#allocation-success").html(data)
