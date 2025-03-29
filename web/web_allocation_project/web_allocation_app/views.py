@@ -1,7 +1,7 @@
 import json
 import os
-import pickle
-
+from django.core.cache import cache
+from django.http import FileResponse
 from django.shortcuts import redirect, render, HttpResponse
 import pandas as pd
 from allocation.app.app import App
@@ -43,9 +43,7 @@ def home(request):
                 students_selections_data
             ).sheet_names[0]
         except Exception as e:
-            return HttpResponse(
-                f"Error reading an excel file: {str(e)}", status=404
-            )
+            return HttpResponse(f"Error reading an excel file: {str(e)}", status=404)
 
         app_obj = App(
             students_data,
@@ -68,7 +66,9 @@ def home(request):
 
         return render(request, "allocation.html", context)
 
-    if request.method == "POST" and ("allocation-submit" in request.POST or "allocation-download" in request.POST):
+    if request.method == "POST" and (
+        "allocation-submit" in request.POST or "allocation-download" in request.POST
+    ):
         return allocation(request)
     else:
         return render(request, "home.html")
@@ -105,7 +105,7 @@ def json_serialization(request, app_obj):
         courses_json = json.dumps(
             app_obj.courses, default=lambda x: x.__dict__, indent=4
         )
-        selected_students_json = selected_students.to_json(orient='records')
+        selected_students_json = selected_students.to_json(orient="records")
     except Exception as e:
         return HttpResponse(
             f"Error while serializing the json files: {str(e)}", status=404
@@ -135,10 +135,12 @@ def json_deserialization(request):
     returns the App object and the context."""
 
     context = get_context_from_session(request)
-    context.update({
-        "selected_students": pd.DataFrame(context["selected_students"]),
-        "allocated_students": pd.DataFrame(context["allocated_students"]),
-    })
+    context.update(
+        {
+            "selected_students": pd.DataFrame(context["selected_students"]),
+            "allocated_students": pd.DataFrame(context["allocated_students"]),
+        }
+    )
 
     students_json = request.session.get("students", None)
     courses_json = request.session.get("courses", None)
@@ -178,6 +180,7 @@ def json_deserialization(request):
 
 def allocation(request):
     new_app, context = json_deserialization(request)
+    excel_path = os.getcwd() + "\output.xlsx"
 
     if request.method == "POST" and "allocation-submit" in request.POST:
         min_stud = int(request.POST.get("min_stud", 0))
@@ -193,20 +196,26 @@ def allocation(request):
                 course.min_students = min_stud
                 course.max_students = max_stud
 
+            if os.path.exists(excel_path):
+                os.remove(excel_path)
+            
             allocated_students = new_app.run()
 
             if allocated_students is not None and not allocated_students.empty:
-                request.session["allocated_students"] = allocated_students.to_json(orient='records')
+
+                request.session["allocated_students"] = allocated_students.to_json(
+                    orient="records"
+                )
                 request.session["has_allocated_students"] = True
                 request.session["min_stud"] = min_stud
                 request.session["max_stud"] = max_stud
 
                 context.update(
                     {
-                    "allocated_students": allocated_students,
-                    "has_allocated_students": True,
-                    "min_stud": min_stud,
-                    "max_stud": max_stud,
+                        "allocated_students": allocated_students,
+                        "has_allocated_students": True,
+                        "min_stud": min_stud,
+                        "max_stud": max_stud,
                     }
                 )
                 return render(request, "allocation.html", context)
@@ -226,10 +235,20 @@ def allocation(request):
         allocation_download = request.POST.get("allocation-download")
         min_stud = request.session.get("min_stud", 0)
         max_stud = request.session.get("max_stud", 0)
-        print(min_stud, max_stud)
-        if allocation_download == "download_excel":
-            print(new_app.results)
-            new_app.write()
 
+        context.update(
+            {
+                "min_stud": min_stud,
+                "max_stud": max_stud,
+            },
+        )
+
+        if allocation_download == "download_excel":
+            if os.path.exists(excel_path):
+                return FileResponse(
+                    open(excel_path, "rb"),
+                    as_attachment=True,
+                    filename="output.xlsx",
+                )
 
     return render(request, "allocation.html", context)

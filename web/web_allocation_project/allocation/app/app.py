@@ -17,9 +17,6 @@ class App:
             self.courses = self.load_data(args[2], args[3], "courses")
             self.preferences = self.load_data(args[4], args[5], "preferences")
 
-        self.model_obj = None
-        self.solver = None
-        self.results = None
 
     # def __init__(
     #     self,
@@ -102,16 +99,8 @@ class App:
         model = Model(self.students, self.courses)
         created_model = model.build_model()
         solver = Solver(created_model)
-        model_obj, solver, results = solver.solve_model()
-        self.model_obj = model_obj
-        self.solver = solver
-        self.results = results
+        results = solver.solve_model()
         return results
-
-    def write(self):
-        to_excel = ExcelWriter(self.model_obj, self.solver)
-        to_excel.write_results(self.results)
-
 
 # if __name__ == "__main__":
 #     app = App(

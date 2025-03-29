@@ -106,12 +106,19 @@
         "documentation": {}
     },
     {
-        "label": "pickle",
-        "kind": 6,
+        "label": "cache",
+        "importPath": "django.core.cache",
+        "description": "django.core.cache",
         "isExtraImport": true,
-        "importPath": "pickle",
-        "description": "pickle",
-        "detail": "pickle",
+        "detail": "django.core.cache",
+        "documentation": {}
+    },
+    {
+        "label": "FileResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
         "documentation": {}
     },
     {
@@ -596,7 +603,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def json_deserialization(request):\n    \"\"\"This method converts json files to class objects and\n    returns the App object and the context.\"\"\"\n    context = get_context_from_session(request)\n    context.update({\n        \"selected_students\": pd.DataFrame(context[\"selected_students\"]),\n        \"allocated_students\": pd.DataFrame(context[\"allocated_students\"]),\n    })\n    students_json = request.session.get(\"students\", None)\n    courses_json = request.session.get(\"courses\", None)",
+        "peekOfCode": "def json_deserialization(request):\n    \"\"\"This method converts json files to class objects and\n    returns the App object and the context.\"\"\"\n    context = get_context_from_session(request)\n    context.update(\n        {\n            \"selected_students\": pd.DataFrame(context[\"selected_students\"]),\n            \"allocated_students\": pd.DataFrame(context[\"allocated_students\"]),\n        }\n    )",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },
@@ -605,7 +612,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def allocation(request):\n    new_app, context = json_deserialization(request)\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))\n        max_stud = int(request.POST.get(\"max_stud\", 0))\n        request.session.pop(\"allocated_students\", None)\n        request.session.pop(\"has_allocated_students\", None)\n        if min_stud >= max_stud:\n            pass\n        else:",
+        "peekOfCode": "def allocation(request):\n    new_app, context = json_deserialization(request)\n    excel_path = os.getcwd() + \"\\output.xlsx\"\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))\n        max_stud = int(request.POST.get(\"max_stud\", 0))\n        request.session.pop(\"allocated_students\", None)\n        request.session.pop(\"has_allocated_students\", None)\n        if min_stud >= max_stud:\n            pass",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },
@@ -659,7 +666,7 @@
         "kind": 6,
         "importPath": "web_allocation_project.allocation.excel_writer.excel_writer",
         "description": "web_allocation_project.allocation.excel_writer.excel_writer",
-        "peekOfCode": "class ExcelWriter:\n    def __init__(self, model_obj, solver):\n        self.data_path = os.getcwd()\n        self.results_file_path = self.data_path + \"\\output.xlsx\"\n        self.model_obj = model_obj\n        self.solver = solver\n        self.add_charts = ExcelWriterCharts(self.results_file_path)\n    def save_results(self):\n        results_data = []\n        for c in self.model_obj.all_courses:",
+        "peekOfCode": "class ExcelWriter:\n    def __init__(self, model_obj, solver):\n        self.data_path = os.getcwd()\n        self.results_file_path = self.data_path + \"\\output.xlsx\"\n        self.model_obj = model_obj\n        self.solver = solver\n        self.add_charts = ExcelWriterCharts(self.results_file_path)\n    def write_results(self):\n        results_data = []\n        for c in self.model_obj.all_courses:",
         "detail": "web_allocation_project.allocation.excel_writer.excel_writer",
         "documentation": {}
     },

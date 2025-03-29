@@ -14,7 +14,7 @@ class ExcelWriter:
         self.solver = solver
         self.add_charts = ExcelWriterCharts(self.results_file_path)
 
-    def save_results(self):
+    def write_results(self):
         results_data = []
         for c in self.model_obj.all_courses:
             for s in self.model_obj.all_students:
@@ -49,10 +49,6 @@ class ExcelWriter:
             "Assigned Courses on Student"
         ])
 
-        return df
-
-
-    def write_results(self, df):
         try:
             print(f"Assignment results are saved to {self.results_file_path} in sheet: Assignments.")
             df.to_excel(self.results_file_path, sheet_name="Assignments", index = False)
@@ -61,8 +57,10 @@ class ExcelWriter:
         except Exception as e:
             print("An error occurred while writing to the assignment results excel file. \n", e)
 
+        return df
 
-    def save_sat_preferences(self):
+
+    def write_sat_preferences(self):
         """This method collects data for each student to compare the satisfaction of their top 6 preferences
         with the courses they were assigned."""
 
@@ -124,11 +122,6 @@ class ExcelWriter:
             "Top 6 Preferences Satisfaction Ratio on Student (%)"
         ])
 
-        self.write_sat_preferences(df, top_6_preferences_satisfaction_ratios)
-
-        # return df
-
-    def write_sat_preferences(self, df, top_6_preferences_satisfaction_ratios):
         try:
             df_no_duplicates = df.drop_duplicates()
 

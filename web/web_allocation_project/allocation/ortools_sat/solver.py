@@ -29,9 +29,7 @@ class Solver:
 
         if self.status in [cp_model.OPTIMAL, cp_model.FEASIBLE]:
             to_excel = ExcelWriter(self.model_obj, self.solver)
-            results = to_excel.save_results()
-            to_excel.save_sat_preferences()
-            return self.model_obj, self.solver, results
-        else:
-            return None, None, None
+            results = to_excel.write_results()
+            to_excel.write_sat_preferences()
+            return results
 
