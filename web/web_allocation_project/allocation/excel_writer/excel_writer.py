@@ -28,36 +28,36 @@ class ExcelWriter:
                         self.model_obj.students[s].gpa,
                         self.model_obj.students[s].preferences[self.model_obj.courses[c].course_id],
                         self.model_obj.students[s].is_obligated,
-                        self.model_obj.students[s].passed_courses_on_sem8,
+                        self.model_obj.students[s].passed_courses_on_this_sem,
                         self.model_obj.students[s].courses_needed_remaining,
                         self.model_obj.students[s].choices_remaining,
                         sum(self.solver.value(self.model_obj.allocation[s][c]) for c in self.model_obj.all_courses)
                     ])
 
         df = pd.DataFrame(results_data, columns = [
-            "Course Name",
-            "Course ID",
-            "Fullname",
+            "Τίτλος Μαθήματος",
+            "ID Μαθήματος",
+            "Ονοματεπώνυμο",
             "AEM",
-            "Semester",
-            "GPA",
-            "Preference",
-            "Obligated",
-            "Passed Courses On Sem8",
-            "Courses Needed Remaining",
-            "Choices Remaining",
-            "Assigned Courses on Student"
+            "Εξάμηνο",
+            "ΜΟ",
+            "Προτίμηση",
+            "Υποχρεωτική Παρακολούθηση",
+            "# Περασμένων Μαθημάτων του Εξαμήνου",
+            "# Εναπομείναντων Μαθημάτων",
+            "Υπόλοιπο Επιλογών",
+            "# Μαθημάτων που Ανατέθηκαν"
         ])
 
         try:
             print(f"Assignment results are saved to {self.results_file_path} in sheet: Assignments.")
             df.to_excel(self.results_file_path, sheet_name="Assignments", index = False)
-            self.write_results_per_course()
+            df_courses = self.write_results_per_course()
             self.add_charts.add_courses_sat_bar_chart()
         except Exception as e:
             print("An error occurred while writing to the assignment results excel file. \n", e)
 
-        return df
+        return df_courses
 
 
     def write_sat_preferences(self):
@@ -112,14 +112,14 @@ class ExcelWriter:
             ])
 
         df = pd.DataFrame(preferences_met_data, columns = [
-            "Fullname",
+            "Ονοματεπώνυμο",
             "AEM",
-            "Semester",
-            "GPA",
-            "IDs of Assigned Courses on Student",
-            "Assigned Preferences",
-            "# of Assigned Courses on Student",
-            "Top 6 Preferences Satisfaction Ratio on Student (%)"
+            "Εξάμηνο",
+            "ΜΟ",
+            "IDs των Μαθημάτων που Ανατέθηκαν",
+            "Προτιμήσεις που Ανατέθηκαν",
+            "# Μαθημάτων που Ανατέθηκαν",
+            "% Ικανοποίησης των 6 Κορυφαίων Προτιμήσεων"
         ])
 
         try:
@@ -173,3 +173,5 @@ class ExcelWriter:
             print(f"Courses results are saved to {self.results_file_path} in sheet: Course Results.")
         except Exception as e:
             print("An error occurred while writing to the courses results excel file. \n", e)
+
+        return df

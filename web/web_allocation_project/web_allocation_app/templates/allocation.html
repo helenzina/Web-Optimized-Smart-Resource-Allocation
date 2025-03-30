@@ -35,9 +35,9 @@
             <div class="container min-max">
                 <div class="col d-flex" style="gap: 0.5rem">
                     <input type="number" class="form-control" id="min_stud" name="min_stud" value="{{ min_stud }}"
-                           placeholder="Min" aria-label="min_students" min="0" required>
+                           placeholder="Min" aria-label="min_students" min="0" max="50" pattern="[0-9]{2}" required>
                     <input type="number" class="form-control" id="max_stud" name="max_stud" value="{{ max_stud }}"
-                           placeholder="Max" aria-label="max_students" min="0" required>
+                           placeholder="Max" aria-label="max_students" min="0" max="50" pattern="[0-9]{2}" required>
                 </div>
             </div>
 
@@ -46,19 +46,19 @@
                    style="display: none;" {% endif %}>
                 <p class="fw-bold">Κατανεμημένοι Φοιτητές</p>
                 <thead>
-                <tr>
-                    {% for col in allocated_students.columns %}
-                    <th>{{col}}</th>
-                    {% endfor %}
-                </tr>
+                    <tr>
+                        {% for col in allocated_students.columns %}
+                        <th>{{col}}</th>
+                        {% endfor %}
+                    </tr>
                 </thead>
                 <tbody>
                 {% for index, row in allocated_students.iterrows %}
-                <tr>
-                    {% for cell in row %}
-                    <td>{{cell}}</td>
-                    {% endfor %}
-                </tr>
+                    <tr>
+                        {% for cell in row %}
+                        <td>{{cell}}</td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
                 </tbody>
             </table>

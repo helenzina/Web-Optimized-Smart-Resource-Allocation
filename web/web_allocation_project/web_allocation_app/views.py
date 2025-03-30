@@ -1,19 +1,25 @@
 import json
 import os
-from django.core.cache import cache
+import threading
+import time
 from django.http import FileResponse
-from django.shortcuts import redirect, render, HttpResponse
+from django.shortcuts import render, HttpResponse
 import pandas as pd
 from allocation.app.app import App
 from allocation.student_course.course import Course
 from allocation.student_course.student import Student
 
+excel_path = os.getcwd() + "\output.xlsx"
 
 # Create your views here.
 def home(request):
+    request.session.set_expiry(0) # session cookie will expire when the user’s web browser is closed
+
     if request.method == "POST" and "files-submit" in request.POST:
         request.session.flush()
-
+        if os.path.exists(excel_path):
+            os.remove(excel_path)
+        
         students_data = request.FILES.get("students", None)
         courses_data = request.FILES.get("courses", None)
         students_selections_data = request.FILES.get("students_selections", None)
@@ -178,47 +184,25 @@ def json_deserialization(request):
     return new_app, context
 
 
+def delete_file_after_time(file_path, delay):
+    """Deletes the specified file after a delay."""
+    time.sleep(delay)
+    if os.path.exists(file_path):
+        os.remove(file_path)
+
+
 def allocation(request):
     new_app, context = json_deserialization(request)
-    excel_path = os.getcwd() + "\output.xlsx"
-
+    
     if request.method == "POST" and "allocation-submit" in request.POST:
         min_stud = int(request.POST.get("min_stud", 0))
         max_stud = int(request.POST.get("max_stud", 0))
 
+        if os.path.exists(excel_path):
+            os.remove(excel_path)
+            
         request.session.pop("allocated_students", None)
         request.session.pop("has_allocated_students", None)
-
-        if min_stud >= max_stud:
-            pass
-        else:
-            for course in new_app.courses:
-                course.min_students = min_stud
-                course.max_students = max_stud
-
-            if os.path.exists(excel_path):
-                os.remove(excel_path)
-            
-            allocated_students = new_app.run()
-
-            if allocated_students is not None and not allocated_students.empty:
-
-                request.session["allocated_students"] = allocated_students.to_json(
-                    orient="records"
-                )
-                request.session["has_allocated_students"] = True
-                request.session["min_stud"] = min_stud
-                request.session["max_stud"] = max_stud
-
-                context.update(
-                    {
-                        "allocated_students": allocated_students,
-                        "has_allocated_students": True,
-                        "min_stud": min_stud,
-                        "max_stud": max_stud,
-                    }
-                )
-                return render(request, "allocation.html", context)
 
         request.session["error_message"] = "Infeasible solution. Please provide different min and max values."
         context.update(
@@ -230,6 +214,31 @@ def allocation(request):
                 "error_message": request.session.get("error_message"),
             },
         )
+
+        if min_stud < max_stud:
+            for course in new_app.courses:
+                course.min_students = min_stud
+                course.max_students = max_stud
+
+            allocated_students = new_app.run()
+
+            if allocated_students is not None and not allocated_students.empty:
+                request.session["allocated_students"] = allocated_students.to_json(
+                    orient="records"
+                )
+                request.session["has_allocated_students"] = True
+                request.session["min_stud"] = min_stud
+                request.session["max_stud"] = max_stud
+                request.session.pop("error_message")
+
+                context.update(
+                    {
+                        "allocated_students": allocated_students,
+                        "has_allocated_students": True,
+                        "min_stud": min_stud,
+                        "max_stud": max_stud,
+                    }
+                )
 
     if request.method == "POST" and "allocation-download" in request.POST:
         allocation_download = request.POST.get("allocation-download")
@@ -245,10 +254,14 @@ def allocation(request):
 
         if allocation_download == "download_excel":
             if os.path.exists(excel_path):
+                # thread = threading.Thread(target=delete_file_after_time, args=(excel_path, 1,))
+                # thread.start()
                 return FileResponse(
                     open(excel_path, "rb"),
                     as_attachment=True,
-                    filename="output.xlsx",
+                    filename=f"output_{min_stud}_{max_stud}.xlsx",
                 )
 
     return render(request, "allocation.html", context)
+
+

@@ -2,7 +2,6 @@ import os
 from .excel_reader import ExcelReader
 from allocation.ortools_sat.model import Model
 from allocation.ortools_sat.solver import Solver
-from allocation.excel_writer.excel_writer import ExcelWriter
 
 
 class App:
@@ -17,30 +16,6 @@ class App:
             self.courses = self.load_data(args[2], args[3], "courses")
             self.preferences = self.load_data(args[4], args[5], "preferences")
 
-
-    # def __init__(
-    #     self,
-    #     students_file_name,
-    #     students_sheet_name,
-    #     courses_file_name,
-    #     courses_sheet_name,
-    #     preferences_file_name,
-    #     preferences_sheet_name,
-    #     sem,
-    #     min_stud,
-    #     max_stud,
-    # ):
-    #     self.sem = sem
-    #     self.min_stud = min_stud
-    #     self.max_stud = max_stud
-    #     self.students = self.load_data(
-    #         students_file_name, students_sheet_name, "students"
-    #     )
-    #     self.courses = self.load_data(courses_file_name, courses_sheet_name, "courses")
-    #     self.preferences = self.load_data(
-    #         preferences_file_name, preferences_sheet_name, "preferences"
-    #     )
-    
 
     def load_data(self, file_name, sheet_name, data_category):
         from_excel = ExcelReader(
@@ -101,17 +76,3 @@ class App:
         solver = Solver(created_model)
         results = solver.solve_model()
         return results
-
-# if __name__ == "__main__":
-#     app = App(
-#         os.path.join(os.getcwd(), "data_excels", "students_data.xlsx"),
-#         "Sheet1",
-#         os.path.join(os.getcwd(), "data_excels", "courses.xlsx"),
-#         "Sheet1",
-#         os.path.join(os.getcwd(), "data_excels", "students_ordered_selections.xlsx"),
-#         "selections",
-#         8,
-#         7,
-#         35
-#     )
-#     app.run()
