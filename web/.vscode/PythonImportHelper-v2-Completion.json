@@ -570,7 +570,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def home(request):\n    request.session.set_expiry(0) # session cookie will expire when the user’s web browser is closed\n    if request.method == \"POST\" and \"files-submit\" in request.POST:\n        request.session.flush()\n        if os.path.exists(excel_path):\n            os.remove(excel_path)\n        students_data = request.FILES.get(\"students\", None)\n        courses_data = request.FILES.get(\"courses\", None)\n        students_selections_data = request.FILES.get(\"students_selections\", None)\n        sem = request.POST.get(\"sem\", None)",
+        "peekOfCode": "def home(request):\n    request.session.set_expiry(\n        0\n    )  # session cookie will expire when the user’s web browser is closed\n    if request.method == \"POST\" and \"files-submit\" in request.POST:\n        request.session.flush()\n        students_data = request.FILES.get(\"students\", None)\n        courses_data = request.FILES.get(\"courses\", None)\n        students_selections_data = request.FILES.get(\"students_selections\", None)\n        sem = request.POST.get(\"sem\", None)",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },
@@ -588,7 +588,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def get_context_from_session(request):\n    selected_students = json.loads(request.session.get(\"selected_students\", \"[]\"))\n    allocated_students = json.loads(request.session.get(\"allocated_students\", \"[]\"))\n    return {\n        \"selected_students\": selected_students,\n        \"has_students\": request.session.get(\"has_students\", False),\n        \"allocated_students\": allocated_students,\n        \"has_allocated_students\": True if allocated_students else False,\n    }\ndef json_deserialization(request):",
+        "peekOfCode": "def get_context_from_session(request):\n    selected_students = json.loads(request.session.get(\"selected_students\", \"[]\"))\n    allocated_students = json.loads(request.session.get(\"allocated_students\", \"[]\"))\n    students_per_course = json.loads(request.session.get(\"students_per_course\", \"[]\"))\n    return {\n        \"selected_students\": selected_students,\n        \"has_students\": request.session.get(\"has_students\", False),\n        \"allocated_students\": allocated_students,\n        \"has_allocated_students\": True if allocated_students else False,\n        \"students_per_course\": students_per_course,",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },
@@ -597,7 +597,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def json_deserialization(request):\n    \"\"\"This method converts json files to class objects and\n    returns the App object and the context.\"\"\"\n    context = get_context_from_session(request)\n    context.update(\n        {\n            \"selected_students\": pd.DataFrame(context[\"selected_students\"]),\n            \"allocated_students\": pd.DataFrame(context[\"allocated_students\"]),\n        }\n    )",
+        "peekOfCode": "def json_deserialization(request):\n    \"\"\"This method converts json files to class objects and\n    returns the App object and the context.\"\"\"\n    context = get_context_from_session(request)\n    context.update(\n        {\n            \"selected_students\": pd.DataFrame(context[\"selected_students\"]),\n            \"allocated_students\": pd.DataFrame(context[\"allocated_students\"]),\n            \"students_per_course\": pd.DataFrame(context[\"students_per_course\"]),\n        }",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },
@@ -606,7 +606,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def delete_file_after_time(file_path, delay):\n    \"\"\"Deletes the specified file after a delay.\"\"\"\n    time.sleep(delay)\n    if os.path.exists(file_path):\n        os.remove(file_path)\ndef allocation(request):\n    new_app, context = json_deserialization(request)\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))\n        max_stud = int(request.POST.get(\"max_stud\", 0))",
+        "peekOfCode": "def delete_file_after_time(file_path, delay):\n    \"\"\"Deletes the specified file after a delay.\"\"\"\n    time.sleep(delay)\n    if os.path.exists(file_path):\n        os.remove(file_path)\ndef allocation(request):\n    new_app, context = json_deserialization(request)\n    excel_path = os.getcwd() + \"\\output.xlsx\"\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },
@@ -615,16 +615,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def allocation(request):\n    new_app, context = json_deserialization(request)\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))\n        max_stud = int(request.POST.get(\"max_stud\", 0))\n        if os.path.exists(excel_path):\n            os.remove(excel_path)\n        request.session.pop(\"allocated_students\", None)\n        request.session.pop(\"has_allocated_students\", None)\n        request.session[\"error_message\"] = \"Infeasible solution. Please provide different min and max values.\"",
-        "detail": "web_allocation_project.web_allocation_app.views",
-        "documentation": {}
-    },
-    {
-        "label": "excel_path",
-        "kind": 5,
-        "importPath": "web_allocation_project.web_allocation_app.views",
-        "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "excel_path = os.getcwd() + \"\\output.xlsx\"\n# Create your views here.\ndef home(request):\n    request.session.set_expiry(0) # session cookie will expire when the user’s web browser is closed\n    if request.method == \"POST\" and \"files-submit\" in request.POST:\n        request.session.flush()\n        if os.path.exists(excel_path):\n            os.remove(excel_path)\n        students_data = request.FILES.get(\"students\", None)\n        courses_data = request.FILES.get(\"courses\", None)",
+        "peekOfCode": "def allocation(request):\n    new_app, context = json_deserialization(request)\n    excel_path = os.getcwd() + \"\\output.xlsx\"\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))\n        max_stud = int(request.POST.get(\"max_stud\", 0))\n        if os.path.exists(excel_path):\n            os.remove(excel_path)\n        request.session.pop(\"allocated_students\", None)\n        request.session.pop(\"has_allocated_students\", None)",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },

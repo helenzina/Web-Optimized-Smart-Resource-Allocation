@@ -74,5 +74,5 @@ class App:
         model = Model(self.students, self.courses)
         created_model = model.build_model()
         solver = Solver(created_model)
-        results = solver.solve_model()
-        return results
+        results, preferences_ratio = solver.solve_model()
+        return [results, preferences_ratio]

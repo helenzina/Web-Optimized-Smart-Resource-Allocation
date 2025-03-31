@@ -9,17 +9,16 @@ from allocation.app.app import App
 from allocation.student_course.course import Course
 from allocation.student_course.student import Student
 
-excel_path = os.getcwd() + "\output.xlsx"
 
 # Create your views here.
 def home(request):
-    request.session.set_expiry(0) # session cookie will expire when the user’s web browser is closed
+    request.session.set_expiry(
+        0
+    )  # session cookie will expire when the user’s web browser is closed
 
     if request.method == "POST" and "files-submit" in request.POST:
         request.session.flush()
-        if os.path.exists(excel_path):
-            os.remove(excel_path)
-        
+
         students_data = request.FILES.get("students", None)
         courses_data = request.FILES.get("courses", None)
         students_selections_data = request.FILES.get("students_selections", None)
@@ -133,6 +132,9 @@ def get_context_from_session(request):
         "has_students": request.session.get("has_students", False),
         "allocated_students": allocated_students,
         "has_allocated_students": True if allocated_students else False,
+        "preferences_ratio": request.session.get("preferences_ratio", None),
+        "n_allocated_students": request.session.get("n_allocated_students", None),
+        "n_students_per_course": request.session.get("n_students_per_course", "{}"),
     }
 
 
@@ -193,18 +195,21 @@ def delete_file_after_time(file_path, delay):
 
 def allocation(request):
     new_app, context = json_deserialization(request)
-    
+    excel_path = os.getcwd() + "\output.xlsx"
+
     if request.method == "POST" and "allocation-submit" in request.POST:
         min_stud = int(request.POST.get("min_stud", 0))
         max_stud = int(request.POST.get("max_stud", 0))
 
         if os.path.exists(excel_path):
             os.remove(excel_path)
-            
+
         request.session.pop("allocated_students", None)
         request.session.pop("has_allocated_students", None)
 
-        request.session["error_message"] = "Infeasible solution. Please provide different min and max values."
+        request.session["error_message"] = (
+            "Infeasible solution. Please provide different min and max values."
+        )
         context.update(
             {
                 "allocated_students": None,
@@ -212,6 +217,9 @@ def allocation(request):
                 "min_stud": min_stud,
                 "max_stud": max_stud,
                 "error_message": request.session.get("error_message"),
+                "preferences_ratio": None,
+                "n_allocated_students": None,
+                "n_students_per_course": None,
             },
         )
 
@@ -220,15 +228,27 @@ def allocation(request):
                 course.min_students = min_stud
                 course.max_students = max_stud
 
-            allocated_students = new_app.run()
+            allocated_students, preferences_ratio = new_app.run()
 
             if allocated_students is not None and not allocated_students.empty:
+                n_students_per_course = {}
+                for course in new_app.courses:
+                    n_students_per_course[f"{course.course_name}"] = int(
+                        allocated_students["Τίτλος Μαθήματος"].value_counts()[
+                            f"{course.course_name}"
+                        ]
+                    )
+
                 request.session["allocated_students"] = allocated_students.to_json(
                     orient="records"
                 )
                 request.session["has_allocated_students"] = True
                 request.session["min_stud"] = min_stud
                 request.session["max_stud"] = max_stud
+                request.session["preferences_ratio"] = preferences_ratio
+                n_allocated_students = len(pd.unique(allocated_students["AEM"]))
+                request.session["n_allocated_students"] = n_allocated_students
+                request.session["n_students_per_course"] = n_students_per_course
                 request.session.pop("error_message")
 
                 context.update(
@@ -237,6 +257,9 @@ def allocation(request):
                         "has_allocated_students": True,
                         "min_stud": min_stud,
                         "max_stud": max_stud,
+                        "preferences_ratio": preferences_ratio,
+                        "n_allocated_students": n_allocated_students,
+                        "n_students_per_course": n_students_per_course,
                     }
                 )
 
@@ -254,8 +277,14 @@ def allocation(request):
 
         if allocation_download == "download_excel":
             if os.path.exists(excel_path):
-                # thread = threading.Thread(target=delete_file_after_time, args=(excel_path, 1,))
-                # thread.start()
+                file_thread = threading.Thread(
+                    target=delete_file_after_time,
+                    args=(
+                        excel_path,
+                        1,
+                    ),
+                )
+                file_thread.start()
                 return FileResponse(
                     open(excel_path, "rb"),
                     as_attachment=True,
@@ -263,5 +292,3 @@ def allocation(request):
                 )
 
     return render(request, "allocation.html", context)
-
-

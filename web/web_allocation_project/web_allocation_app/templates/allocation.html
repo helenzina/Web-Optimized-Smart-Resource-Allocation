@@ -44,7 +44,10 @@
             {% if has_allocated_students %}
             <table id="allocationTable" class="table table-striped table-bordered" {% if not has_allocated_students %}
                    style="display: none;" {% endif %}>
-                <p class="fw-bold">Κατανεμημένοι Φοιτητές</p>
+                <p class="fw-bold table-caption">Κατανεμημένοι Φοιτητές
+                    <span>Εκπλήρωση Επιλογών: {{ preferences_ratio }}% (Φοιτητές: {{ n_allocated_students }})</span>
+                </p>
+                <br>
                 <thead>
                     <tr>
                         {% for col in allocated_students.columns %}
@@ -58,6 +61,27 @@
                         {% for cell in row %}
                         <td>{{cell}}</td>
                         {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <table class="table table-striped table-bordered" {% if not has_allocated_students %}
+            style="display: none;" {% endif %}>
+                <p class="fw-bold table-caption">Αριθμός Κατανεμημένων Φοιτητών ανα Μάθημα</span>
+                </p>
+                <br>
+                <thead>
+                    <tr>
+                        <th>Μάθημα</th>
+                        <th>Αριθμός Φοιτητών</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for course_name, n_students in n_students_per_course.items %}
+                    <tr>
+                        <td>{{ course_name }}</td>
+                        <td>{{ n_students }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -81,7 +105,7 @@
                 <form id="download-form" method="post">
                     {% csrf_token %}
                     <button class="btn btn-primary bi-download" type="submit" id="allocation-download"
-                            name="allocation-download" value="download_excel"> Λήψη Αποτελεσμάτων σε Excel
+                            name="allocation-download" {% if is_pressed %} disabled {% endif %} value="download_excel"> Λήψη Αποτελεσμάτων σε Excel
                     </button>
                 </form>
                 {% endif %}
@@ -118,8 +142,8 @@
             type: "POST",
             url: "{% url 'allocation' %}",
             data: {
-                allocation-download: $("#allocation-download").val(),
-                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+                "allocation-download": $("#allocation-download").val(),
+                "csrfmiddlewaretoken": $("input[name=csrfmiddlewaretoken]").val()
             },
             success: function(data) {
                 $("#download-success").html(data)

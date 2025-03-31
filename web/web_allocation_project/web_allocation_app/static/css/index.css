@@ -314,6 +314,14 @@ main {
     margin: 1rem auto;
 }
 
+.table-caption {
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .error {
     font-weight: bold;
     color: red;
@@ -336,6 +344,10 @@ main {
     display: flex;
     align-items: center;
     gap: 0.25rem;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
 }
 
 .list-group-item.active,

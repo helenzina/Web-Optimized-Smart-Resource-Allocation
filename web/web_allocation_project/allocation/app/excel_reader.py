@@ -34,7 +34,7 @@ class ExcelReader:
                 data_sheets, all_data_sheets, "Sem", int
             )
 
-            # how many obligatory courses the student already passed on semester 8 (or not)
+            # how many obligatory courses the student already passed on this semester (or not)
             passed_courses_on_this_sem = [
                 list(data_sheets[s][f"Choices{self.sem}"].fillna(0).astype(int))
                 for s in all_data_sheets

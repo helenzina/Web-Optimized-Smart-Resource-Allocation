@@ -72,6 +72,7 @@ class ExcelWriterCharts:
         except Exception as e:
             print("An error occurred while adding the pie chart. \n", e)
 
+        return avg_preferences_met
 
     def add_courses_sat_bar_chart(self):
         try:

@@ -52,12 +52,12 @@ class ExcelWriter:
         try:
             print(f"Assignment results are saved to {self.results_file_path} in sheet: Assignments.")
             df.to_excel(self.results_file_path, sheet_name="Assignments", index = False)
-            df_courses = self.write_results_per_course()
+            self.write_results_per_course()
             self.add_charts.add_courses_sat_bar_chart()
         except Exception as e:
             print("An error occurred while writing to the assignment results excel file. \n", e)
 
-        return df_courses
+        return df
 
 
     def write_sat_preferences(self):
@@ -135,13 +135,14 @@ class ExcelWriter:
 
             wb = load_workbook(self.results_file_path)
             wb.save(self.results_file_path)
-            self.add_charts.add_top_6_preferences_sat_pie_chart(top_6_preferences_satisfaction_ratios)
+            avg_preferences_met = self.add_charts.add_top_6_preferences_sat_pie_chart(top_6_preferences_satisfaction_ratios)
             print(
                 f"Top 6 preferences satisfaction results are saved to {self.results_file_path} "
                 f"in sheet: Preferences Satisfaction.")
         except Exception as e:
             print("An error occurred while writing to the top 6 preferences satisfaction results excel file. \n", e)
 
+        return avg_preferences_met
 
     def write_results_per_course(self):
         """This method creates a new sheet in the excel file and lists the students full names assigned to each course."""
@@ -173,5 +174,3 @@ class ExcelWriter:
             print(f"Courses results are saved to {self.results_file_path} in sheet: Course Results.")
         except Exception as e:
             print("An error occurred while writing to the courses results excel file. \n", e)
-
-        return df
