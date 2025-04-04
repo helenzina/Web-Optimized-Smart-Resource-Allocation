@@ -30,8 +30,8 @@ class Solver:
         if self.status in [cp_model.OPTIMAL, cp_model.FEASIBLE]:
             to_excel = ExcelWriter(self.model_obj, self.solver)
             results = to_excel.write_results()
-            preferences_ratio = to_excel.write_sat_preferences()
-            return results, preferences_ratio
+            students_preferences_ratio, avg_preferences_ratio = to_excel.write_sat_preferences()
+            return results, avg_preferences_ratio, students_preferences_ratio
         else:
-            return None, None
+            return None, None, None
 

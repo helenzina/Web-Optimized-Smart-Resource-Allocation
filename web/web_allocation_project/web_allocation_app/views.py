@@ -127,12 +127,19 @@ def json_serialization(request, app_obj):
 def get_context_from_session(request):
     selected_students = json.loads(request.session.get("selected_students", "[]"))
     allocated_students = json.loads(request.session.get("allocated_students", "[]"))
+    non_100_allocated_students = json.loads(
+        request.session.get("non_100_allocated_students", "[]")
+    )
     return {
         "selected_students": selected_students,
         "has_students": request.session.get("has_students", False),
         "allocated_students": allocated_students,
         "has_allocated_students": True if allocated_students else False,
-        "preferences_ratio": request.session.get("preferences_ratio", None),
+        "avg_preferences_ratio": request.session.get("avg_preferences_ratio", None),
+        "non_100_allocated_students": non_100_allocated_students,
+        "non_100_allocated_students_ratio": request.session.get(
+            "non_100_allocated_students_ratio", None
+        ),
         "n_allocated_students": request.session.get("n_allocated_students", None),
         "n_students_per_course": request.session.get("n_students_per_course", "{}"),
     }
@@ -147,6 +154,9 @@ def json_deserialization(request):
         {
             "selected_students": pd.DataFrame(context["selected_students"]),
             "allocated_students": pd.DataFrame(context["allocated_students"]),
+            "non_100_allocated_students": pd.DataFrame(
+                context["non_100_allocated_students"]
+            ),
         }
     )
 
@@ -194,6 +204,11 @@ def delete_file_after_time(file_path, delay):
 
 
 def allocation(request):
+    """
+    Handles the student-to-course allocation for table display. 
+    Processes POST requests for allocation or downloading results, updates session data, 
+    and renders the allocation page or serves an Excel file.
+    """
     new_app, context = json_deserialization(request)
     excel_path = os.getcwd() + "\output.xlsx"
 
@@ -217,7 +232,9 @@ def allocation(request):
                 "min_stud": min_stud,
                 "max_stud": max_stud,
                 "error_message": request.session.get("error_message"),
-                "preferences_ratio": None,
+                "avg_preferences_ratio": None,
+                "non_100_allocated_students": None,
+                "non_100_allocated_students_ratio": None,
                 "n_allocated_students": None,
                 "n_students_per_course": None,
             },
@@ -228,7 +245,9 @@ def allocation(request):
                 course.min_students = min_stud
                 course.max_students = max_stud
 
-            allocated_students, preferences_ratio = new_app.run()
+            allocated_students, avg_preferences_ratio, students_preferences_ratio = (
+                new_app.run()
+            )
 
             if allocated_students is not None and not allocated_students.empty:
                 n_students_per_course = {}
@@ -238,15 +257,35 @@ def allocation(request):
                             f"{course.course_name}"
                         ]
                     )
-
+                non_100_allocated_students = students_preferences_ratio[
+                    students_preferences_ratio[
+                        "% Ικανοποίησης των 6 Κορυφαίων Προτιμήσεων"
+                    ]
+                    < 100
+                ]
+                non_100_allocated_students.loc[
+                    non_100_allocated_students[
+                        "% Ικανοποίησης των 6 Κορυφαίων Προτιμήσεων"
+                    ].index,
+                    "% Ικανοποίησης των 6 Κορυφαίων Προτιμήσεων"
+                ] = non_100_allocated_students[
+                    "% Ικανοποίησης των 6 Κορυφαίων Προτιμήσεων"
+                ].round(2)
                 request.session["allocated_students"] = allocated_students.to_json(
                     orient="records"
+                )
+                request.session["non_100_allocated_students"] = (
+                    non_100_allocated_students.to_json(orient="records")
                 )
                 request.session["has_allocated_students"] = True
                 request.session["min_stud"] = min_stud
                 request.session["max_stud"] = max_stud
-                request.session["preferences_ratio"] = preferences_ratio
+                request.session["avg_preferences_ratio"] = avg_preferences_ratio
                 n_allocated_students = len(pd.unique(allocated_students["AEM"]))
+                non_100_allocated_students_ratio = round(100 - avg_preferences_ratio, 2)
+                request.session["non_100_allocated_students_ratio"] = (
+                    non_100_allocated_students_ratio
+                )
                 request.session["n_allocated_students"] = n_allocated_students
                 request.session["n_students_per_course"] = n_students_per_course
                 request.session.pop("error_message")
@@ -257,7 +296,9 @@ def allocation(request):
                         "has_allocated_students": True,
                         "min_stud": min_stud,
                         "max_stud": max_stud,
-                        "preferences_ratio": preferences_ratio,
+                        "avg_preferences_ratio": avg_preferences_ratio,
+                        "non_100_allocated_students": non_100_allocated_students,
+                        "non_100_allocated_students_ratio": non_100_allocated_students_ratio,
                         "n_allocated_students": n_allocated_students,
                         "n_students_per_course": n_students_per_course,
                     }

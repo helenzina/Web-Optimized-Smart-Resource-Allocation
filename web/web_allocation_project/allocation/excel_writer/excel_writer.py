@@ -53,7 +53,7 @@ class ExcelWriter:
             print(f"Assignment results are saved to {self.results_file_path} in sheet: Assignments.")
             df.to_excel(self.results_file_path, sheet_name="Assignments", index = False)
             self.write_results_per_course()
-            self.add_charts.add_courses_sat_bar_chart()
+            self.add_charts.add_courses_sat_bar_charts()
         except Exception as e:
             print("An error occurred while writing to the assignment results excel file. \n", e)
 
@@ -142,7 +142,7 @@ class ExcelWriter:
         except Exception as e:
             print("An error occurred while writing to the top 6 preferences satisfaction results excel file. \n", e)
 
-        return avg_preferences_met
+        return df_no_duplicates, avg_preferences_met
 
     def write_results_per_course(self):
         """This method creates a new sheet in the excel file and lists the students full names assigned to each course."""

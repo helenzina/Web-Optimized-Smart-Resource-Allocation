@@ -4,7 +4,7 @@
 
 <span id="files-success"></span>
 
-<div id="files-form-container">
+<div id="files-home">
     <form id="files-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -62,14 +62,16 @@
             <button class="btn btn-danger" type="reset" id="files-reset" name="files-reset">Επαναφορά Όλων</button>
         </div>
     </form>
+    <div id="about-home">
+        <p>dfsdfs</p>
+    </div>
 </div>
+
 
 {% endblock %}
 
 
 <script>
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
     $(document).on("submit", "#files-form", function(e) {
         e.preventDefault();
         $.ajax({
@@ -84,7 +86,7 @@
             },
             success: function(data) {
                 $("#files-success").html(data)
-                $("#files-form-container").hide();
+                $("#files-home").hide();
                 $("#allocation-form-container").css("display", "flex");
             }
         })

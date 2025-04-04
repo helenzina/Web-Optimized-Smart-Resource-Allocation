@@ -2,6 +2,8 @@ from openpyxl.chart import PieChart, Reference, BarChart
 from openpyxl.chart.label import DataLabelList
 from openpyxl.chart.legend import Legend
 from openpyxl.chart.marker import DataPoint
+from openpyxl.utils import get_column_letter
+
 from openpyxl.reader.excel import load_workbook
 
 
@@ -74,68 +76,86 @@ class ExcelWriterCharts:
 
         return avg_preferences_met
 
-    def add_courses_sat_bar_chart(self):
+    def add_courses_sat_bar_charts(self):
+        """Adds bar charts for each preference-course pair."""
         try:
             wb = load_workbook(self.results_file_path)
             ws = wb.active
 
-            wb.create_sheet("Course 1st Sat")
-            bar_ws = wb["Course 1st Sat"]
+            if "Course Sat" not in wb.sheetnames:
+                wb.create_sheet("Course Sat")
+            bar_ws = wb["Course Sat"]
 
             course_satisfaction = {}
 
             last_row = ws.max_row
             for row in range(2, last_row + 1):
-                course_name = ws.cell(row = row, column = 1).value  # 1: "Course Name"
-                student_preference = ws.cell(row = row, column = 7).value  # 7: "Preference"
-
+                course_name = ws.cell(row=row, column=1).value  # 1: "Course Name"
+                student_preference = ws.cell(row=row, column=7).value  # 7: "Preference"
+                
                 if course_name not in course_satisfaction:
-                    course_satisfaction[course_name] = {"1st_preference_count": 0, "count": 0}
-
+                    course_satisfaction[course_name] = {"count": 0}
+                
                 course_satisfaction[course_name]["count"] += 1
-                if student_preference == 1:
-                    course_satisfaction[course_name]["1st_preference_count"] += 1
+                
+                if f"{student_preference}_preference_count" not in course_satisfaction[course_name]:
+                    course_satisfaction[course_name][f"{student_preference}_preference_count"] = 0
+                
+                course_satisfaction[course_name][f"{student_preference}_preference_count"] += 1
+
+            for p in range(len(course_satisfaction) + 1):
+                for course_name in course_satisfaction:
+                    if f"{p}_preference_count" not in course_satisfaction[course_name]:
+                        course_satisfaction[course_name][f"{p}_preference_count"] = 0                
+            
+            headers = ["Course"]
+            for p in range(1, len(course_satisfaction) + 1):
+                headers.append(f"{p} Preference Satisfaction Ratio (%)")
+            bar_ws.append(headers)
 
             chart_data = []
             for course_name, data in course_satisfaction.items():
-                satisfaction_ratio = round(data["1st_preference_count"] / data["count"] * 100, 2)
-                chart_data.append([course_name, satisfaction_ratio])
+                row_data = [course_name]
+                for p in range(1, len(course_satisfaction) + 1):
+                    satisfaction_ratio = (
+                        round(data[f"{p}_preference_count"] / data["count"] * 100, 2) if data["count"] > 0 else 0
+                    )
+                    row_data.append(satisfaction_ratio)
+                bar_ws.append(row_data)
+                chart_data.append(row_data)
 
-            bar_ws.append(["Course", "1st Preference Satisfaction Ratio (%)"]) # headers
-            for row in chart_data:
-                bar_ws.append(row)
+            for p in range(1, len(course_satisfaction) + 1):
+                chart = BarChart()
 
+                data = Reference(bar_ws, min_col=p+1, min_row=1, max_col=p+1, max_row=len(chart_data)+1)
+                categories = Reference(bar_ws, min_col=1, min_row=2, max_row=len(chart_data)+1)
 
-            chart = BarChart()
-            data = Reference(bar_ws, min_col=2, min_row=1, max_col=2, max_row=len(chart_data) + 1) # "Satisfaction Ratio"
-            categories = Reference(bar_ws, min_col=1, min_row=2, max_row=len(chart_data) + 1) # "Course"
+                chart.add_data(data, titles_from_data=True)
+                chart.set_categories(categories)
+                chart.title = f"{p} Preference Satisfaction Ratio (%)"
+                chart.x_axis.title = "Courses"
+                chart.y_axis.title = "Satisfaction Ratio"
+                chart.width = 9
+                chart.height = 15
 
-            chart.add_data(data, titles_from_data = True)
-            chart.set_categories(categories)
-            chart.title = "1st Preference Satisfaction Ratio (%)"
-            chart.x_axis.title = "Courses"
-            chart.y_axis.title = "Satisfaction Ratio"
-            chart.width = 15
-            chart.height = 15
+                series = chart.series[0]
+                series.dLbls = DataLabelList()
+                series.dLbls.showVal = True
+                series.dLbls.numFmt = "0.00"
+                series.dLbls.showCatName = False
+                series.dLbls.showLegendKey = False
+                series.dLbls.showSerName = False
+                series.dLbls.showPercent = False
 
-            series = chart.series[0]
-
-            series.dLbls = DataLabelList()
-            series.dLbls.showVal = True
-            series.dLbls.numFmt = "0.00"
-            series.dLbls.showCatName = False
-            series.dLbls.showLegendKey = False
-            series.dLbls.showSerName = False
-            series.dLbls.showPercent = False
-
-            bar_ws.add_chart(chart, "E5")
-
+                # add the chart below the data
+                chart_row = bar_ws.max_row + 3 
+                col_number = 1 + (p-1) * 2
+                col_letter = get_column_letter(col_number)
+                bar_ws.add_chart(chart, f"{col_letter}{chart_row}")
+                        
             wb.save(self.results_file_path)
-            print(f"1st preference satisfaction bar chart added to {self.results_file_path}")
+            print(f"Preferences satisfaction bar charts are added to {self.results_file_path}")
 
         except Exception as e:
-            print("An error occurred while adding the bar chart. \n", e)
-
-
-
+            print("An error occurred while adding preferences satisfaction bar charts. \n", e)
 
