@@ -578,7 +578,25 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def delete_file_after_time(file_path, delay):\n    \"\"\"Deletes the specified file after a delay.\"\"\"\n    time.sleep(delay)\n    if os.path.exists(file_path):\n        os.remove(file_path)\ndef allocation(request):\n    \"\"\"\n    Handles the student-to-course allocation for table display. \n    Processes POST requests for allocation or downloading results, updates session data, \n    and renders the allocation page or serves an Excel file.",
+        "peekOfCode": "def delete_file_after_time(file_path, delay):\n    \"\"\"Deletes the specified file after a delay.\"\"\"\n    time.sleep(delay)\n    if os.path.exists(file_path):\n        os.remove(file_path)\ndef clear_context(request, context, min_stud, max_stud):\n    context.update(\n        {\n            \"allocated_students\": None,\n            \"has_allocated_students\": False,",
+        "detail": "web_allocation_project.web_allocation_app.views",
+        "documentation": {}
+    },
+    {
+        "label": "clear_context",
+        "kind": 2,
+        "importPath": "web_allocation_project.web_allocation_app.views",
+        "description": "web_allocation_project.web_allocation_app.views",
+        "peekOfCode": "def clear_context(request, context, min_stud, max_stud):\n    context.update(\n        {\n            \"allocated_students\": None,\n            \"has_allocated_students\": False,\n            \"min_stud\": min_stud,\n            \"max_stud\": max_stud,\n            \"error_message\": request.session.get(\"error_message\"),\n            \"avg_preferences_ratio\": None,\n            \"non_100_allocated_students\": None,",
+        "detail": "web_allocation_project.web_allocation_app.views",
+        "documentation": {}
+    },
+    {
+        "label": "allocation_data_preparation",
+        "kind": 2,
+        "importPath": "web_allocation_project.web_allocation_app.views",
+        "description": "web_allocation_project.web_allocation_app.views",
+        "peekOfCode": "def allocation_data_preparation(\n    request,\n    context,\n    allocated_students,\n    avg_preferences_ratio,\n    students_preferences_ratio,\n    courses,\n    min_stud,\n    max_stud\n):",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },
@@ -587,7 +605,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def allocation(request):\n    \"\"\"\n    Handles the student-to-course allocation for table display. \n    Processes POST requests for allocation or downloading results, updates session data, \n    and renders the allocation page or serves an Excel file.\n    \"\"\"\n    new_app, context = json_deserialization(request)\n    excel_path = os.getcwd() + \"\\output.xlsx\"\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))",
+        "peekOfCode": "def allocation(request):\n    \"\"\"\n    Handles the student-to-course allocation for table display.\n    Processes POST requests for allocation with the option of downloading results\n    and renders the allocation page.\n    \"\"\"\n    new_app, context = json_deserialization(request)\n    excel_path = os.getcwd() + \"\\output.xlsx\"\n    if request.method == \"POST\" and \"allocation-submit\" in request.POST:\n        min_stud = int(request.POST.get(\"min_stud\", 0))",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },

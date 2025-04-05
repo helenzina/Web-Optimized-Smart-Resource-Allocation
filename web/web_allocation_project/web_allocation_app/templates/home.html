@@ -4,6 +4,11 @@
 
 <span id="files-success"></span>
 
+<div class="container welcome">
+    <h2>Καλωσήρθατε στην Πλατφόρμα Κατανομής Φοιτητών ΤΜΠΥΤ του ΔΙΠΑΕ</h2>
+    <p class="lead fw-bold">Για να ξεκινήσετε, επιλέξτε το εξάμηνο (8 ή 9) και τα αρχεία Excel προς υποβολή για κάθε περίπτωση.</p>
+</div> 
+
 <div id="files-home">
     <form id="files-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -62,9 +67,28 @@
             <button class="btn btn-danger" type="reset" id="files-reset" name="files-reset">Επαναφορά Όλων</button>
         </div>
     </form>
-    <div id="about-home">
-        <p>dfsdfs</p>
-    </div>
+</div>
+<div class="container" id="about-home">
+    <h3 class="lead fw-bold">Πληροφορίες</h3>
+        <div class="info">
+            <p>
+                Η <strong>Πλατφόρμα Κατανομής Φοιτητών</strong> αναπτύχθηκε από τη φοιτήτρια 
+                <span class="fw-bold text-success">Ελένη Ζήνα</span> του ΤΜΠΥΤ - ΔΙΠΑΕ  
+                στο πλαίσιο της <strong>διπλωματικής της εργασίας</strong>, η οποία επικεντρώνεται στην 
+                <strong>ανάπτυξη βελτιστοποιημένων συστημάτων έξυπνης κατανομής πόρων</strong>,
+                με στόχο τη δίκαιη και αποδοτική κατανομή φοιτητών.  
+            </p>
+            <p>
+                Για την υλοποίηση του συστήματος αξιοποιήθηκαν προηγμένες τεχνολογίες:
+                <ul>
+                    <li><strong class="fw-bold text-primary">Google OR-Tools</strong> – Μοντελοποίηση του προβλήματος κατανομής με χρήση 
+                        <b>Constraint Programming - Satisfiability (CP-SAT)</b>.</li>
+                    <li><strong class="fw-bold text-primary">Python</strong> – Ανάπτυξη του αλγορίθμου βελτιστοποίησης και επίλυσης.</li>
+                    <li><strong class="fw-bold text-primary">Django</strong> – Υλοποίηση της εφαρμογής ως <b>διαδικτυακή πλατφόρμα</b> 
+                        για εύκολη πρόσβαση και διαχείριση.</li>
+                </ul>
+            </p>
+        </div>
 </div>
 
 

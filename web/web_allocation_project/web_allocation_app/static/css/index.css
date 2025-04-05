@@ -19,13 +19,31 @@ body {
     flex-direction: column;
     justify-items: center;
     justify-content: center;
-    /*background: radial-gradient(circle at top, var(--secondary) 20%, var(--main) 100%);*/
+    /* background: radial-gradient(circle at top, var(--secondary) 20%, var(--main) 100%); */
     background: var(--secondary);
     margin: 0;
     min-height: 100vh; 
     min-width: 100vw;
     overflow-x: hidden;
     position: relative;
+}
+
+#loading {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 100000;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+#loading-image {
+    max-width: 100%;
+    height: auto;
 }
 
 .navbar-brand{
@@ -206,10 +224,9 @@ aside {
 
 main {
     display: flex;
-    width: max-content;
     margin: auto;
     flex-grow: 1;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: stretch;
     height: auto;
@@ -221,6 +238,7 @@ main {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin: 1rem auto;
 
     h2 {
         font-style: italic;
@@ -340,6 +358,52 @@ main {
     position: absolute;
 }
 
+#about-home {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 10rem auto 5rem auto;
+}
+
+.info {
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--main);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.info p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: #212529;
+}
+
+.info ul {
+    padding-left: 1.5rem;
+    margin-top: 0.75rem;
+}
+
+.info li {
+    margin-bottom: 0.75rem;
+    position: relative;
+    list-style-type: none;
+    padding-left: 1.5rem;
+}
+
+.info li:before {
+    content: "•";
+    color: #0d6efd;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.info .text-uppercase {
+    letter-spacing: 0.5px;
+}
+
 #allocation-download {
     display: flex;
     align-items: center;
@@ -381,7 +445,7 @@ footer {
     }
 }
 
-@media screen and (max-width: 702px) {
+@media screen and (max-width: 725px) {
     body {
         min-height: 150vh;
     }

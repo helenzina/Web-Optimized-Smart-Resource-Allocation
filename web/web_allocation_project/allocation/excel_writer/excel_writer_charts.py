@@ -136,7 +136,7 @@ class ExcelWriterCharts:
                 chart.x_axis.title = "Courses"
                 chart.y_axis.title = "Satisfaction Ratio"
                 chart.width = 9
-                chart.height = 15
+                chart.height = 17
 
                 series = chart.series[0]
                 series.dLbls = DataLabelList()
