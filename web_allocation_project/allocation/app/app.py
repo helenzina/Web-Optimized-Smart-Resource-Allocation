@@ -1,4 +1,3 @@
-import os
 from .excel_reader import ExcelReader
 from allocation.ortools_sat.model import Model
 from allocation.ortools_sat.solver import Solver

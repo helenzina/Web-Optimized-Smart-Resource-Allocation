@@ -1,5 +1,3 @@
-import sys
-
 from ortools.sat.python import cp_model
 from allocation.excel_writer.excel_writer import ExcelWriter
 

@@ -542,7 +542,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def home(request):\n    request.session.set_expiry(\n        0\n    )  # session cookie will expire when the user’s web browser is closed\n    if request.method == \"POST\" and \"files-submit\" in request.POST:\n        request.session.flush()\n        students_data = request.FILES.get(\"students\", None)\n        courses_data = request.FILES.get(\"courses\", None)\n        students_selections_data = request.FILES.get(\"students_selections\", None)\n        sem = request.POST.get(\"sem\", None)",
+        "peekOfCode": "def home(request):\n    request.session.set_expiry(0) \n    # session cookie will expire when the user’s web browser is closed\n    if request.method == \"POST\" and \"files-submit\" in request.POST:\n        request.session.flush()\n        students_data = request.FILES.get(\"students\", None)\n        courses_data = request.FILES.get(\"courses\", None)\n        students_selections_data = request.FILES.get(\"students_selections\", None)\n        sem = request.POST.get(\"sem\", None)\n        students_ext = os.path.splitext(students_data.name)[-1].lower()",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },

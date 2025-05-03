@@ -3,7 +3,6 @@ from openpyxl.chart.label import DataLabelList
 from openpyxl.chart.legend import Legend
 from openpyxl.chart.marker import DataPoint
 from openpyxl.utils import get_column_letter
-
 from openpyxl.reader.excel import load_workbook
 
 

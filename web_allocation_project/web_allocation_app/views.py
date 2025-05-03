@@ -12,9 +12,8 @@ from allocation.student_course.student import Student
 
 # Create your views here.
 def home(request):
-    request.session.set_expiry(
-        0
-    )  # session cookie will expire when the user’s web browser is closed
+    request.session.set_expiry(0) 
+    # session cookie will expire when the user’s web browser is closed
 
     if request.method == "POST" and "files-submit" in request.POST:
         request.session.flush()

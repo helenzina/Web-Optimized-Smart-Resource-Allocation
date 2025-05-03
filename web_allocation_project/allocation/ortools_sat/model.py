@@ -1,5 +1,6 @@
 from ortools.sat.python import cp_model
 
+
 class Model:
     def __init__(self, students, courses):
         self.model = cp_model.CpModel()
