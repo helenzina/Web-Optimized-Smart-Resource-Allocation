@@ -8,7 +8,7 @@
 
 {% if has_students %}
 
-<div style="margin: 1rem 0 10rem 0;">
+<div class="container" style="margin: 1rem 0 10rem 0;">
     <table id="myTable" class="table table-striped table-bordered">
         <p class="fw-bold">Φοιτητές για Κατανομή</p>
         <thead>
@@ -29,7 +29,7 @@
         </tbody>
     </table>
 
-    <div id="allocation-form-container" class="container m-0 p-0">
+    <div id="allocation-form-container">
         <form id="allocation-form" method="post">
             {% csrf_token %}
             <div class="container min-max">
@@ -94,7 +94,7 @@
             {% endif %}
             <table class="table table-striped table-bordered" {% if not has_allocated_students %}
             style="display: none;" {% endif %}>
-                <p class="fw-bold table-caption">Αριθμός Κατανεμημένων Φοιτητών ανα Μάθημα</span>
+                <p class="fw-bold table-caption">Αριθμός Κατανεμημένων Φοιτητών ανά Μάθημα</span>
                 </p>
                 <br>
                 <thead>

@@ -452,7 +452,7 @@
         "kind": 6,
         "importPath": "web_allocation_project.allocation.app.app",
         "description": "web_allocation_project.allocation.app.app",
-        "peekOfCode": "class App:\n    def __init__(self, *args):\n        if len(args) == 0:\n            pass\n        else:\n            self.sem = args[6]\n            self.min_stud = args[7]\n            self.max_stud = args[8]\n            self.students = self.load_data(args[0], args[1], \"students\")\n            self.courses = self.load_data(args[2], args[3], \"courses\")",
+        "peekOfCode": "class App:\n    def __init__(self, *args):\n        if len(args) == 0:\n            pass\n        else:\n            self.sem = args[6]\n            self.min_stud = args[7]\n            self.max_stud = args[8]\n            self.has_error = args[9]\n            self.students = self.load_data(args[0], args[1], \"students\")",
         "detail": "web_allocation_project.allocation.app.app",
         "documentation": {}
     },
@@ -461,7 +461,7 @@
         "kind": 6,
         "importPath": "web_allocation_project.allocation.app.excel_reader",
         "description": "web_allocation_project.allocation.app.excel_reader",
-        "peekOfCode": "class ExcelReader:\n    def __init__(self, file_name, sheet_name, sem, min_stud, max_stud):\n        self.file_name = file_name\n        self.sheet_name = sheet_name\n        self.sem = sem\n        self.min_stud = min_stud\n        self.max_stud = max_stud\n    def read_students(self):\n        try:\n            df_sheets = pd.read_excel(self.file_name, self.sheet_name)",
+        "peekOfCode": "class ExcelReader:\n    def __init__(self, file_name, sheet_name, sem, min_stud, max_stud, has_error):\n        self.file_name = file_name\n        self.sheet_name = sheet_name\n        self.sem = sem\n        self.min_stud = min_stud\n        self.max_stud = max_stud\n        self.has_error = has_error\n    def read_students(self):\n        try:",
         "detail": "web_allocation_project.allocation.app.excel_reader",
         "documentation": {}
     },
@@ -542,7 +542,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def home(request):\n    request.session.set_expiry(0) \n    # session cookie will expire when the user’s web browser is closed\n    if request.method == \"POST\" and \"files-submit\" in request.POST:\n        request.session.flush()\n        students_data = request.FILES.get(\"students\", None)\n        courses_data = request.FILES.get(\"courses\", None)\n        students_selections_data = request.FILES.get(\"students_selections\", None)\n        sem = request.POST.get(\"sem\", None)\n        students_ext = os.path.splitext(students_data.name)[-1].lower()",
+        "peekOfCode": "def home(request):\n    request.session.set_expiry(0)\n    # session cookie will expire when the user’s web browser is closed\n    if request.method == \"POST\" and \"files-submit\" in request.POST:\n        request.session.flush()\n        students_data = request.FILES.get(\"students\", None)\n        courses_data = request.FILES.get(\"courses\", None)\n        students_selections_data = request.FILES.get(\"students_selections\", None)\n        sem = request.POST.get(\"sem\", None)\n        students_ext = os.path.splitext(students_data.name)[-1].lower()",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },
@@ -596,7 +596,7 @@
         "kind": 2,
         "importPath": "web_allocation_project.web_allocation_app.views",
         "description": "web_allocation_project.web_allocation_app.views",
-        "peekOfCode": "def allocation_data_preparation(\n    request,\n    context,\n    allocated_students,\n    avg_preferences_ratio,\n    students_preferences_ratio,\n    courses,\n    min_stud,\n    max_stud\n):",
+        "peekOfCode": "def allocation_data_preparation(\n    request,\n    context,\n    allocated_students,\n    avg_preferences_ratio,\n    students_preferences_ratio,\n    courses,\n    min_stud,\n    max_stud,\n):",
         "detail": "web_allocation_project.web_allocation_app.views",
         "documentation": {}
     },

@@ -123,9 +123,9 @@
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
         $(document).ready(function() {
             $('#myTable').DataTable();
-        });
-        $(document).ready(function() {
             $('#allocationTable').DataTable();
+            $('#non100AllocationTable').DataTable();
+            $('#non100AllocationTable_wrapper').addClass("text-danger");
         });
     </script>
 </body>

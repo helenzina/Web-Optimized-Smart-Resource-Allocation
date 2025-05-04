@@ -11,10 +11,11 @@ class App:
             self.sem = args[6]
             self.min_stud = args[7]
             self.max_stud = args[8]
+            self.has_error = args[9]
             self.students = self.load_data(args[0], args[1], "students")
             self.courses = self.load_data(args[2], args[3], "courses")
             self.preferences = self.load_data(args[4], args[5], "preferences")
-
+            
 
     def load_data(self, file_name, sheet_name, data_category):
         from_excel = ExcelReader(
@@ -22,7 +23,8 @@ class App:
             sheet_name,
             self.sem,
             self.min_stud,
-            self.max_stud
+            self.max_stud,
+            self.has_error
         )
         load_methods = {
             "students": from_excel.read_students,
@@ -30,9 +32,11 @@ class App:
             "preferences": from_excel.read_preferences,
         }
         data = load_methods[data_category]()
-        if data_category == "preferences":
+        
+        self.has_error = from_excel.has_error
+        if data_category == "preferences" and not self.has_error:
             data = self.load_additional_data_to_students(data)
-
+        
         return data
 
     def load_additional_data_to_students(self, preferences):

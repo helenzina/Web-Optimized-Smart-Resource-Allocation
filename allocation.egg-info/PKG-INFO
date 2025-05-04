@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: allocation
+Version: 1.0
+Summary: student allocation
+Home-page: 
+Author: Helen Zina
+Author-email: helenz1@windowslive.com
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: license-file
+Dynamic: summary

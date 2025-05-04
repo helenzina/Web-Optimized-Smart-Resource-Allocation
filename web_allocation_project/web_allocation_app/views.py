@@ -12,7 +12,7 @@ from allocation.student_course.student import Student
 
 # Create your views here.
 def home(request):
-    request.session.set_expiry(0) 
+    request.session.set_expiry(0)
     # session cookie will expire when the user’s web browser is closed
 
     if request.method == "POST" and "files-submit" in request.POST:
@@ -59,7 +59,17 @@ def home(request):
             int(sem),
             0,
             0,
+            False,
         )
+        
+        if app_obj.has_error:
+            return render(
+                request,
+                "home.html",
+                {
+                    "error_message": "Something went wrong. Please make sure you selected the correct semester and excel files."
+                },
+            )
 
         selected_students = json_serialization(request, app_obj)
 
@@ -228,7 +238,7 @@ def allocation_data_preparation(
     students_preferences_ratio,
     courses,
     min_stud,
-    max_stud
+    max_stud,
 ):
     n_students_per_course = {}
     for course in courses:
@@ -321,7 +331,7 @@ def allocation(request):
                     students_preferences_ratio,
                     new_app.courses,
                     min_stud,
-                    max_stud
+                    max_stud,
                 )
 
     if request.method == "POST" and "allocation-download" in request.POST:

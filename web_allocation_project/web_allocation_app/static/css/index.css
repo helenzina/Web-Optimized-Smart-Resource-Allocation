@@ -340,6 +340,15 @@ main {
     justify-content: space-between;
 }
 
+#allocationTable_wrapper, #non100AllocationTable_wrapper{
+    overflow: auto;
+}
+
+#non100AllocationTable_wrapper .active>.page-link, .page-link.active {
+    background-color: red;
+    border-color: red;
+}
+
 .error {
     font-weight: bold;
     color: red;
@@ -372,36 +381,36 @@ main {
     padding: 1.5rem;
     margin: 2rem 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
 
-.info p {
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    color: #212529;
-}
+    p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        color: #212529;
+    }
 
-.info ul {
-    padding-left: 1.5rem;
-    margin-top: 0.75rem;
-}
+    ul {
+        padding-left: 1.5rem;
+        margin-top: 0.75rem;
+    }
 
-.info li {
-    margin-bottom: 0.75rem;
-    position: relative;
-    list-style-type: none;
-    padding-left: 1.5rem;
-}
+    li {
+        margin-bottom: 0.75rem;
+        position: relative;
+        list-style-type: none;
+        padding-left: 1.5rem;
 
-.info li:before {
-    content: "•";
-    color: #0d6efd;
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-}
+        &:before {
+            content: "•";
+            color: #0d6efd;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+    }
 
-.info .text-uppercase {
-    letter-spacing: 0.5px;
+    .text-uppercase {
+        letter-spacing: 0.5px;
+    }
 }
 
 #allocation-download {

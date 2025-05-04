@@ -4,12 +4,13 @@ from allocation.student_course.student import Student
 
 
 class ExcelReader:
-    def __init__(self, file_name, sheet_name, sem, min_stud, max_stud):
+    def __init__(self, file_name, sheet_name, sem, min_stud, max_stud, has_error):
         self.file_name = file_name
         self.sheet_name = sheet_name
         self.sem = sem
         self.min_stud = min_stud
         self.max_stud = max_stud
+        self.has_error = has_error
 
     def read_students(self):
         try:
@@ -62,6 +63,7 @@ class ExcelReader:
 
         except Exception as e:
             print("An error occurred with the students excel file. \n", e)
+            self.has_error = True
 
     def multiple_sheets_data_reader(
         self, data_sheets, all_data_sheets, sheet_names, data_type
@@ -104,6 +106,7 @@ class ExcelReader:
 
         except Exception as e:
             print("An error occurred with the courses excel file. \n", e)
+            self.has_error = True
 
     def read_preferences(self):
         try:
@@ -117,3 +120,4 @@ class ExcelReader:
 
         except Exception as e:
             print("An error occurred with the preferences excel file. \n", e)
+            self.has_error = True
