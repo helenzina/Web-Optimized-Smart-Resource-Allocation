@@ -454,6 +454,15 @@ footer {
     }
 }
 
+@media screen and (max-width: 768px) {
+    .offcanvas {
+        display: flex;
+    }
+    .offcanvas-backdrop.show {
+        opacity: .5;
+    }
+}
+
 @media screen and (max-width: 725px) {
     body {
         min-height: 150vh;
@@ -468,13 +477,6 @@ footer {
 }
 
 @media screen and (max-width: 529px) {
-    .offcanvas {
-        display: flex;
-    }
-    .offcanvas-backdrop.show {
-        opacity: .5;
-    }
-
     main {
         display: flex;
         flex-direction: column;
