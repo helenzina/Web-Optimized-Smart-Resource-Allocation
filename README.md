@@ -13,7 +13,7 @@ My diploma thesis focused on analysis and development of optimization and smart 
 This project was built with the following:
 - <a href="https://www.python.org/">Python</a> for the optimization algorithm.
 - <a href="https://developers.google.com/optimization/">Google OR-Tools</a> for modeling and solving optimization problems.
-- <a href="https://www.djangoproject.com/">Django</a> for the web application.
+- <a href="https://www.djangoproject.com/">Django</a> for the web integration.
 - <a href="https://www.w3schools.com/html/">HTML</a>.
 - <a href="https://www.w3schools.com/css/">CSS</a>. 
 - <a href="https://www.w3schools.com/js/">JavaScript</a>. 
