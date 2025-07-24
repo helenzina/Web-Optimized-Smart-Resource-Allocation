@@ -26,8 +26,8 @@ This project was built with the following:
 <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/home.png"  title="home"/>
 </p>
 
-Web Optimized Smart Resource Allocation is a web application that solves real-world optimization and resource allocation problems using Constraint Programming techniques. It is a scalable application capable of solving various optimization problems with high efficiency and speed, simply by configuring its algorithm to suit each problem's specific needs.
-To demonstrate its capabilities, the application is currently being applied to a real student allocation problem for the <a href="https://www.ict.ihu.gr/en/" style="text-decoration: none;">department</a> I study in, showcasing both its practical relevance and performance.
+Web Optimized Smart Resource Allocation is a web-based optimization system that solves real-world optimization and resource allocation problems using Constraint Programming techniques. It is scalable and capable of solving various optimization problems with high efficiency and speed, simply by configuring its algorithm to suit each problem's specific needs.
+To demonstrate its capabilities, the system is currently being applied to a real student allocation problem for the <a href="https://www.ict.ihu.gr/en/">department</a> I study in, showcasing both its practical relevance and performance.
 
 ## Getting Started
  
@@ -70,7 +70,7 @@ If this doesn't work for you, install the required tools manually by typing the 
 
 ## How To Run
 
-To run the app, follow these steps:
+For a successful run, follow these steps:
 
 1. **Navigate to the path where the repo is cloned and enter "cmd" instead of its directory path in Windows Explorer**.
 
@@ -110,7 +110,7 @@ To run the app, follow these steps:
 
  ## Usage
 
-Here are some screenshots of the web application running showing the features mentioned:
+Here are some screenshots of the system running showing the features mentioned:
 <table>
   <tr>
     <td>
@@ -171,7 +171,6 @@ The following performance metrics demonstrate the effectiveness of the developed
 
 
 For a closer look, click on the images and open them from the **screenshots** folder.
-For the best experience, download the app and experience it yourselves!
  
 ## Collaborators
 
