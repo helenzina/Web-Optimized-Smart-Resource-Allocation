@@ -26,8 +26,7 @@ This project was built with the following:
 <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/home.png"  title="home"/>
 </p>
 
-Web Optimized Smart Resource Allocation is a web-based optimization system that solves real-world optimization and resource allocation problems using Constraint Programming techniques. It is scalable and capable of solving various optimization problems with high efficiency and speed, simply by configuring its algorithm to suit each problem's specific needs.
-To demonstrate its capabilities, the system is currently being applied to a real student allocation problem for the <a href="https://www.ict.ihu.gr/en/">department</a> I study in, showcasing both its practical relevance and performance.
+Web Optimized Smart Resource Allocation is a web-based optimization system that solves complex optimization and resource allocation problems using Constraint Programming techniques. It is scalable and capable of solving various optimization problems with high efficiency and speed, simply by configuring its algorithm to suit each problem's specific needs. To demonstrate its capabilities, the system is currently being applied to a real student allocation problem for the <a href="https://www.ict.ihu.gr/en/">department</a> I study in, showcasing both its practical relevance and performance.
 
 ## Getting Started
  
