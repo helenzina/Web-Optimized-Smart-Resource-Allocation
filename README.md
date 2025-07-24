@@ -40,10 +40,12 @@ To demonstrate its capabilities, the application is currently being applied to a
    gh repo clone helenzina/Web-Optimized-Smart-Resource-Allocation
    ```
 2. **Install a <a href="https://www.python.org/downloads/">Python version</a> from its official website**.
+
 3. **Navigate to the path where the repo is cloned and install the <a href="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/requirements.txt">requirements.txt</a> file**.
    ```sh
    pip install -r requirements.txt
    ```
+
 
 If this doesn't work for you, install the required tools manually by typing the following commands in a Windows terminal:
 - **Google OR-Tools**
