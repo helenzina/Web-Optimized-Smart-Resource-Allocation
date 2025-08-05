@@ -36,7 +36,7 @@ Web Optimized Smart Resource Allocation is a web-based optimization system that 
  
 <p>Please follow the following steps for successful installation:</p>
 
-1. Clone the repo
+1. **Clone the repo**.
    ```sh
    git clone https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation
    ```
