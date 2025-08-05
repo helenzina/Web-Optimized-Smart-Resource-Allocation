@@ -12,6 +12,8 @@ My diploma thesis focused on analysis and development of optimization and smart 
 
 This project was built with the following:
 - <a href="https://www.python.org/">Python</a> for the optimization algorithm.
+- <a href="https://pandas.pydata.org/">Pandas</a>, a Python library, for data manipulation.
+- <a href="https://openpyxl.readthedocs.io/en/stable/">Openpyxl</a>, a Python library, for writing performance charts to the results Excel files.
 - <a href="https://developers.google.com/optimization/">Google OR-Tools</a> for modeling and solving optimization problems.
 - <a href="https://www.djangoproject.com/">Django</a> for the web integration.
 - <a href="https://www.w3schools.com/html/">HTML</a>.
@@ -36,7 +38,7 @@ Web Optimized Smart Resource Allocation is a web-based optimization system that 
 
 1. Clone the repo
    ```sh
-   gh repo clone helenzina/Web-Optimized-Smart-Resource-Allocation
+   git clone https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation
    ```
 2. **Install a <a href="https://www.python.org/downloads/">Python version</a> from its official website**.
 
@@ -100,7 +102,7 @@ For a successful run, follow these steps:
 
 ### Security & more:
 - Responsive web design.
-- Data preprocessing from multiple Excel sheets, including handling of NaN values and filtering students with course preferences.
+- Data preprocessing from multiple Excel sheets, including handling of NaN values and filtering only the students with course preferences.
 - Cross Site Request Forgery (CSRF) protection.
 - **Validation** for: 
   - File type and structure of uploaded Excel files.
