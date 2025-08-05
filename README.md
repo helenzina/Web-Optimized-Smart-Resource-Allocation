@@ -116,7 +116,7 @@ Here are some screenshots of the system running showing the features mentioned:
   <tr>
     <td>
      Home page
-      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/home.png"  title="home"/>
+      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/home.png" title="home"/>
     </td>
     <td>
      Home page - Submitting data
