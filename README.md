@@ -41,45 +41,23 @@ Web Optimized Smart Resource Allocation is a web-based optimization system that 
    git clone https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation
    ```
 2. **Install a <a href="https://www.python.org/downloads/">Python version</a> from its official website**.
-
-3. **Navigate to the path where the repo is cloned and install the <a href="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/requirements.txt">requirements.txt</a> file**.
-   ```sh
-   pip install -r requirements.txt
-   ```
-
-
-If this doesn't work for you, install the required tools manually by typing the following commands in a Windows terminal:
-- **Google OR-Tools**
-  ```sh
-  pip3 install -U ortools
-  ```
-
-- **Django**
-  ```sh
-  pip install django
-  ```
-
-- **Pandas**
-  ```sh
-  pip install pandas
-  ```
-
-- **Openpyxl**
-  ```sh
-  pip install openpyxl
-  ```
-
+3. **Install <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">Visual C++ Redistributable for Visual Studio 2015-2022</a> for Google OR-Tools to work, if not having already**.
+  
 ## How To Run
 
 For a successful run, follow these steps:
 
 1. **Navigate to the path where the repo is cloned and enter "cmd" instead of its directory path in Windows Explorer**.
 
-2. **As the terminal opens, navigate to the project's path**.
+2. **With the terminal open, navigate to the project's path**.
     ```sh
    cd web_allocation_project
     ```
-3. **Start the development server**.
+3. **Activate and enter the virtual environment with all the required libraries installed**.
+    ```sh
+   .\venv\Scripts\activate
+    ```
+4. **Start the development server**.
     ```sh
    python manage.py runserver
     ```
