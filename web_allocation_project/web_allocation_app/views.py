@@ -4,7 +4,7 @@ import threading
 import time
 import pandas as pd
 from django.http import FileResponse
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse    
 from allocation.app.app import App
 from allocation.student_course.course import Course
 from allocation.student_course.student import Student
@@ -14,7 +14,6 @@ from allocation.student_course.student import Student
 def home(request):
     request.session.set_expiry(0)
     # session cookie will expire when the user’s web browser is closed
-
     if request.method == "POST" and "files-submit" in request.POST:
         request.session.flush()
 
@@ -294,7 +293,7 @@ def allocation(request):
     Handles the student-to-course allocation for table display.
     Processes POST requests for allocation with the option of downloading results
     and renders the allocation page.
-    """
+    """    
     new_app, context = json_deserialization(request)
     excel_path = os.getcwd() + "\output.xlsx"
 

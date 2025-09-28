@@ -16,16 +16,17 @@ This project was built with the following:
 - <a href="https://openpyxl.readthedocs.io/en/stable/">Openpyxl</a>, a Python library, for writing performance charts to the results Excel files.
 - <a href="https://developers.google.com/optimization/">Google OR-Tools</a> for modeling and solving optimization problems.
 - <a href="https://www.djangoproject.com/">Django</a> for the web integration.
+- <a href="https://www.docker.com/">Docker</a> for containerization.  
 - <a href="https://www.w3schools.com/html/">HTML</a>.
 - <a href="https://www.w3schools.com/css/">CSS</a>. 
-- <a href="https://www.w3schools.com/js/">JavaScript</a>. 
+- <a href="https://www.w3schools.com/js/">JavaScript</a>.
 - <a href="https://code.visualstudio.com/">VS Code</a> for the IDE.
 
 
  ## About The Project
  
 <p align="center">
-<img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/home.png"  title="home"/>
+<img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/home.png" title="home"/>
 </p>
 
 Web Optimized Smart Resource Allocation is a web-based optimization system that solves complex optimization and resource allocation problems using Constraint Programming techniques. It is scalable and capable of solving various optimization problems with high efficiency and speed, simply by configuring its algorithm to suit each problem's specific needs. To demonstrate its capabilities, the system is currently being applied to a real student allocation problem for the <a href="https://www.ict.ihu.gr/en/">department</a> I study in, showcasing both its practical relevance and performance.
@@ -40,8 +41,7 @@ Web Optimized Smart Resource Allocation is a web-based optimization system that 
    ```sh
    git clone https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation
    ```
-2. **Install a <a href="https://www.python.org/downloads/">Python version</a> from its official website**.
-3. **Install <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">Visual C++ Redistributable for Visual Studio 2015-2022</a> for Google OR-Tools to work, if not having already**.
+2. **Install <a href="https://www.docker.com">Docker Desktop</a>**.
   
 ## How To Run
 
@@ -49,18 +49,20 @@ For a successful run, follow these steps:
 
 1. **Navigate to the path where the repo is cloned and enter "cmd" instead of its directory path in Windows Explorer**.
 
-2. **With the terminal open, navigate to the project's path**.
+2. **Inside the terminal, build the docker image**.
     ```sh
-   cd web_allocation_project
+   docker build -t web_allocation_project-image .
     ```
-3. **Activate and enter the virtual environment with all the required libraries installed**.
+3. **Prepare the docker container**.</br>
+   <i>If you want to name it</i>
     ```sh
-   .\venv\Scripts\activate
+   docker run -d --name web_allocation_project-container -p 8000:8000 web_allocation_project-image 
     ```
-4. **Start the development server**.
+   <i>Else</i>
     ```sh
-   python manage.py runserver
+   docker run -p 8000:8000 web_allocation_project-image 
     ```
+4. **Run it through the Docker Desktop from the "Containers" section**.
 
  ## Features
 ### Users can
@@ -80,6 +82,7 @@ For a successful run, follow these steps:
 
 ### Security & more:
 - Responsive web design.
+- Containerized system for fast deployment.
 - Data preprocessing from multiple Excel sheets, including handling of NaN values and filtering only the students with course preferences.
 - Cross Site Request Forgery (CSRF) protection.
 - **Validation** for: 
@@ -98,21 +101,21 @@ Here are some screenshots of the system running showing the features mentioned:
     </td>
     <td>
      Home page - Submitting data
-      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/home submit data.png"  title="home_submit_data"/>
+      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/home submit data.png" title="home_submit_data"/>
     </td>
   </tr>
   <tr>
     <td>
      Allocation page
-      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/allocation.png"  title="allocation"/>
+      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/allocation.png" title="allocation"/>
     </td>
     <td>
      Allocation page - Submitting minimum and maximum course limits
-      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/allocation submit min-max.png"  title="allocation_submit_min-max"/>
+      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/allocation submit min-max.png" title="allocation_submit_min-max"/>
     </td>
     <td>
      Allocation page - Download allocation results
-      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/download allocation results.png"  title="download_allocation_results"/>
+      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/download allocation results.png" title="download_allocation_results"/>
     </td>
 </tr>
 </table>
@@ -139,14 +142,14 @@ The following performance metrics demonstrate the effectiveness of the developed
   <tr>
     <td>
      Average student top 6 preferences ratio (7 and 35 course limits)
-      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/average student top 6 preferences ratio.png"  title="average_student_top_6_preferences_ratio"/>
+      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/average student top 6 preferences ratio.png" title="average_student_top_6_preferences_ratio"/>
     </td>
     <td>
      1st preference satisfaction ratio
-      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/1st preference satisfaction ratio.png"  title="1st_preference_satisfaction_ratio"/>
+      <img src="https://github.com/helenzina/Web-Optimized-Smart-Resource-Allocation/blob/main/screenshots/1st preference satisfaction ratio.png" title="1st_preference_satisfaction_ratio"/>
     </td>
  </tr>
- </table>
+</table>
 
 
 For a closer look, click on the images and open them from the **screenshots** folder.
